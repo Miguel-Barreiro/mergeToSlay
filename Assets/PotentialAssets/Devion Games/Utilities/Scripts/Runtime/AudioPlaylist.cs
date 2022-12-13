@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 namespace DevionGames
 {
-    [CreateAssetMenu(fileName = "Audio Playlist", menuName = "Devion Games/Utilities/Audio Playlist")]
+    // [CreateAssetMenu(fileName = "Audio Playlist", menuName = "Devion Games/Utilities/Audio Playlist")]
     [System.Serializable]
     public class AudioPlaylist : ScriptableObject
     {
