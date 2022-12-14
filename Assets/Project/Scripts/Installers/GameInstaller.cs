@@ -17,7 +17,7 @@ namespace MergeToSlay.Installers
         private GameObject BoardViewPrefab;
 
         [SerializeField]
-        private CardList CardListData;
+        private GameConfigData GameConfigData;
 
         [SerializeField]
         private EnemyData DebugEnemyData;
@@ -25,11 +25,18 @@ namespace MergeToSlay.Installers
         [SerializeField]
         private CardData DebugCardData;
         
+        
+        
         private GameObject _boardView;
         
 
         public override void InstallBindings()
         {
+
+            Container.BindInstance<Contexts>(Contexts.sharedInstance);
+            
+            PrefabFactoryPool prefabFactoryPool = Container.Instantiate<PrefabFactoryPool>();
+            Container.BindInstance<PrefabFactoryPool>(prefabFactoryPool);
 
             Container.BindInstance<GameContext>(Contexts.sharedInstance.game);
             Container.BindInstance<InputContext>(Contexts.sharedInstance.input);
@@ -49,7 +56,8 @@ namespace MergeToSlay.Installers
 
         private void InstallData()
         {
-            Container.BindInstance<CardList>(CardListData);
+            Container.BindInstance<CardList>(GameConfigData.CardListData);
+            Container.BindInstance<GameConfigData>(GameConfigData);
         }
 
         private void InstallViews()

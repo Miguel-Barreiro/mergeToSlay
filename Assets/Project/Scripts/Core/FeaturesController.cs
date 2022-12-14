@@ -14,15 +14,13 @@ namespace MergeToSlay.Core
         
         public void Initialize()
         {
-            // get a reference to the contexts
-            var contexts = Contexts.sharedInstance;
-            Contexts[] extraArgs = new[] {contexts};
+            // var contexts = Contexts.sharedInstance;
+            // Contexts[] extraArgs = new[] {contexts};
 
-            // create the systems by creating individual features
+  
             _systems = new Feature("Features");
-
-            // Add(new TutorialFeature(contexts)).
-            _systems.Add(_container.Instantiate<CombatFeature>(extraArgs).AddSystems());
+            
+            _systems.Add(_container.Instantiate<CombatFeature>().AddSystems());
 
             // call Initialize() on all of the IInitializeSystems
             _systems.Initialize();

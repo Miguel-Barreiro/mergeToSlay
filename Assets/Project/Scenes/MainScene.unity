@@ -374,8 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers:
-  - {fileID: 0}
+  _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1164571661}
   _installerPrefabs: []
@@ -424,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoardCanvas: {fileID: 1086940362}
   BoardViewPrefab: {fileID: 5853518546266876312, guid: 89048744d4ed6ac4eafc0071f6783487, type: 3}
-  CardListData: {fileID: 11400000, guid: af4369fcfad47e24cad9320959a23558, type: 2}
+  GameConfigData: {fileID: 11400000, guid: b8f34079be974cb4ea274d105b5fcfd1, type: 2}
   DebugEnemyData: {fileID: 11400000, guid: a4e50b2f0fff52545bd380ecde22804f, type: 2}
   DebugCardData: {fileID: 11400000, guid: 427857ea0b6de394591c3bde633acefd, type: 2}
 --- !u!1 &1980649377

@@ -2,24 +2,21 @@ using System.Collections.Generic;
 using Entitas;
 using MergeToSlay.Components;
 using MergeToSlay.Services;
+using MergeToStay.Systems;
 using UnityEngine;
 using Zenject;
 
 namespace MergeToSlay.Systems
 {
-	public class DragGridObjectUpdateViewSystem : ReactiveSystem<GameEntity>, IInitializeSystem
+	public class DragGridObjectUpdateViewSystem : ReactiveGameSystem, IInitializeSystem
 	{
 		[Inject]
 		private BoardService _boardService;
 		
-		private readonly Contexts _contexts;
+		[Inject] private Contexts _contexts;
+
 		private IGroup<GameEntity> _boardGroup;
-
-		public DragGridObjectUpdateViewSystem(Contexts contexts) : base(contexts.game)
-		{
-			_contexts = contexts;
-		}
-
+		
 		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
 		{
 			return context.CreateCollector(GameMatcher.DragGridObjectUpdate);

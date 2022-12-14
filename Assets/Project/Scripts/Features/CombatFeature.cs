@@ -10,19 +10,16 @@ namespace MergeToSlay.Features
 		[Inject] 
 		private DiContainer _container;
 
-		private readonly Contexts _contexts;
+		[Inject]
+		private Contexts _contexts;
 
-		public CombatFeature(Contexts contexts) : base(nameof(CombatFeature))
-		{
-			_contexts = contexts;
-		}
+		public CombatFeature() : base(nameof(CombatFeature)) { }
 		
 		public CombatFeature AddSystems() 
 		{
-			Contexts[] extraArgs = new[] {_contexts};
-			Add(_container.Instantiate<GridObjectDragSystem>(extraArgs));
-			Add(_container.Instantiate<DragGridObjectUpdateViewSystem>(extraArgs));
-			Add(_container.Instantiate<CombatInitSystem>(extraArgs));
+			Add(_container.Instantiate<GridObjectDragSystem>());
+			Add(_container.Instantiate<DragGridObjectUpdateViewSystem>());
+			Add(_container.Instantiate<CombatInitSystem>());
 			
 			return this;
 		}

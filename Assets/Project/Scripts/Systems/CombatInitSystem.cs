@@ -12,15 +12,15 @@ namespace MergeToStay.Systems
 		[Inject] private GridObjectService _gridObjectService;
 
 		[Inject] private CardData _debugCardData;
-		
+
 		public void Initialize()
 		{
 			GameEntity newBoard = _boardService.CreateNewBoard(5, 5);
 
 			// lets fill with an object for debug
-			GameEntity gridObject = _gridObjectService.CreateNewGridObjectFromCard(_debugCardData);
-
-			_boardService.MoveGridObject(newBoard.board, gridObject, Vector2.one);
+			GameEntity gridObjectView = _gridObjectService.CreateNewGridObjectFromCard(_debugCardData);
+			
+			_boardService.MoveGridObject(newBoard.board, gridObjectView, Vector2.one);
 		}
 	}
 }

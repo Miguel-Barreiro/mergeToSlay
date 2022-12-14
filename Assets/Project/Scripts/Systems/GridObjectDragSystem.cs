@@ -1,19 +1,23 @@
 using System.Collections.Generic;
 using Entitas;
 using MergeToSlay.Core;
+using MergeToStay.Systems;
+using Zenject;
 
 namespace MergeToSlay.Systems
 {
-	 public class GridObjectDragSystem : ReactiveSystem<GameEntity>, IInitializeSystem
+	 public class GridObjectDragSystem : ReactiveGameSystem, IInitializeSystem
 	{
-		private readonly Contexts _contexts;
+		
+		[Inject]
+		private Contexts _contexts;
 		private IGroup<GameEntity> _boardGroup;
 
-		public GridObjectDragSystem(Contexts contexts) : base(contexts.game)
+		public void Initialize()
 		{
-			_contexts = contexts;
+			_boardGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Board));
 		}
-
+		
 		protected override void Execute(List<GameEntity> entities)
 		{
 			Log.Normal(entities.ToString());
@@ -34,9 +38,5 @@ namespace MergeToSlay.Systems
 			return entity.hasDragGridObjectEvent;
 		}
 
-		public void Initialize()
-		{
-			_boardGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Board));
-		}
 	}
 }
