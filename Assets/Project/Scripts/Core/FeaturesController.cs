@@ -1,7 +1,7 @@
 using MergeToStay.Examples.Features;
 using Zenject;
 
-namespace MergeToStay.Examples.Controllers
+namespace MergeToStay.Core
 {
     public class FeaturesController : IInitializable, ITickable
     {
