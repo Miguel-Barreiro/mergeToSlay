@@ -19,7 +19,7 @@ namespace MergeToSlay.Services
 			if (prefab == null)
 				prefab = _gameConfigData.DefaultGridObjetView;
 			
-			GameObject newView = _prefabFactoryPool.New(prefab);
+			GameObject newView = _prefabFactoryPool.NewGridObject(prefab);
 			result.AddGridObject( cardData, 0, newView, null);
 			return result;
 		}

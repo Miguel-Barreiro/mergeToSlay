@@ -2,6 +2,7 @@ using MergeToSlay.Core;
 using MergeToSlay.Data;
 using MergeToSlay.MonoBehaviours.Combat;
 using MergeToSlay.Services;
+using MergeToStay.MonoBehaviours;
 using UnityEngine;
 using Zenject;
 
@@ -9,9 +10,8 @@ namespace MergeToSlay.Installers
 {
     public class GameInstaller : MonoInstaller
     {
-
         [SerializeField]
-        private RectTransform BoardCanvas;
+        private RootView RootView;
 
         [SerializeField]
         private GameObject BoardViewPrefab;
@@ -35,6 +35,7 @@ namespace MergeToSlay.Installers
 
             Container.BindInstance<Contexts>(Contexts.sharedInstance);
             
+            Container.BindInstance<RootView>(RootView);
             PrefabFactoryPool prefabFactoryPool = Container.Instantiate<PrefabFactoryPool>();
             Container.BindInstance<PrefabFactoryPool>(prefabFactoryPool);
 
@@ -62,7 +63,7 @@ namespace MergeToSlay.Installers
 
         private void InstallViews()
         {
-            _boardView = Container.InstantiatePrefab(BoardViewPrefab, BoardCanvas);
+            _boardView = Container.InstantiatePrefab(BoardViewPrefab, RootView.BoardRoot);
             Container.BindInstance<BoardView>(_boardView.GetComponent<BoardView>());
         }
 
