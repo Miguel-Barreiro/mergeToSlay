@@ -1,4 +1,5 @@
 using MergeToSlay.Core;
+using MergeToSlay.Data;
 using MergeToSlay.MonoBehaviours.Combat;
 using MergeToSlay.Services;
 using UnityEngine;
@@ -15,11 +16,17 @@ namespace MergeToSlay.Installers
         [SerializeField]
         private GameObject BoardViewPrefab;
 
-        private GameObject _boardView;
+        [SerializeField]
+        private CardList CardListData;
 
-        private void Awake()
-        {
-        }
+        [SerializeField]
+        private EnemyData DebugEnemyData;
+        
+        [SerializeField]
+        private CardData DebugCardData;
+        
+        private GameObject _boardView;
+        
 
         public override void InstallBindings()
         {
@@ -29,8 +36,20 @@ namespace MergeToSlay.Installers
             
             Container.BindInterfacesAndSelfTo<FeaturesController>().AsSingle();
 
+            InstallData();
             InstallGameServices();
             InstallViews();
+            
+            
+            // this if for debug
+            Container.BindInstance<CardData>(DebugCardData);
+            Container.BindInstance<EnemyData>(DebugEnemyData);
+
+        }
+
+        private void InstallData()
+        {
+            Container.BindInstance<CardList>(CardListData);
         }
 
         private void InstallViews()
@@ -44,6 +63,9 @@ namespace MergeToSlay.Installers
         {
             BoardService boardService = Container.Instantiate<BoardService>();
             Container.BindInstance<BoardService>(boardService);
+
+            GridObjectService gridObjectService = Container.Instantiate<GridObjectService>();
+            Container.BindInstance<GridObjectService>(gridObjectService);
 
         }
     }

@@ -7,5 +7,6 @@ namespace MergeToSlay.Components
 	{
 		public Vector2 OriginCell;
 		public GameObject DraggedGameObject;
+
 	}
 }

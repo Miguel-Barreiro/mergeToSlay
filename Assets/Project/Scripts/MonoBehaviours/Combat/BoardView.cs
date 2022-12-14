@@ -19,6 +19,8 @@ namespace MergeToSlay.MonoBehaviours.Combat
         private bool _dragTargetBattle = false;
         private Vector2? _dragTargetCell = null;
         private Vector2? _dragOriginCell = null;
+        
+        
 
         private void Start()
         {

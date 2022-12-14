@@ -1,5 +1,6 @@
 using MergeToSlay.Examples.Features;
 using MergeToSlay.Features;
+using MergeToStay.Systems;
 using Zenject;
 
 namespace MergeToSlay.Core
@@ -18,13 +19,11 @@ namespace MergeToSlay.Core
             Contexts[] extraArgs = new[] {contexts};
 
             // create the systems by creating individual features
-            _systems = new Feature("Features").
+            _systems = new Feature("Features");
 
-                // Add(new TutorialFeature(contexts)).
-            Add(_container.Instantiate<GridObjectDragDropFeature>(extraArgs).AddSystems());
+            // Add(new TutorialFeature(contexts)).
+            _systems.Add(_container.Instantiate<CombatFeature>(extraArgs).AddSystems());
 
-
-            
             // call Initialize() on all of the IInitializeSystems
             _systems.Initialize();
         }

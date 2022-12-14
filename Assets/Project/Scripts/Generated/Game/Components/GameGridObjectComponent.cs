@@ -11,19 +11,23 @@ public partial class GameEntity {
     public MergeToSlay.Components.GridObject gridObject { get { return (MergeToSlay.Components.GridObject)GetComponent(GameComponentsLookup.GridObject); } }
     public bool hasGridObject { get { return HasComponent(GameComponentsLookup.GridObject); } }
 
-    public void AddGridObject(System.Nullable<UnityEngine.Vector2> newGridPosition, UnityEngine.GameObject newView) {
+    public void AddGridObject(MergeToSlay.Data.CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
         var index = GameComponentsLookup.GridObject;
         var component = (MergeToSlay.Components.GridObject)CreateComponent(index, typeof(MergeToSlay.Components.GridObject));
-        component.GridPosition = newGridPosition;
+        component.CardData = newCardData;
+        component.Level = newLevel;
         component.View = newView;
+        component.GridPosition = newGridPosition;
         AddComponent(index, component);
     }
 
-    public void ReplaceGridObject(System.Nullable<UnityEngine.Vector2> newGridPosition, UnityEngine.GameObject newView) {
+    public void ReplaceGridObject(MergeToSlay.Data.CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
         var index = GameComponentsLookup.GridObject;
         var component = (MergeToSlay.Components.GridObject)CreateComponent(index, typeof(MergeToSlay.Components.GridObject));
-        component.GridPosition = newGridPosition;
+        component.CardData = newCardData;
+        component.Level = newLevel;
         component.View = newView;
+        component.GridPosition = newGridPosition;
         ReplaceComponent(index, component);
     }
 
