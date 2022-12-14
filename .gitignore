@@ -75,3 +75,4 @@ crashlytics-build.properties
 
 # Rider user file
 *.DotSettings.user
+*.userproperties
