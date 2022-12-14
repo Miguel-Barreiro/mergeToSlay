@@ -13,6 +13,23 @@ namespace MergeToStay.MonoBehaviours.Combat
         {
             [SerializeField] public CellView[] Cells;
         }
+
+        private void Start()
+        {
+            int x = 0;
+            int y = 0;
+            foreach (GridRow gridRow in Rows)
+            {
+                y++;
+                x = 0;
+                foreach (CellView cellView in gridRow.Cells)
+                {
+                    x++;
+                    cellView.SetPosition(new Vector2(x, y));
+                }
+            }
+        }
+        
     }
     
 }

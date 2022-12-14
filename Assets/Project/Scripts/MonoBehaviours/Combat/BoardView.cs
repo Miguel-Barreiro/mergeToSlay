@@ -6,5 +6,15 @@ namespace MergeToStay.MonoBehaviours.Combat
     {
         
         public GridView GridView;
+
+
+        private void Start()
+        {
+            
+            
+            
+            
+            
+        }
     }
 }
