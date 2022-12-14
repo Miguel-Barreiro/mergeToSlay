@@ -9,20 +9,26 @@
 public static class GameComponentsLookup {
 
     public const int Board = 0;
-    public const int GridObject = 1;
-    public const int DebugMessage = 2;
+    public const int Combat = 1;
+    public const int DragGridObjectEvent = 2;
+    public const int GridObject = 3;
+    public const int DebugMessage = 4;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
         "Board",
+        "Combat",
+        "DragGridObjectEvent",
         "GridObject",
         "DebugMessage"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(MergeToStay.Components.BoardComponent),
-        typeof(MergeToStay.Components.GridObject),
-        typeof(MergeToStay.Examples.Components.DebugMessageComponent)
+        typeof(MergeToSlay.Components.BoardComponent),
+        typeof(MergeToSlay.Components.CombatComponent),
+        typeof(MergeToSlay.Components.DragGridObjectEvent),
+        typeof(MergeToSlay.Components.GridObject),
+        typeof(MergeToSlay.Examples.Components.DebugMessageComponent)
     };
 }

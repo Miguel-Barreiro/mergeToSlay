@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace MergeToStay.Examples.Components
+namespace MergeToSlay.Examples.Components
 {
     [Game]
     public class DebugMessageComponent : IComponent 

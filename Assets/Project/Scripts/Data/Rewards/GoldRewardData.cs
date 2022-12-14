@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeToStay.Data.Rewards
+namespace MergeToSlay.Data.Rewards
 {
 	[CreateAssetMenu(fileName = "NEW_GoldReward", menuName = "MergeToSlay.REWARDS/new GOLD reward", order = 1)]
 	public class GoldRewardData : RewardBase

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using MergeToStay.Data.Rewards;
+using MergeToSlay.Data.Rewards;
 using UnityEngine;
 
-namespace MergeToStay.Data
+namespace MergeToSlay.Data
 {
 	[CreateAssetMenu(fileName = "NEW_COMBAT_DATA", menuName = "MergeToSlay.COMBAT/new COMBAT", order = 0)]
 	public class CombatData : ScriptableObject

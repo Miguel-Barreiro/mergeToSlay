@@ -1,8 +1,8 @@
-using MergeToStay.Data.Actions;
+using MergeToSlay.Data.Actions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MergeToStay.Data
+namespace MergeToSlay.Data
 {
 	[CreateAssetMenu(fileName = "NEW_Weak", menuName = "MergeToSlay.CARD/new WEAK action", order = 1)]
 	public class WeakActionData : ActionBase

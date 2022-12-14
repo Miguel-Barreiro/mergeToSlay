@@ -8,20 +8,22 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public MergeToStay.Components.GridObject gridObject { get { return (MergeToStay.Components.GridObject)GetComponent(GameComponentsLookup.GridObject); } }
+    public MergeToSlay.Components.GridObject gridObject { get { return (MergeToSlay.Components.GridObject)GetComponent(GameComponentsLookup.GridObject); } }
     public bool hasGridObject { get { return HasComponent(GameComponentsLookup.GridObject); } }
 
-    public void AddGridObject(UnityEngine.Vector2 newGridPosition) {
+    public void AddGridObject(System.Nullable<UnityEngine.Vector2> newGridPosition, UnityEngine.GameObject newView) {
         var index = GameComponentsLookup.GridObject;
-        var component = (MergeToStay.Components.GridObject)CreateComponent(index, typeof(MergeToStay.Components.GridObject));
+        var component = (MergeToSlay.Components.GridObject)CreateComponent(index, typeof(MergeToSlay.Components.GridObject));
         component.GridPosition = newGridPosition;
+        component.View = newView;
         AddComponent(index, component);
     }
 
-    public void ReplaceGridObject(UnityEngine.Vector2 newGridPosition) {
+    public void ReplaceGridObject(System.Nullable<UnityEngine.Vector2> newGridPosition, UnityEngine.GameObject newView) {
         var index = GameComponentsLookup.GridObject;
-        var component = (MergeToStay.Components.GridObject)CreateComponent(index, typeof(MergeToStay.Components.GridObject));
+        var component = (MergeToSlay.Components.GridObject)CreateComponent(index, typeof(MergeToSlay.Components.GridObject));
         component.GridPosition = newGridPosition;
+        component.View = newView;
         ReplaceComponent(index, component);
     }
 

@@ -1,6 +1,7 @@
-using MergeToStay.Examples.Systems;
+using MergeToSlay.Examples.Systems;
+using MergeToSlay.Systems;
 
-namespace MergeToStay.Examples.Features
+namespace MergeToSlay.Examples.Features
 {
     public class TutorialFeature : Feature
     {

@@ -1,10 +1,11 @@
 using System;
+using MergeToSlay.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace MergeToStay.MonoBehaviours.Combat
+namespace MergeToSlay.MonoBehaviours.Combat
 {
 	[RequireComponent(typeof(DragOnHandler))]
 	[RequireComponent(typeof(Image))]
@@ -14,27 +15,34 @@ namespace MergeToStay.MonoBehaviours.Combat
 		public event Action<CellView> OnStartDrag;
 		public event Action<CellView> OnEndDrag;
 
+		public DragOnHandler DragOnHandler;
 
 		public Vector2 Position = new Vector2(0, 0);
 		public bool IsBeingDragged = false;
-		
+
+
+		private void Awake()
+		{
+			DragOnHandler = GetComponent<DragOnHandler>();
+		}
+
 		public void OnPointerClick(PointerEventData eventData)
 		{
-			// Debug.Log("was touched " + gameObject.name);
+			// Log.Normal("was touched " + gameObject.name);
 			OnSelected?.Invoke(this);
 		}
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
 			IsBeingDragged = true;
-			// Debug.Log("was start drag " + gameObject.name);
+			// Log.Normal("was start drag " + gameObject.name);
 			OnStartDrag?.Invoke(this);
 		}
 
 		public void OnPointerUp(PointerEventData eventData)
 		{
 			IsBeingDragged = false;
-			// Debug.Log("was end drag " + gameObject.name);
+			// Log.Normal("was end drag " + gameObject.name);
 			OnEndDrag?.Invoke(this);
 		}
 

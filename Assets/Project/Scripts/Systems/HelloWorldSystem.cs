@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace MergeToStay.Examples.Systems
+namespace MergeToSlay.Examples.Systems
 {
     public class HelloWorldSystem : IInitializeSystem
     { 

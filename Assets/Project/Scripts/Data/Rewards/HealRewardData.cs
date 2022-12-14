@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeToStay.Data.Rewards
+namespace MergeToSlay.Data.Rewards
 {
 	[CreateAssetMenu(fileName = "NEW_healReward", menuName = "MergeToSlay.REWARDS/new HEAL reward", order = 1)]
 	public class HealRewardData : RewardBase

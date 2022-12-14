@@ -1,20 +1,30 @@
-using MergeToStay.Examples.Features;
+using MergeToSlay.Examples.Features;
+using MergeToSlay.Features;
 using Zenject;
 
-namespace MergeToStay.Core
+namespace MergeToSlay.Core
 {
-    public class FeaturesController : IInitializable, ITickable
+    public sealed class FeaturesController : IInitializable, ITickable
     {
         Entitas.Systems _systems;
-
+        
+        [Inject] 
+        private DiContainer _container;
+        
         public void Initialize()
         {
             // get a reference to the contexts
             var contexts = Contexts.sharedInstance;
-        
-            // create the systems by creating individual features
-            _systems = new Feature("Features").Add(new TutorialFeature(contexts));
+            Contexts[] extraArgs = new[] {contexts};
 
+            // create the systems by creating individual features
+            _systems = new Feature("Features").
+
+                // Add(new TutorialFeature(contexts)).
+            Add(_container.Instantiate<GridObjectDragDropFeature>(extraArgs).AddSystems());
+
+
+            
             // call Initialize() on all of the IInitializeSystems
             _systems.Initialize();
         }

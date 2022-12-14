@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using MergeToStay.Components;
+using MergeToSlay.Components;
 using UnityEngine;
 using Zenject;
 
-namespace MergeToStay.Services
+namespace MergeToSlay.Services
 {
 	public sealed class BoardService
 	{
 		[Inject]
-		readonly GameContext _context;
+		private GameContext _context;
 		
 		public GameEntity CreateNewBoard(int width, int height)
 		{
@@ -24,6 +24,19 @@ namespace MergeToStay.Services
 			return result;
 		}
 
+		public void CreateNewGridObjectDragToCellEvent(Vector2 draggedCell, Vector2 targetCell)
+		{
+			GameEntity result = _context.CreateEntity();
+			result.AddDragGridObjectEvent(draggedCell, targetCell, false);
+		}
+
+		public void CreateNewGridObjectDragToBattleEvent(Vector2 draggedCell)
+		{
+			GameEntity result = _context.CreateEntity();
+			result.AddDragGridObjectEvent(draggedCell,null, true);
+		}
+
+		
 		public bool MoveGridObject(BoardComponent board, GameEntity gridObject, Vector2 newPosition)
 		{
 			if (board.Cells[newPosition].GridObject != null)

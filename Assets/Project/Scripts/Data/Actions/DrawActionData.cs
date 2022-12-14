@@ -1,7 +1,7 @@
-using MergeToStay.Data.Actions;
+using MergeToSlay.Data.Actions;
 using UnityEngine;
 
-namespace MergeToStay.Data
+namespace MergeToSlay.Data
 {
 	[CreateAssetMenu(fileName = "NEW_DRAW", menuName = "MergeToSlay.CARD/new DRAW action", order = 1)]
 	public class DrawActionData : ActionBase

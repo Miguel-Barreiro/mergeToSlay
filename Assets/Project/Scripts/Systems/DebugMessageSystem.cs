@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
 
-namespace MergeToStay.Examples.Systems
+namespace MergeToSlay.Systems
 {
     public class DebugMessageSystem : ReactiveSystem<GameEntity>
 {

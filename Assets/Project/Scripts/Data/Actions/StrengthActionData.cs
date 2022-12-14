@@ -1,8 +1,8 @@
-using MergeToStay.Data.Actions;
+using MergeToSlay.Data.Actions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MergeToStay.Data
+namespace MergeToSlay.Data
 {
 	[CreateAssetMenu(fileName = "NEW_StrengthAction", menuName = "MergeToSlay.CARD/new STRENGTH action", order = 1)]
 	public class StrengthActionData : ActionBase

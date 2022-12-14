@@ -1,8 +1,9 @@
 using System;
+using MergeToSlay.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace MergeToStay.MonoBehaviours.Combat
+namespace MergeToSlay.MonoBehaviours.Combat
 {
 	public class DragOnHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
@@ -14,14 +15,14 @@ namespace MergeToStay.MonoBehaviours.Combat
 		public void OnPointerEnter(PointerEventData eventData)
 		{
 			IsDraggedOn = true;
-			// Debug.Log("was enter moved " + gameObject.name);
+			// Log.Normal("was enter moved " + gameObject.name);
 			OnEnterDrag?.Invoke(this);
 		}
 
 		public void OnPointerExit(PointerEventData eventData)
 		{
 			IsDraggedOn = false;
-			// Debug.Log("was exit moved " + gameObject.name);
+			// Log.Normal("was exit moved " + gameObject.name);
 			OnExitDrag?.Invoke(this);
 		}
 	}

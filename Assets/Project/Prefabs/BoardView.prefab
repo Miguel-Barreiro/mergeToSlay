@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13503c7101a44f8ca3b27a27c40e63e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDraggedOn: 0
 --- !u!1 &5853518546266876312
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridView: {fileID: 4186099203058084223}
+  BattleDragCatcher: {fileID: 4503287037117522786}
 --- !u!1 &7263684678469552199
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,8 +139,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.7006989, y: 1.3860016}
+  m_SizeDelta: {x: 969.395, y: 874.7182}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7263684678469552200
 CanvasRenderer:
