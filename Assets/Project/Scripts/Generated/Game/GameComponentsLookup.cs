@@ -11,15 +11,17 @@ public static class GameComponentsLookup {
     public const int Board = 0;
     public const int Combat = 1;
     public const int DragGridObjectEvent = 2;
-    public const int GridObject = 3;
-    public const int DebugMessage = 4;
+    public const int DragGridObjectUpdate = 3;
+    public const int GridObject = 4;
+    public const int DebugMessage = 5;
 
-    public const int TotalComponents = 5;
+    public const int TotalComponents = 6;
 
     public static readonly string[] componentNames = {
         "Board",
         "Combat",
         "DragGridObjectEvent",
+        "DragGridObjectUpdate",
         "GridObject",
         "DebugMessage"
     };
@@ -28,6 +30,7 @@ public static class GameComponentsLookup {
         typeof(MergeToSlay.Components.BoardComponent),
         typeof(MergeToSlay.Components.CombatComponent),
         typeof(MergeToSlay.Components.DragGridObjectEvent),
+        typeof(MergeToSlay.Components.DragGridObjectUpdateComponent),
         typeof(MergeToSlay.Components.GridObject),
         typeof(MergeToSlay.Examples.Components.DebugMessageComponent)
     };

@@ -20,8 +20,6 @@ public class Feature : Entitas.VisualDebugging.Unity.DebugSystems {
 
         initialize(readableType);
     }
-
-    public object Contexts { get; set; }
 }
 
 #elif (!ENTITAS_DISABLE_DEEP_PROFILING && DEVELOPMENT_BUILD)
