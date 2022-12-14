@@ -1,9 +1,10 @@
+using MergeToStay.Data.Actions;
 using UnityEngine;
 
 namespace MergeToStay.Data
 {
 	[CreateAssetMenu(fileName = "NEW_DEFENSE", menuName = "MergeToSlay.CARD/new DEFENSE action", order = 1)]
-	public class DefenseActionData : ScriptableObject
+	public class DefenseActionData : ActionBase
 	{
 		[Range(1, 100)]
 		public int Value = 1;
