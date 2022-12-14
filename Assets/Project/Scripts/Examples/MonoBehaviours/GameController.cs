@@ -5,7 +5,7 @@ namespace MergeToStay.Examples.MonoBehaviours
 {
     public class GameController : MonoBehaviour
     {
-        Entitas.Systems _systems;
+        private Entitas.Systems _systems;
 
         void Start()
         {
@@ -13,8 +13,8 @@ namespace MergeToStay.Examples.MonoBehaviours
             var contexts = Contexts.sharedInstance;
         
             // create the systems by creating individual features
-            _systems = new Feature("Features").Add(new TutorialFeature(contexts));
-
+            _systems = new Feature("Systems").Add(new TutorialFeature(contexts));
+            
             // call Initialize() on all of the IInitializeSystems
             _systems.Initialize();
         }

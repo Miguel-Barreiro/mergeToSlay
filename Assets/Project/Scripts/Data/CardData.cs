@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MergeToStay.Data
 {
-    [CreateAssetMenu(fileName = "NEW_CARD", menuName = "MergeToSlay/new CARD", order = 0)]
+    [CreateAssetMenu(fileName = "NEW_CARD", menuName = "MergeToSlay.CARD/new CARD", order = 0)]
     public sealed class CardData : ScriptableObject
     {
         

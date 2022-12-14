@@ -1,19 +1,19 @@
+
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace MergeToStay.Data
 {
-	[CreateAssetMenu(fileName = "NEW_ATTACK", menuName = "MergeToSlay.CARD/new ATTACK action", order = 1)]
-	public class AttackActionData : ActionBase
+	[CreateAssetMenu(fileName = "NEW_STUN", menuName = "MergeToSlay.CARD/new STUN action", order = 1)]
+	public class StunActionData : ActionBase
 	{
-		[Range(1, 100)]
-		public int Value = 1;
+
+		[Range(1, 5)]
+		public int Turns = 1;
 		
 		[Title("Targets")]
 		[EnumToggleButtons]
 		public Actions.CombatTargetsEnum CombatTargets = Actions.CombatTargetsEnum.FORWARD;
-		
-
 	}
 }
