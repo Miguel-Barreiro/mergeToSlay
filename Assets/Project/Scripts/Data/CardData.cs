@@ -28,6 +28,9 @@ namespace MergeToStay.Data
         
         [SerializeField]
         public List<ActionBase> Actions;
+
+        [SerializeField]
+        public List<ActionBase> MergeActions;
         
     }
 }
