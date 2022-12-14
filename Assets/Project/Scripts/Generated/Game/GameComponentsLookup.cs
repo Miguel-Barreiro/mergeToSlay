@@ -8,15 +8,21 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int DebugMessage = 0;
+    public const int Board = 0;
+    public const int GridObject = 1;
+    public const int DebugMessage = 2;
 
-    public const int TotalComponents = 1;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
+        "Board",
+        "GridObject",
         "DebugMessage"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(MergeToStay.Components.BoardComponent),
+        typeof(MergeToStay.Components.GridObject),
         typeof(MergeToStay.Examples.Components.DebugMessageComponent)
     };
 }
