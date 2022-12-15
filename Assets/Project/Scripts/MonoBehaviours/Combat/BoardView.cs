@@ -88,11 +88,16 @@ namespace MergeToStay.MonoBehaviours.Combat
         private void OnEndDragUtil(CellView view)
         {
             if (_dragTargetBattle && _dragOriginCell != null)
-                OnEndDragToBattle(_dragOriginCell.Value);
- 
-            if (_dragTargetCell != null && _dragOriginCell != null)
+                OnEndToBattleDrag(_dragOriginCell.Value);
+    
+            else if (_dragTargetCell != null && _dragOriginCell != null)
                 OnEndDrag(_dragOriginCell.Value, _dragTargetCell.Value);
-
+            
+            else if (_dragOriginCell != null)
+                OnEndInvalidDrag(_dragOriginCell.Value);
+            else
+                OnEndInvalidDrag(Vector2.down);
+            
             _dragTargetBattle = false;
             _dragOriginCell = null;
             _dragTargetCell = null;
@@ -109,13 +114,19 @@ namespace MergeToStay.MonoBehaviours.Combat
         private void OnEndDrag(Vector2 originCell, Vector2 targetCell)
         {
             // Debug.Log("dragged from " + originCell + " to " + targetCell);
-            _boardService.CreateNewGridObjectDragToCellEvent(originCell, targetCell);
+            _boardService.CreateObjectGridDragToCellEvent(originCell, targetCell);
         }
         
-        private void OnEndDragToBattle(Vector2 originCell)
+        private void OnEndToBattleDrag(Vector2 originCell)
         {
             // Debug.Log("dragged from " + originCell + " to battle");
             _combatService.CreateBattleUseEvent(originCell);
+        }
+        
+        private void OnEndInvalidDrag(Vector2 originCell)
+        {
+            // Debug.Log("dragged from " + originCell + " to battle");
+            _boardService.CreateInvalidDragEvent(originCell);
         }
         
 

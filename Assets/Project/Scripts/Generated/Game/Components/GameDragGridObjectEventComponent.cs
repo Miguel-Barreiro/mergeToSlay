@@ -11,17 +11,19 @@ public partial class GameEntity {
     public MergeToStay.Components.Combat.DragGridObjectEvent dragGridObjectEvent { get { return (MergeToStay.Components.Combat.DragGridObjectEvent)GetComponent(GameComponentsLookup.DragGridObjectEvent); } }
     public bool hasDragGridObjectEvent { get { return HasComponent(GameComponentsLookup.DragGridObjectEvent); } }
 
-    public void AddDragGridObjectEvent(UnityEngine.Vector2 newDraggedCell, UnityEngine.Vector2 newTargetCell) {
+    public void AddDragGridObjectEvent(bool newInvalidDrag, UnityEngine.Vector2 newDraggedCell, UnityEngine.Vector2 newTargetCell) {
         var index = GameComponentsLookup.DragGridObjectEvent;
         var component = (MergeToStay.Components.Combat.DragGridObjectEvent)CreateComponent(index, typeof(MergeToStay.Components.Combat.DragGridObjectEvent));
+        component.InvalidDrag = newInvalidDrag;
         component.DraggedCell = newDraggedCell;
         component.TargetCell = newTargetCell;
         AddComponent(index, component);
     }
 
-    public void ReplaceDragGridObjectEvent(UnityEngine.Vector2 newDraggedCell, UnityEngine.Vector2 newTargetCell) {
+    public void ReplaceDragGridObjectEvent(bool newInvalidDrag, UnityEngine.Vector2 newDraggedCell, UnityEngine.Vector2 newTargetCell) {
         var index = GameComponentsLookup.DragGridObjectEvent;
         var component = (MergeToStay.Components.Combat.DragGridObjectEvent)CreateComponent(index, typeof(MergeToStay.Components.Combat.DragGridObjectEvent));
+        component.InvalidDrag = newInvalidDrag;
         component.DraggedCell = newDraggedCell;
         component.TargetCell = newTargetCell;
         ReplaceComponent(index, component);

@@ -26,10 +26,17 @@ namespace MergeToStay.Services
 			return result;
 		}
 
-		public GameEntity CreateNewGridObjectDragToCellEvent(Vector2 draggedCell, Vector2 targetCell)
+		public GameEntity CreateInvalidDragEvent(Vector2 draggedCell)
 		{
 			GameEntity result = _context.CreateEntity();
-			result.AddDragGridObjectEvent(draggedCell, targetCell);
+			result.AddDragGridObjectEvent(true, draggedCell, Vector2.negativeInfinity);
+			return result;
+		}
+
+		public GameEntity CreateObjectGridDragToCellEvent(Vector2 draggedCell, Vector2 targetCell)
+		{
+			GameEntity result = _context.CreateEntity();
+			result.AddDragGridObjectEvent(false, draggedCell, targetCell);
 			return result;
 		}
 
@@ -43,7 +50,7 @@ namespace MergeToStay.Services
 		public bool MoveGridObject(GameEntity boardEntity, GameEntity gridObject, Vector2 newPosition)
 		{
 			BoardComponent board = boardEntity.board;
-			if (board.Cells[newPosition].GridObject != null)
+			if ( _gridObjectService.IsValid(board.Cells[newPosition].GridObject))
 				return false;
 				
 			if (gridObject.gridObject.GridPosition != null )
@@ -114,5 +121,6 @@ namespace MergeToStay.Services
 
 			return null;
 		}
+
 	}
 }
