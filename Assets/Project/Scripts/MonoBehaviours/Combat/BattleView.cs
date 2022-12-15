@@ -1,21 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MergeToStay
+namespace MergeToStay.MonoBehaviours.Combat
 {
     public class BattleView : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        public List<RectTransform> EnemySpots;
+        public RectTransform PlayerSpot;
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

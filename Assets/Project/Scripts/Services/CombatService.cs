@@ -1,3 +1,4 @@
+using MergeToStay.Data;
 using UnityEngine;
 using Zenject;
 
@@ -25,6 +26,13 @@ namespace MergeToStay.Services
 		{
 			GameEntity result = _context.CreateEntity();
 			result.AddDrawCardEvent(howMany);
+			return result;
+		}
+
+		public GameEntity SummonEnemy(EnemyData defaultEnemyData, int position)
+		{
+			GameEntity result = _context.CreateEntity();
+			// result.AddDrawCardEvent(howMany);
 			return result;
 		}
 	}

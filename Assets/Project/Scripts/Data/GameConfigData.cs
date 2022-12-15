@@ -8,5 +8,6 @@ namespace MergeToStay.Data
 		public CardList CardListData;
 		
 		public GameObject DefaultGridObjetView;
+		public GameObject DefaultEnemyView;
 	}
 }

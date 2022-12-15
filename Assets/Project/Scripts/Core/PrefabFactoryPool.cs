@@ -20,5 +20,10 @@ namespace MergeToStay.Core
 		{
 			GameObject.Destroy(view);
 		}
+
+		public GameObject NewEnemy(GameObject enemyDataPrefab)
+		{
+			return GameObject.Instantiate(enemyDataPrefab, _rootView.BattleRoot);
+		}
 	}
 }

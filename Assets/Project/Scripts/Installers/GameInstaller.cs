@@ -80,7 +80,7 @@ namespace MergeToStay.Installers
             Container.BindInstance<GridObjectService>(Container.Instantiate<GridObjectService>());
             Container.BindInstance<BoardService>(Container.Instantiate<BoardService>());
             Container.BindInstance<CombatService>(Container.Instantiate<CombatService>());
-            
+            Container.BindInstance<EnemyService>(Container.Instantiate<EnemyService>());
         }
     }
 }

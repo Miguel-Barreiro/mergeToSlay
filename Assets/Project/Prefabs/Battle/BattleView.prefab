@@ -161,7 +161,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2281948592312936905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 5711177636925386906}
   - component: {fileID: 2908724854077195958}
   m_Layer: 5
-  m_Name: EnemyPosition1 (1)
+  m_Name: EnemyPosition1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8636994946081840873}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 3351708536012516026}
   - component: {fileID: 5084118907735940967}
   m_Layer: 5
-  m_Name: EnemyPosition1 (2)
+  m_Name: EnemyPosition2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8636994946081840873}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 6601351763178676882}
   - component: {fileID: 6403652138461175243}
   m_Layer: 5
-  m_Name: EnemyPosition1
+  m_Name: EnemyPosition3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,7 +438,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8636994946081840873}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -533,6 +533,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b008bb3fced3949bb022cad8167264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemySpots:
+  - {fileID: 8650670230983919666}
+  - {fileID: 7173184206739228022}
+  - {fileID: 7653431117040304946}
+  PlayerSpot: {fileID: 3426484800333245172}
 --- !u!1 &8591782966971487496
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,9 +567,9 @@ RectTransform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7653431117040304946}
   - {fileID: 8650670230983919666}
   - {fileID: 7173184206739228022}
+  - {fileID: 7653431117040304946}
   m_Father: {fileID: 810968399263464}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
