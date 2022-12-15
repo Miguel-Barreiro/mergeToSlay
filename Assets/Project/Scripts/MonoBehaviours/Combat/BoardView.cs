@@ -30,8 +30,8 @@ namespace MergeToStay.MonoBehaviours.Combat
                 cell.DragOnHandler.OnEnterDrag += OnEnterDragCell;
                 cell.DragOnHandler.OnExitDrag += OnExitDragCell;
             }
-            BattleDragCatcher.OnEnterDrag += OnEnterCatcher;
-            BattleDragCatcher.OnExitDrag += OnExitCatcher;
+            BattleDragCatcher.OnEnterDrag += OnEnterBattle;
+            BattleDragCatcher.OnExitDrag += OnExitBattle;
 
         }
 
@@ -65,12 +65,12 @@ namespace MergeToStay.MonoBehaviours.Combat
             }
         }
 
-        private void OnExitCatcher(DragOnHandler obj)
+        private void OnExitBattle(DragOnHandler obj)
         {
             _dragTargetBattle = false;
         }
 
-        private void OnEnterCatcher(DragOnHandler obj)
+        private void OnEnterBattle(DragOnHandler obj)
         {
             _dragTargetBattle = true;
             _dragTargetCell = null;
