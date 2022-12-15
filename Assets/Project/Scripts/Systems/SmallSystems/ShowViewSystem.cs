@@ -3,7 +3,7 @@ using Entitas;
 using MergeToStay.MonoBehaviours;
 using Zenject;
 
-namespace MergeToStay.Systems.Combat
+namespace MergeToStay.Systems.SmallSystems
 {
 	public class ShowViewSystem : ReactiveGameSystem, IInitializeSystem
 	{
@@ -15,7 +15,7 @@ namespace MergeToStay.Systems.Combat
 		{
 			foreach (GameEntity eventEntity in entities)
 			{
-				_rootView.ShowView(eventEntity.showViewEvent.View);
+				_rootView.ShowView(eventEntity.showViewEvent.View, eventEntity.showViewEvent.HideOpenedViews);
 
 				eventEntity.Destroy();
 			}

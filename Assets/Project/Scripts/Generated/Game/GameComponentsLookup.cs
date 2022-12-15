@@ -19,13 +19,15 @@ public static class GameComponentsLookup {
     public const int GridObject = 8;
     public const int GridObjectUseEvent = 9;
     public const int MergeEvent = 10;
-    public const int NodeEnterEvent = 11;
-    public const int NodeExitEvent = 12;
-    public const int Path = 13;
-    public const int ShowViewEvent = 14;
-    public const int DebugMessage = 15;
+    public const int RestartGameEvent = 11;
+    public const int NodeEnterEvent = 12;
+    public const int NodeExitEvent = 13;
+    public const int Path = 14;
+    public const int ShowViewEvent = 15;
+    public const int Player = 16;
+    public const int DebugMessage = 17;
 
-    public const int TotalComponents = 16;
+    public const int TotalComponents = 18;
 
     public static readonly string[] componentNames = {
         "Battle",
@@ -39,10 +41,12 @@ public static class GameComponentsLookup {
         "GridObject",
         "GridObjectUseEvent",
         "MergeEvent",
+        "RestartGameEvent",
         "NodeEnterEvent",
         "NodeExitEvent",
         "Path",
         "ShowViewEvent",
+        "Player",
         "DebugMessage"
     };
 
@@ -58,10 +62,12 @@ public static class GameComponentsLookup {
         typeof(MergeToStay.Components.Combat.GridObject),
         typeof(MergeToStay.Components.Combat.GridObjectUseEvent),
         typeof(MergeToStay.Components.Combat.MergeEvent),
+        typeof(MergeToStay.Components.Game.RestartGameEvent),
         typeof(MergeToStay.Components.Path.NodeEnterEvent),
         typeof(MergeToStay.Components.Path.NodeExitEvent),
         typeof(MergeToStay.Components.Path.PathComponent),
         typeof(MergeToStay.Components.Path.ShowViewEvent),
+        typeof(MergeToStay.Components.Player.PlayerComponent),
         typeof(MergeToStay.Examples.Components.DebugMessageComponent)
     };
 }

@@ -5,6 +5,7 @@ namespace MergeToStay.MonoBehaviours
 	public class RootView : MonoBehaviour
 	{
 		public RectTransform PathRoot;
+		public RectTransform PlayerUiRoot;
 		public RectTransform BoardRoot;
 		public RectTransform GridObjectsRoot;
 		public RectTransform BattleRoot;
@@ -12,12 +13,16 @@ namespace MergeToStay.MonoBehaviours
 		public RectTransform CampRoot;
 		public RectTransform ShopRoot;
 
-		public void ShowView(View view)
+		public void ShowView(View view, bool hideOpenedViews = true)
 		{
-			HideAllViews();
+			if (hideOpenedViews)
+				HideAllViews();
 
 			switch (view)
 			{
+				case View.PlayerUi:
+					PlayerUiRoot.gameObject.SetActive(true);
+					break;
 				case View.Path:
 					PathRoot.gameObject.SetActive(true);
 					break;
@@ -53,6 +58,7 @@ namespace MergeToStay.MonoBehaviours
 
 	public enum View
 	{
+		PlayerUi,
 		Path,
 		Battle,
 		BattleRewards,

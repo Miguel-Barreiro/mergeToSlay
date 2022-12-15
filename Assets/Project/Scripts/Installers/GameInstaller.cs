@@ -3,6 +3,7 @@ using MergeToStay.Data;
 using MergeToStay.MonoBehaviours;
 using MergeToStay.MonoBehaviours.Camp;
 using MergeToStay.MonoBehaviours.Combat;
+using MergeToStay.MonoBehaviours.UI;
 using MergeToStay.Services;
 using UnityEngine;
 using Zenject;
@@ -12,6 +13,7 @@ namespace MergeToStay.Installers
     public class GameInstaller : MonoInstaller
     {
         [SerializeField] private RootView RootView;
+        [SerializeField] private GameObject PlayerUiViewPrefab;
         [SerializeField] private GameObject PathViewPrefab;
         [SerializeField] private GameObject BoardViewPrefab;
         [SerializeField] private GameObject BattleViewPrefab;
@@ -22,6 +24,7 @@ namespace MergeToStay.Installers
         [SerializeField] private EnemyData DebugEnemyData;
         [SerializeField] private CardData DebugCardData;
         
+        private GameObject _playerUiView;
         private GameObject _pathView;
         private GameObject _boardView;
         private GameObject _battleView;
@@ -67,6 +70,7 @@ namespace MergeToStay.Installers
             _battleRewardsView = BindView<BattleRewardsView>(BattleRewardsViewPrefab, RootView.BattleRewardsRoot);
             _campView = BindView<CampView>(CampViewPrefab, RootView.CampRoot);
             _shopView = BindView<ShopView>(ShopViewPrefab, RootView.ShopRoot);
+            _playerUiView = BindView<PlayerUiView>(PlayerUiViewPrefab, RootView.PlayerUiRoot);
         }
 
         private GameObject BindView<T>(GameObject prefab, RectTransform root)

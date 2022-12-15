@@ -6,5 +6,6 @@ namespace MergeToStay.Components.Path
 	public class ShowViewEvent : IComponent
 	{
 		public View View;
+		public bool HideOpenedViews;
 	}
 }

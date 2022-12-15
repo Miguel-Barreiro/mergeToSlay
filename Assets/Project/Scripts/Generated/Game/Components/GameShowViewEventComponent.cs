@@ -11,17 +11,19 @@ public partial class GameEntity {
     public MergeToStay.Components.Path.ShowViewEvent showViewEvent { get { return (MergeToStay.Components.Path.ShowViewEvent)GetComponent(GameComponentsLookup.ShowViewEvent); } }
     public bool hasShowViewEvent { get { return HasComponent(GameComponentsLookup.ShowViewEvent); } }
 
-    public void AddShowViewEvent(MergeToStay.MonoBehaviours.View newView) {
+    public void AddShowViewEvent(MergeToStay.MonoBehaviours.View newView, bool newHideOpenedViews) {
         var index = GameComponentsLookup.ShowViewEvent;
         var component = (MergeToStay.Components.Path.ShowViewEvent)CreateComponent(index, typeof(MergeToStay.Components.Path.ShowViewEvent));
         component.View = newView;
+        component.HideOpenedViews = newHideOpenedViews;
         AddComponent(index, component);
     }
 
-    public void ReplaceShowViewEvent(MergeToStay.MonoBehaviours.View newView) {
+    public void ReplaceShowViewEvent(MergeToStay.MonoBehaviours.View newView, bool newHideOpenedViews) {
         var index = GameComponentsLookup.ShowViewEvent;
         var component = (MergeToStay.Components.Path.ShowViewEvent)CreateComponent(index, typeof(MergeToStay.Components.Path.ShowViewEvent));
         component.View = newView;
+        component.HideOpenedViews = newHideOpenedViews;
         ReplaceComponent(index, component);
     }
 

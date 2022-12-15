@@ -7,10 +7,10 @@ namespace MergeToStay.Services
 	{
 		[Inject] private GameContext _context;
 
-		public GameEntity CreateShowViewEvent(View view)
+		public GameEntity CreateShowViewEvent(View view, bool hideOpenedViews = true)
 		{
 			GameEntity result = _context.CreateEntity();
-			result.AddShowViewEvent(view);
+			result.AddShowViewEvent(view, hideOpenedViews);
 
 			return result;
 		}
