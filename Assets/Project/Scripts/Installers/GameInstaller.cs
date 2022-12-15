@@ -17,6 +17,9 @@ namespace MergeToStay.Installers
         private GameObject BoardViewPrefab;
 
         [SerializeField]
+        private GameObject BattleViewPrefab;
+        
+        [SerializeField]
         private GameConfigData GameConfigData;
 
         [SerializeField]
@@ -28,7 +31,8 @@ namespace MergeToStay.Installers
         
         
         private GameObject _boardView;
-        
+        private GameObject _battleView;
+
 
         public override void InstallBindings()
         {
@@ -65,6 +69,9 @@ namespace MergeToStay.Installers
         {
             _boardView = Container.InstantiatePrefab(BoardViewPrefab, RootView.BoardRoot);
             Container.BindInstance<BoardView>(_boardView.GetComponent<BoardView>());
+            
+            _battleView = Container.InstantiatePrefab(BattleViewPrefab, RootView.BattleRoot);
+            Container.BindInstance<BattleView>(_battleView.GetComponent<BattleView>());
         }
 
 

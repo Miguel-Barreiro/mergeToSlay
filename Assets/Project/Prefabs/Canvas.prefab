@@ -230,7 +230,7 @@ MonoBehaviour:
   BoardRoot: {fileID: 9090214201109282611}
   GridObjectsRoot: {fileID: 9090214200699748926}
   PathRoot: {fileID: 6059412591327414025}
-  BattleRoot: {fileID: 0}
+  BattleRoot: {fileID: 6407782814650825488}
 --- !u!1 &9090214200699748927
 GameObject:
   m_ObjectHideFlags: 0

@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RootView: {fileID: 488815078}
   BoardViewPrefab: {fileID: 5853518546266876312, guid: 89048744d4ed6ac4eafc0071f6783487, type: 3}
+  BattleViewPrefab: {fileID: 8350709055306533637, guid: 9d802acf971e4c1499fe1a4fd50a260d, type: 3}
   GameConfigData: {fileID: 11400000, guid: b8f34079be974cb4ea274d105b5fcfd1, type: 2}
   DebugEnemyData: {fileID: 11400000, guid: a6181dfef9384f7499ec8ac5d28623aa, type: 2}
   DebugCardData: {fileID: 11400000, guid: bec52fc16df080e4297e4e223a27c3c4, type: 2}
