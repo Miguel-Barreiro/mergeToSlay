@@ -12,18 +12,20 @@ public static class GameComponentsLookup {
     public const int Combat = 1;
     public const int DragGridObjectEvent = 2;
     public const int DragGridObjectUpdate = 3;
-    public const int GridObject = 4;
-    public const int GridObjectUseEvent = 5;
-    public const int MergeEvent = 6;
-    public const int DebugMessage = 7;
+    public const int DrawCardEvent = 4;
+    public const int GridObject = 5;
+    public const int GridObjectUseEvent = 6;
+    public const int MergeEvent = 7;
+    public const int DebugMessage = 8;
 
-    public const int TotalComponents = 8;
+    public const int TotalComponents = 9;
 
     public static readonly string[] componentNames = {
         "Board",
         "Combat",
         "DragGridObjectEvent",
         "DragGridObjectUpdate",
+        "DrawCardEvent",
         "GridObject",
         "GridObjectUseEvent",
         "MergeEvent",
@@ -35,6 +37,7 @@ public static class GameComponentsLookup {
         typeof(MergeToStay.Components.Combat.CombatComponent),
         typeof(MergeToStay.Components.Combat.DragGridObjectEvent),
         typeof(MergeToStay.Components.Combat.DragGridObjectUpdateComponent),
+        typeof(MergeToStay.Components.Combat.DrawCardEvent),
         typeof(MergeToStay.Components.Combat.GridObject),
         typeof(MergeToStay.Components.Combat.GridObjectUseEvent),
         typeof(MergeToStay.Components.Combat.MergeEvent),

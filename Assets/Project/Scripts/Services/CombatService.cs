@@ -20,6 +20,12 @@ namespace MergeToStay.Services
 			result.AddGridObjectUseEvent(originCell);
 			return result;
 		}
-		
+
+		public GameEntity CreateDrawCardEvent(int howMany)
+		{
+			GameEntity result = _context.CreateEntity();
+			result.AddDrawCardEvent(howMany);
+			return result;
+		}
 	}
 }

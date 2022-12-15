@@ -71,7 +71,7 @@ namespace MergeToStay.Services
 
 			GameEntity originGridObject = GetGridObjectAt(boardEntity, originCell);
 			GameEntity targetGridObject = GetGridObjectAt(boardEntity, targetCell);
-			if (targetGridObject != null && originGridObject != null)
+			if ( _gridObjectService.IsValid(targetGridObject)  && _gridObjectService.IsValid(originGridObject))
 			{
 				bool sameType = originGridObject.gridObject.CardData == targetGridObject.gridObject.CardData;
 				bool sameLevel = originGridObject.gridObject.Level == targetGridObject.gridObject.Level;
@@ -93,7 +93,7 @@ namespace MergeToStay.Services
 					return true;
 				}
 			}
-
+			
 			return false;
 		}
 
@@ -101,6 +101,18 @@ namespace MergeToStay.Services
 		{
 			BoardComponent board = boardEntity.board;
 			boardEntity.ReplaceBoard(board.Cells);
+		}
+
+		public Vector2? GetFirsEmptySpace(GameEntity boardEntity)
+		{
+			BoardComponent board = boardEntity.board;
+			foreach (KeyValuePair<Vector2,GridCell> keyValuePair in board.Cells)
+			{
+				if ( !_gridObjectService.IsValid(keyValuePair.Value.GridObject) )
+					return keyValuePair.Key;
+			}
+
+			return null;
 		}
 	}
 }

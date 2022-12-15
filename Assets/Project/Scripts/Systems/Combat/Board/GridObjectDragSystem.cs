@@ -50,15 +50,13 @@ namespace MergeToStay.Systems.Combat.Board
 
 			_boardService.MoveGridObject(boardEntity, gridObject, draggedEvent.TargetCell);
 		}
+		
 
 		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
 		{
 			return context.CreateCollector( GameMatcher.DragGridObjectEvent);
 		}
-		protected override bool Filter(GameEntity entity)
-		{
-			return entity.hasDragGridObjectEvent;
-		}
+		protected override bool Filter(GameEntity entity) { return entity.hasDragGridObjectEvent; }
 
 	}
 }

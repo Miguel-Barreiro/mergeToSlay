@@ -1,5 +1,4 @@
 using MergeToStay.Core;
-using MergeToStay.Systems;
 using MergeToStay.Systems.Combat;
 using MergeToStay.Systems.Combat.Board;
 using Zenject;
@@ -23,6 +22,7 @@ namespace MergeToStay.Features
 			Add(_container.Instantiate<CombatInitSystem>());
 			Add(_container.Instantiate<BoardViewSystem>());
 			Add(_container.Instantiate<MergeSystem>());
+			Add(_container.Instantiate<DrawCardSystem>());
 			
 			return this;
 		}

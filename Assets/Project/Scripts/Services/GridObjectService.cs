@@ -23,5 +23,10 @@ namespace MergeToStay.Services
 			result.AddGridObject( cardData, level, newView, null);
 			return result;
 		}
+
+		public bool IsValid(GameEntity targetGridObject)
+		{
+			return targetGridObject is {isEnabled: true};
+		}
 	}
 }

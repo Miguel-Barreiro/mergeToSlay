@@ -14,8 +14,7 @@ namespace MergeToStay.Core
         {
             // var contexts = Contexts.sharedInstance;
             // Contexts[] extraArgs = new[] {contexts};
-
-  
+            
             _systems = new Feature("Features");
             
             _systems.Add(_container.Instantiate<CombatFeature>().AddSystems());
