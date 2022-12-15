@@ -8,6 +8,7 @@ namespace MergeToStay.MonoBehaviours
 		public RectTransform BoardRoot;
 		public RectTransform GridObjectsRoot;
 		public RectTransform BattleRoot;
+		public RectTransform BattleRewardsRoot;
 		public RectTransform CampRoot;
 		public RectTransform ShopRoot;
 
@@ -26,6 +27,9 @@ namespace MergeToStay.MonoBehaviours
 					BattleRoot.gameObject.SetActive(true);
 					BoardRoot.gameObject.SetActive(true);
 					break;
+				case View.BattleRewards:
+					BattleRewardsRoot.gameObject.SetActive(true);
+					break;
 				case View.Camp:
 					CampRoot.gameObject.SetActive(true);
 					break;
@@ -38,9 +42,10 @@ namespace MergeToStay.MonoBehaviours
 		private void HideAllViews()
 		{
 			PathRoot.gameObject.SetActive(false);
+			BattleRoot.gameObject.SetActive(false);
 			BoardRoot.gameObject.SetActive(false);
 			GridObjectsRoot.gameObject.SetActive(false);
-			BattleRoot.gameObject.SetActive(false);
+			BattleRewardsRoot.gameObject.SetActive(false);
 			CampRoot.gameObject.SetActive(false);
 			ShopRoot.gameObject.SetActive(false);
 		}
@@ -50,6 +55,7 @@ namespace MergeToStay.MonoBehaviours
 	{
 		Path,
 		Battle,
+		BattleRewards,
 		EliteBattle,
 		BossBattle,
 		Camp,

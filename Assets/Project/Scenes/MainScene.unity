@@ -299,6 +299,7 @@ MonoBehaviour:
   PathViewPrefab: {fileID: 764996193209751511, guid: e7dfae4a80f885248ba92271cc91b378, type: 3}
   BoardViewPrefab: {fileID: 5853518546266876312, guid: 89048744d4ed6ac4eafc0071f6783487, type: 3}
   BattleViewPrefab: {fileID: 8350709055306533637, guid: 9d802acf971e4c1499fe1a4fd50a260d, type: 3}
+  BattleRewardsViewPrefab: {fileID: 764996193209751511, guid: 4bb377f6f564c414d8a6861a62238020, type: 3}
   CampViewPrefab: {fileID: 764996193209751511, guid: df0735bbb9d6cd04e87a76a60312d7d8, type: 3}
   ShopViewPrefab: {fileID: 764996193209751511, guid: c6505e1139916884eaa33adbdcec8f1a, type: 3}
   GameConfigData: {fileID: 11400000, guid: b8f34079be974cb4ea274d105b5fcfd1, type: 2}

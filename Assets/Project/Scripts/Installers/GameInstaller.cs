@@ -11,36 +11,21 @@ namespace MergeToStay.Installers
 {
     public class GameInstaller : MonoInstaller
     {
-        [SerializeField]
-        private RootView RootView;
-
-        [SerializeField]
-        private GameObject PathViewPrefab;
-
-        [SerializeField]
-        private GameObject BoardViewPrefab;
-
-        [SerializeField]
-        private GameObject BattleViewPrefab;
-
-        [SerializeField]
-        private GameObject CampViewPrefab;
-
-        [SerializeField]
-        private GameObject ShopViewPrefab;
-        
-        [SerializeField]
-        private GameConfigData GameConfigData;
-
-        [SerializeField]
-        private EnemyData DebugEnemyData;
-        
-        [SerializeField]
-        private CardData DebugCardData;
+        [SerializeField] private RootView RootView;
+        [SerializeField] private GameObject PathViewPrefab;
+        [SerializeField] private GameObject BoardViewPrefab;
+        [SerializeField] private GameObject BattleViewPrefab;
+        [SerializeField] private GameObject BattleRewardsViewPrefab;
+        [SerializeField] private GameObject CampViewPrefab;
+        [SerializeField] private GameObject ShopViewPrefab;
+        [SerializeField] private GameConfigData GameConfigData;
+        [SerializeField] private EnemyData DebugEnemyData;
+        [SerializeField] private CardData DebugCardData;
         
         private GameObject _pathView;
         private GameObject _boardView;
         private GameObject _battleView;
+        private GameObject _battleRewardsView;
         private GameObject _campView;
         private GameObject _shopView;
 
@@ -79,6 +64,7 @@ namespace MergeToStay.Installers
             _pathView = BindView<PathView>(PathViewPrefab, RootView.PathRoot);
             _boardView = BindView<BoardView>(BoardViewPrefab, RootView.BoardRoot);
             _battleView = BindView<BattleView>(BattleViewPrefab, RootView.BattleRoot);
+            _battleRewardsView = BindView<BattleRewardsView>(BattleRewardsViewPrefab, RootView.BattleRewardsRoot);
             _campView = BindView<CampView>(CampViewPrefab, RootView.CampRoot);
             _shopView = BindView<ShopView>(ShopViewPrefab, RootView.ShopRoot);
         }
