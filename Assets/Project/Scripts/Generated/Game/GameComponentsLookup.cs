@@ -8,24 +8,27 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-   public const int Battle = 0;
+    public const int Battle = 0;
     public const int Enemy = 1;
-    public const int Board = 2;
-    public const int Combat = 3;
-    public const int DragGridObjectEvent = 4;
-    public const int DragGridObjectUpdate = 5;
-    public const int DrawCardEvent = 6;
-    public const int GridObject = 7;
-    public const int GridObjectUseEvent = 8;
-    public const int MergeEvent = 9;
-    public const int DebugMessage = 10;
-    public const int NodeEnterEvent = 8;
-    public const int Path = 9;
-    public const int TotalComponents = 11;
+    public const int SummonEnemyEvent = 2;
+    public const int Board = 3;
+    public const int Combat = 4;
+    public const int DragGridObjectEvent = 5;
+    public const int DragGridObjectUpdate = 6;
+    public const int DrawCardEvent = 7;
+    public const int GridObject = 8;
+    public const int GridObjectUseEvent = 9;
+    public const int MergeEvent = 10;
+    public const int NodeEnterEvent = 11;
+    public const int Path = 12;
+    public const int DebugMessage = 13;
+
+    public const int TotalComponents = 14;
 
     public static readonly string[] componentNames = {
         "Battle",
         "Enemy",
+        "SummonEnemyEvent",
         "Board",
         "Combat",
         "DragGridObjectEvent",
@@ -42,6 +45,7 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(MergeToStay.Components.Combat.Battle.Battle),
         typeof(MergeToStay.Components.Combat.Battle.Enemy),
+        typeof(MergeToStay.Components.Combat.Battle.SummonEnemyEvent),
         typeof(MergeToStay.Components.Combat.BoardComponent),
         typeof(MergeToStay.Components.Combat.CombatComponent),
         typeof(MergeToStay.Components.Combat.DragGridObjectEvent),

@@ -11,17 +11,17 @@ public partial class GameEntity {
     public MergeToStay.Components.Combat.NodeEnterEvent nodeEnterEvent { get { return (MergeToStay.Components.Combat.NodeEnterEvent)GetComponent(GameComponentsLookup.NodeEnterEvent); } }
     public bool hasNodeEnterEvent { get { return HasComponent(GameComponentsLookup.NodeEnterEvent); } }
 
-    public void AddNodeEnterEvent(string newCurrentNodeId) {
+    public void AddNodeEnterEvent(string newPickedNodeId) {
         var index = GameComponentsLookup.NodeEnterEvent;
         var component = (MergeToStay.Components.Combat.NodeEnterEvent)CreateComponent(index, typeof(MergeToStay.Components.Combat.NodeEnterEvent));
-        component.PickedNodeId = newCurrentNodeId;
+        component.PickedNodeId = newPickedNodeId;
         AddComponent(index, component);
     }
 
-    public void ReplaceNodeEnterEvent(string newCurrentNodeId) {
+    public void ReplaceNodeEnterEvent(string newPickedNodeId) {
         var index = GameComponentsLookup.NodeEnterEvent;
         var component = (MergeToStay.Components.Combat.NodeEnterEvent)CreateComponent(index, typeof(MergeToStay.Components.Combat.NodeEnterEvent));
-        component.PickedNodeId = newCurrentNodeId;
+        component.PickedNodeId = newPickedNodeId;
         ReplaceComponent(index, component);
     }
 

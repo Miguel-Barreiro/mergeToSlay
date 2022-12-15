@@ -29,10 +29,10 @@ namespace MergeToStay.Services
 			return result;
 		}
 
-		public GameEntity SummonEnemy(EnemyData defaultEnemyData, int position)
+		public GameEntity SummonEnemy(EnemyData enemyData, int position)
 		{
 			GameEntity result = _context.CreateEntity();
-			// result.AddDrawCardEvent(howMany);
+			result.AddSummonEnemyEvent(enemyData, position);
 			return result;
 		}
 	}
