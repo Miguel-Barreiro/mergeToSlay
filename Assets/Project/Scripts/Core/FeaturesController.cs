@@ -14,10 +14,11 @@ namespace MergeToStay.Core
         {
             // var contexts = Contexts.sharedInstance;
             // Contexts[] extraArgs = new[] {contexts};
-            
+
             _systems = new Feature("Features");
-            
+
             _systems.Add(_container.Instantiate<CombatFeature>().AddSystems());
+            _systems.Add(_container.Instantiate<PathFeature>().AddSystems());
 
             // call Initialize() on all of the IInitializeSystems
             _systems.Initialize();
