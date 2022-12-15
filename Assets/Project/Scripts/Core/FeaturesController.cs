@@ -19,6 +19,7 @@ namespace MergeToStay.Core
 
             _systems.Add(_container.Instantiate<CombatFeature>().AddSystems());
             _systems.Add(_container.Instantiate<PathFeature>().AddSystems());
+            _systems.Add(_container.Instantiate<SmallSystemsFeature>().AddSystems());
 
             // call Initialize() on all of the IInitializeSystems
             _systems.Initialize();

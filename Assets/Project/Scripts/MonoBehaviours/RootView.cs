@@ -11,29 +11,28 @@ namespace MergeToStay.MonoBehaviours
 		public RectTransform CampRoot;
 		public RectTransform ShopRoot;
 
-		public void ShowPathView()
+		public void ShowView(View view)
 		{
 			HideAllViews();
-			PathRoot.gameObject.SetActive(true);
-		}
 
-		public void ShowBattleView()
-		{
-			HideAllViews();
-			BattleRoot.gameObject.SetActive(true);
-			BoardRoot.gameObject.SetActive(true);
-		}
-
-		public void ShowCampView()
-		{
-			HideAllViews();
-			CampRoot.gameObject.SetActive(true);
-		}
-
-		public void ShowShopView()
-		{
-			HideAllViews();
-			ShopRoot.gameObject.SetActive(true);
+			switch (view)
+			{
+				case View.Path:
+					PathRoot.gameObject.SetActive(true);
+					break;
+				case View.Battle:
+				case View.EliteBattle:
+				case View.BossBattle:
+					BattleRoot.gameObject.SetActive(true);
+					BoardRoot.gameObject.SetActive(true);
+					break;
+				case View.Camp:
+					CampRoot.gameObject.SetActive(true);
+					break;
+				case View.Shop:
+					ShopRoot.gameObject.SetActive(true);
+					break;
+			}
 		}
 
 		private void HideAllViews()
@@ -45,5 +44,15 @@ namespace MergeToStay.MonoBehaviours
 			CampRoot.gameObject.SetActive(false);
 			ShopRoot.gameObject.SetActive(false);
 		}
+	}
+
+	public enum View
+	{
+		Path,
+		Battle,
+		EliteBattle,
+		BossBattle,
+		Camp,
+		Shop
 	}
 }

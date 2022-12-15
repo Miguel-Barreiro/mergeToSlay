@@ -22,9 +22,10 @@ public static class GameComponentsLookup {
     public const int NodeEnterEvent = 11;
     public const int NodeExitEvent = 12;
     public const int Path = 13;
-    public const int DebugMessage = 14;
+    public const int ShowViewEvent = 14;
+    public const int DebugMessage = 15;
 
-    public const int TotalComponents = 15;
+    public const int TotalComponents = 16;
 
     public static readonly string[] componentNames = {
         "Battle",
@@ -41,6 +42,7 @@ public static class GameComponentsLookup {
         "NodeEnterEvent",
         "NodeExitEvent",
         "Path",
+        "ShowViewEvent",
         "DebugMessage"
     };
 
@@ -59,6 +61,7 @@ public static class GameComponentsLookup {
         typeof(MergeToStay.Components.Path.NodeEnterEvent),
         typeof(MergeToStay.Components.Path.NodeExitEvent),
         typeof(MergeToStay.Components.Path.PathComponent),
+        typeof(MergeToStay.Components.Path.ShowViewEvent),
         typeof(MergeToStay.Examples.Components.DebugMessageComponent)
     };
 }

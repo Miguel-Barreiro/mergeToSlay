@@ -21,7 +21,7 @@ namespace MergeToStay.Systems.Combat
 			if (!pathEntity.hasPath)
 				return;
 			
-			_rootView.ShowPathView();
+			_rootView.ShowView(View.Path);
 			
 			foreach (GameEntity eventEntity in entities)
 				eventEntity.Destroy();
