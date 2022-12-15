@@ -7,9 +7,7 @@ namespace MergeToStay.MonoBehaviours.Combat
 {
     public class BoardView : MonoBehaviour
     {
-
-        [Inject]
-        private BoardService _boardService;
+        [Inject] private BoardService _boardService;
         
         public GridView GridView;
 
@@ -18,8 +16,8 @@ namespace MergeToStay.MonoBehaviours.Combat
         private bool _dragTargetBattle = false;
         private Vector2? _dragTargetCell = null;
         private Vector2? _dragOriginCell = null;
-        
-        
+        private GameEntity _draggedEvent;
+
 
         private void Start()
         {
@@ -79,6 +77,10 @@ namespace MergeToStay.MonoBehaviours.Combat
 
         private void OnStartDragUtil(CellView view)
         {
+            if (_draggedEvent != null && _draggedEvent.isEnabled)
+                _draggedEvent.Destroy();
+            
+            _draggedEvent = _boardService.CreateDragUpdateEvent(view.Position);
             _dragOriginCell = view.Position;
         }
         
@@ -93,6 +95,13 @@ namespace MergeToStay.MonoBehaviours.Combat
             _dragTargetBattle = false;
             _dragOriginCell = null;
             _dragTargetCell = null;
+
+            if (_draggedEvent != null && _draggedEvent.isEnabled)
+            {
+                _draggedEvent.Destroy();
+                _draggedEvent = null;
+            }
+
         }
         
         

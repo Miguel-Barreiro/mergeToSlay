@@ -20,7 +20,6 @@ namespace MergeToStay.MonoBehaviours.Combat
         {
             [SerializeField] public CellView[] Cells;
         }
-
         
 
         public ReadOnlyCollection<CellView> GetCells() { return _allCells.AsReadOnly(); }

@@ -5,7 +5,7 @@ namespace MergeToStay.Systems.Combat.Board
 {
 	public abstract class BoardReactiveSystem : ReactiveGameSystem
 	{
-		abstract protected void _execute(GameEntity boardEntity);
+		abstract protected void React(GameEntity boardEntity);
 		
 		
 		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -21,7 +21,7 @@ namespace MergeToStay.Systems.Combat.Board
 				GameEntity boardEntity = entities[0];
 				if (!boardEntity.hasBoard)
 					return;
-				_execute(boardEntity);
+				React(boardEntity);
 			}
 		}
 

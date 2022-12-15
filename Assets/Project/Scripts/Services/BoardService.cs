@@ -24,21 +24,30 @@ namespace MergeToStay.Services
 			return result;
 		}
 
-		public void CreateNewGridObjectDragToCellEvent(Vector2 draggedCell, Vector2 targetCell)
+		public GameEntity CreateNewGridObjectDragToCellEvent(Vector2 draggedCell, Vector2 targetCell)
 		{
 			GameEntity result = _context.CreateEntity();
 			result.AddDragGridObjectEvent(draggedCell, targetCell, false);
+			return result;
 		}
 
-		public void CreateNewGridObjectDragToBattleEvent(Vector2 draggedCell)
+		public GameEntity CreateNewGridObjectDragToBattleEvent(Vector2 draggedCell)
 		{
 			GameEntity result = _context.CreateEntity();
 			result.AddDragGridObjectEvent(draggedCell,null, true);
+			return result;
 		}
 
-		
-		public bool MoveGridObject(BoardComponent board, GameEntity gridObject, Vector2 newPosition)
+		public GameEntity CreateDragUpdateEvent(Vector2 originCell)
 		{
+			GameEntity result = _context.CreateEntity();
+			result.AddDragGridObjectUpdate(originCell, null);
+			return result;
+		}
+		
+		public bool MoveGridObject(GameEntity boardEntity, GameEntity gridObject, Vector2 newPosition)
+		{
+			BoardComponent board = boardEntity.board;
 			if (board.Cells[newPosition].GridObject != null)
 				return false;
 				
@@ -51,11 +60,13 @@ namespace MergeToStay.Services
 			gridObject.gridObject.GridPosition = newPosition;
 			board.Cells[newPosition].GridObject = gridObject;
 
+			boardEntity.ReplaceBoard(board.Cells);
 			return true;
 		}
 
-		public GameEntity GetGridObjectAt(BoardComponent board, Vector2 targetPosition)
+		public GameEntity GetGridObjectAt(GameEntity boardEntity, Vector2 targetPosition)
 		{
+			BoardComponent board = boardEntity.board;
 			return board.Cells[targetPosition].GridObject;
 		}
 

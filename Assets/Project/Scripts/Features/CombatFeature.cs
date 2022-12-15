@@ -1,5 +1,6 @@
 using MergeToStay.Core;
 using MergeToStay.Systems;
+using MergeToStay.Systems.Combat.Board;
 using Zenject;
 
 namespace MergeToStay.Features
@@ -19,6 +20,7 @@ namespace MergeToStay.Features
 			Add(_container.Instantiate<GridObjectDragSystem>());
 			Add(_container.Instantiate<DragGridObjectUpdateViewSystem>());
 			Add(_container.Instantiate<CombatInitSystem>());
+			Add(_container.Instantiate<BoardViewSystem>());
 			
 			return this;
 		}

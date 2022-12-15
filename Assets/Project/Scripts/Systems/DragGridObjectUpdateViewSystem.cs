@@ -7,7 +7,7 @@ using Zenject;
 
 namespace MergeToStay.Systems
 {
-	public class DragGridObjectUpdateViewSystem : ReactiveGameSystem, IInitializeSystem
+	public class DragGridObjectUpdateViewSystem : IExecuteSystem, IInitializeSystem
 	{
 		[Inject]
 		private BoardService _boardService;
@@ -15,24 +15,22 @@ namespace MergeToStay.Systems
 		[Inject] private Contexts _contexts;
 
 		private IGroup<GameEntity> _boardGroup;
+		private IGroup<GameEntity> _dragUpdateEventGroup;
 		
-		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
-		{
-			return context.CreateCollector(GameMatcher.DragGridObjectUpdate);
-		}
-		protected override bool Filter(GameEntity entity) { return true; }
-
-		protected override void Execute(List<GameEntity> entities)
+		public void Execute()
 		{
 			GameEntity boardEntity = _boardGroup.GetSingleEntity();
 			if (!boardEntity.hasBoard)
 				return;
-			
+
+			Camera camera = Camera.main;
+
+			GameEntity[] entities = _dragUpdateEventGroup.GetEntities();
 			foreach (GameEntity gameEntity in entities)
 			{
 				DragGridObjectUpdateComponent dragGridObjectUpdate = gameEntity.dragGridObjectUpdate;
 
-				GameEntity gridObject = _boardService.GetGridObjectAt(boardEntity.board, dragGridObjectUpdate.OriginCell);
+				GameEntity gridObject = _boardService.GetGridObjectAt(boardEntity, dragGridObjectUpdate.OriginCell);
 				if (gridObject == null || !gridObject.hasGridObject)
 					return;
 
@@ -44,7 +42,7 @@ namespace MergeToStay.Systems
 				if (Input.touches.Length > 0)
 				{
 					Touch touch = Input.touches[0];
-					gridObjectView.transform.position = Camera.main.ScreenToWorldPoint(touch.position);
+					gridObjectView.transform.position = touch.position;
 				}
 			}
 			
@@ -52,7 +50,9 @@ namespace MergeToStay.Systems
 
 		public void Initialize()
 		{
+			_dragUpdateEventGroup = _contexts.game.GetGroup(GameMatcher.DragGridObjectUpdate);
 			_boardGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Board));
 		}
+
 	}
 }

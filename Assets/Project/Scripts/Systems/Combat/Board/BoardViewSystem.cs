@@ -11,7 +11,7 @@ namespace MergeToStay.Systems.Combat.Board
 		[Inject]
 		private BoardView _boardView;
 		
-		protected override void _execute(GameEntity boardEntity)
+		protected override void React(GameEntity boardEntity)
 		{
 
 			foreach (KeyValuePair<Vector2, GridCell> valuePair in boardEntity.board.Cells)
@@ -22,10 +22,8 @@ namespace MergeToStay.Systems.Combat.Board
 				if (gridCell.GridObject != null)
 				{
 					CellView cellView = _boardView.GridView.GetCellViewByPosition(cellPosition);
-
 					gridCell.GridObject.gridObject.View.transform.position = cellView.transform.position;
 				}
-
 			}
 			
 			

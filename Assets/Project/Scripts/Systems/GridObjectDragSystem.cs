@@ -22,8 +22,7 @@ namespace MergeToStay.Systems
 		
 		protected override void Execute(List<GameEntity> entities)
 		{
-			Log.Normal(entities.ToString());
-			
+
 			GameEntity boardEntity = _boardGroup.GetSingleEntity();
 			if (!boardEntity.hasBoard)
 				return;
@@ -33,8 +32,11 @@ namespace MergeToStay.Systems
 				DragGridObjectEvent draggedEvent = draggedEventEntity.dragGridObjectEvent;
 				if (!draggedEvent.targetBattle && draggedEvent.TargetCell!=null)
 				{
-					GameEntity gridObject = _boardService.GetGridObjectAt(boardEntity.board, draggedEvent.DraggedCell);
-					_boardService.MoveGridObject(boardEntity.board, gridObject, draggedEvent.TargetCell.Value);
+					GameEntity gridObject = _boardService.GetGridObjectAt(boardEntity, draggedEvent.DraggedCell);
+					if (gridObject == null)
+						return;
+					
+					_boardService.MoveGridObject(boardEntity, gridObject, draggedEvent.TargetCell.Value);
 				}
 			}
 			

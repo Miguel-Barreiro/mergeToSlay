@@ -20,7 +20,7 @@ namespace MergeToStay.Systems
 			// lets fill with an object for debug
 			GameEntity gridObjectView = _gridObjectService.CreateNewGridObjectFromCard(_debugCardData);
 			
-			_boardService.MoveGridObject(newBoard.board, gridObjectView, Vector2.zero);
+			_boardService.MoveGridObject(newBoard, gridObjectView, Vector2.zero);
 		}
 	}
 }
