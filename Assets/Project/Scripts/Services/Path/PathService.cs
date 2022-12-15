@@ -1,3 +1,4 @@
+using MergeToStay.MonoBehaviours.Path;
 using Zenject;
 
 namespace MergeToStay.Services
@@ -19,10 +20,19 @@ namespace MergeToStay.Services
 			pathEntity.ReplacePath(currentNodeId);
 		}
 
-		public GameEntity CreateNodeEnterEvent(string nodeName)
+		public GameEntity CreateNodeEnterEvent(string nodeName, NodeType nodeType)
 		{
 			GameEntity result = _context.CreateEntity();
-			result.AddNodeEnterEvent(nodeName);
+			result.AddNodeEnterEvent(nodeName, nodeType);
+
+			return result;
+		}
+
+		public GameEntity CreateNodeCompleteEvent(bool isCompleted)
+		{
+			GameEntity result = _context.CreateEntity();
+			result.AddNodeExitEvent(isCompleted);
+
 			return result;
 		}
 	}

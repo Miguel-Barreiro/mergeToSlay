@@ -8,20 +8,22 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public MergeToStay.Components.Combat.NodeEnterEvent nodeEnterEvent { get { return (MergeToStay.Components.Combat.NodeEnterEvent)GetComponent(GameComponentsLookup.NodeEnterEvent); } }
+    public MergeToStay.Components.Path.NodeEnterEvent nodeEnterEvent { get { return (MergeToStay.Components.Path.NodeEnterEvent)GetComponent(GameComponentsLookup.NodeEnterEvent); } }
     public bool hasNodeEnterEvent { get { return HasComponent(GameComponentsLookup.NodeEnterEvent); } }
 
-    public void AddNodeEnterEvent(string newPickedNodeId) {
+    public void AddNodeEnterEvent(string newPickedNodeId, MergeToStay.MonoBehaviours.Path.NodeType newNodeType) {
         var index = GameComponentsLookup.NodeEnterEvent;
-        var component = (MergeToStay.Components.Combat.NodeEnterEvent)CreateComponent(index, typeof(MergeToStay.Components.Combat.NodeEnterEvent));
+        var component = (MergeToStay.Components.Path.NodeEnterEvent)CreateComponent(index, typeof(MergeToStay.Components.Path.NodeEnterEvent));
         component.PickedNodeId = newPickedNodeId;
+        component.NodeType = newNodeType;
         AddComponent(index, component);
     }
 
-    public void ReplaceNodeEnterEvent(string newPickedNodeId) {
+    public void ReplaceNodeEnterEvent(string newPickedNodeId, MergeToStay.MonoBehaviours.Path.NodeType newNodeType) {
         var index = GameComponentsLookup.NodeEnterEvent;
-        var component = (MergeToStay.Components.Combat.NodeEnterEvent)CreateComponent(index, typeof(MergeToStay.Components.Combat.NodeEnterEvent));
+        var component = (MergeToStay.Components.Path.NodeEnterEvent)CreateComponent(index, typeof(MergeToStay.Components.Path.NodeEnterEvent));
         component.PickedNodeId = newPickedNodeId;
+        component.NodeType = newNodeType;
         ReplaceComponent(index, component);
     }
 

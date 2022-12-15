@@ -4,7 +4,7 @@ using Zenject;
 
 namespace MergeToStay.Systems.Combat.Board
 {
-	public abstract class PathViewSystem : PathReactiveSystem
+	public class PathViewSystem : PathReactiveSystem
 	{
 		[Inject] private PathView _pathView;
 

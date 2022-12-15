@@ -20,10 +20,11 @@ public static class GameComponentsLookup {
     public const int GridObjectUseEvent = 9;
     public const int MergeEvent = 10;
     public const int NodeEnterEvent = 11;
-    public const int Path = 12;
-    public const int DebugMessage = 13;
+    public const int NodeExitEvent = 12;
+    public const int Path = 13;
+    public const int DebugMessage = 14;
 
-    public const int TotalComponents = 14;
+    public const int TotalComponents = 15;
 
     public static readonly string[] componentNames = {
         "Battle",
@@ -38,6 +39,7 @@ public static class GameComponentsLookup {
         "GridObjectUseEvent",
         "MergeEvent",
         "NodeEnterEvent",
+        "NodeExitEvent",
         "Path",
         "DebugMessage"
     };
@@ -54,7 +56,8 @@ public static class GameComponentsLookup {
         typeof(MergeToStay.Components.Combat.GridObject),
         typeof(MergeToStay.Components.Combat.GridObjectUseEvent),
         typeof(MergeToStay.Components.Combat.MergeEvent),
-        typeof(MergeToStay.Components.Combat.NodeEnterEvent),
+        typeof(MergeToStay.Components.Path.NodeEnterEvent),
+        typeof(MergeToStay.Components.Path.NodeExitEvent),
         typeof(MergeToStay.Components.Path.PathComponent),
         typeof(MergeToStay.Examples.Components.DebugMessageComponent)
     };

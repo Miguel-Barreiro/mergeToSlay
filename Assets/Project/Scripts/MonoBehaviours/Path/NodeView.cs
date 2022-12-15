@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,11 +7,15 @@ namespace MergeToStay.MonoBehaviours.Path
 {
     public class NodeView : MonoBehaviour
     {
-        public List<NodeView> Nodes;
-
         readonly Color nodeSelectedColor = Color.green;
         readonly Color selectableNodeColor = Color.white;
         readonly Color unselectableNodeColor = Color.gray;
+
+        public List<NodeView> Nodes;
+
+        public NodeType Type;
+
+        [SerializeField] TextMeshProUGUI typeText;
 
         public bool IsSelectable
         {
@@ -27,10 +32,13 @@ namespace MergeToStay.MonoBehaviours.Path
             button = GetComponent<Button>();
         }
 
+        private void Update()
+        {
+            typeText.text = Type.ToString();
+        }
+
         public void SetSelected(bool value)
         {
-            // SetSelectable(IsSelectable);
-
             if (value)
                 image.color = nodeSelectedColor;
         }

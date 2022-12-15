@@ -1,6 +1,7 @@
 using MergeToStay.Core;
 using MergeToStay.Data;
 using MergeToStay.MonoBehaviours;
+using MergeToStay.MonoBehaviours.Camp;
 using MergeToStay.MonoBehaviours.Combat;
 using MergeToStay.Services;
 using UnityEngine;
@@ -21,6 +22,12 @@ namespace MergeToStay.Installers
 
         [SerializeField]
         private GameObject BattleViewPrefab;
+
+        [SerializeField]
+        private GameObject CampViewPrefab;
+
+        [SerializeField]
+        private GameObject ShopViewPrefab;
         
         [SerializeField]
         private GameConfigData GameConfigData;
@@ -31,16 +38,15 @@ namespace MergeToStay.Installers
         [SerializeField]
         private CardData DebugCardData;
         
-        
         private GameObject _pathView;
-        
         private GameObject _boardView;
         private GameObject _battleView;
+        private GameObject _campView;
+        private GameObject _shopView;
 
 
         public override void InstallBindings()
         {
-
             Container.BindInstance<Contexts>(Contexts.sharedInstance);
             
             Container.BindInstance<RootView>(RootView);
@@ -55,7 +61,6 @@ namespace MergeToStay.Installers
             InstallData();
             InstallGameServices();
             InstallViews();
-            
             
             // this if for debug
             Container.BindInstance<CardData>(DebugCardData);
@@ -74,6 +79,8 @@ namespace MergeToStay.Installers
             _pathView = BindView<PathView>(PathViewPrefab, RootView.PathRoot);
             _boardView = BindView<BoardView>(BoardViewPrefab, RootView.BoardRoot);
             _battleView = BindView<BattleView>(BattleViewPrefab, RootView.BattleRoot);
+            _campView = BindView<CampView>(CampViewPrefab, RootView.CampRoot);
+            _shopView = BindView<ShopView>(ShopViewPrefab, RootView.ShopRoot);
         }
 
         private GameObject BindView<T>(GameObject prefab, RectTransform root)

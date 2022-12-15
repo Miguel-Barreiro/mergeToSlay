@@ -17,6 +17,7 @@ namespace MergeToStay.Features
 			Add(_container.Instantiate<PathInitSystem>());
 			Add(_container.Instantiate<PickedNodeExecuteSystem>());
 			Add(_container.Instantiate<PathViewSystem>());
+			Add(_container.Instantiate<NodeCompleteSystem>());
 
 			return this;
 		}
