@@ -1,12 +1,12 @@
-using MergeToSlay.Core;
-using MergeToSlay.Data;
-using MergeToSlay.MonoBehaviours.Combat;
-using MergeToSlay.Services;
+using MergeToStay.Core;
+using MergeToStay.Data;
 using MergeToStay.MonoBehaviours;
+using MergeToStay.MonoBehaviours.Combat;
+using MergeToStay.Services;
 using UnityEngine;
 using Zenject;
 
-namespace MergeToSlay.Installers
+namespace MergeToStay.Installers
 {
     public class GameInstaller : MonoInstaller
     {

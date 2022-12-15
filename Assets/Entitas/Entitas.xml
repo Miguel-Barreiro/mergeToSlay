@@ -334,7 +334,7 @@
             nested Systems instances in the order you added them.
         </member>
         <member name="M:Entitas.Systems.TearDown">
-            Calls TearDown() on all ITearDownSystem  and other
+            Calls TearDown() on all ITearDownSystem and other
             nested Systems instances in the order you added them.
         </member>
         <member name="M:Entitas.Systems.ActivateReactiveSystems">

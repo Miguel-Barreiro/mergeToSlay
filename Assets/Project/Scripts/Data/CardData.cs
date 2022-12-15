@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MergeToSlay.Data.Actions;
+using MergeToStay.Data.Actions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MergeToSlay.Data
+namespace MergeToStay.Data
 {
     [CreateAssetMenu(fileName = "NEW_CARD", menuName = "MergeToSlay.CARD/new CARD", order = 0)]
     public sealed class CardData : ScriptableObject

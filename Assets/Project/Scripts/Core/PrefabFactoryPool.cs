@@ -2,7 +2,7 @@ using MergeToStay.MonoBehaviours;
 using UnityEngine;
 using Zenject;
 
-namespace MergeToSlay.Core
+namespace MergeToStay.Core
 {
 	public class PrefabFactoryPool
 	{

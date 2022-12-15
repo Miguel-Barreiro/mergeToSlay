@@ -1,16 +1,18 @@
 using System.Collections.Generic;
 using Entitas;
-using MergeToSlay.Core;
-using MergeToStay.Systems;
+using MergeToStay.Components;
+using MergeToStay.Core;
+using MergeToStay.Services;
 using Zenject;
 
-namespace MergeToSlay.Systems
+namespace MergeToStay.Systems
 {
 	 public class GridObjectDragSystem : ReactiveGameSystem, IInitializeSystem
 	{
 		
-		[Inject]
-		private Contexts _contexts;
+		[Inject] private Contexts _contexts;
+		[Inject] private BoardService _boardService;
+		
 		private IGroup<GameEntity> _boardGroup;
 
 		public void Initialize()
@@ -25,7 +27,16 @@ namespace MergeToSlay.Systems
 			GameEntity boardEntity = _boardGroup.GetSingleEntity();
 			if (!boardEntity.hasBoard)
 				return;
-			
+
+			foreach (GameEntity draggedEventEntity in entities)
+			{
+				DragGridObjectEvent draggedEvent = draggedEventEntity.dragGridObjectEvent;
+				if (!draggedEvent.targetBattle && draggedEvent.TargetCell!=null)
+				{
+					GameEntity gridObject = _boardService.GetGridObjectAt(boardEntity.board, draggedEvent.DraggedCell);
+					_boardService.MoveGridObject(boardEntity.board, gridObject, draggedEvent.TargetCell.Value);
+				}
+			}
 			
 		}
 		

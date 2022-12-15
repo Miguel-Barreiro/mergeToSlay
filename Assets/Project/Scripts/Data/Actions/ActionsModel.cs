@@ -1,4 +1,4 @@
-namespace MergeToSlay.Data
+namespace MergeToStay.Data.Actions
 {
 	public static class ActionsModel
 	{

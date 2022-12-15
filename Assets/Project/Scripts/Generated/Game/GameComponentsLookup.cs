@@ -6,6 +6,10 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using MergeToStay.Components;
+using MergeToStay.Examples.Components;
+
 public static class GameComponentsLookup {
 
     public const int Board = 0;
@@ -27,11 +31,11 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(MergeToSlay.Components.BoardComponent),
-        typeof(MergeToSlay.Components.CombatComponent),
-        typeof(MergeToSlay.Components.DragGridObjectEvent),
-        typeof(MergeToSlay.Components.DragGridObjectUpdateComponent),
-        typeof(MergeToSlay.Components.GridObject),
-        typeof(MergeToSlay.Examples.Components.DebugMessageComponent)
+        typeof(BoardComponent),
+        typeof(CombatComponent),
+        typeof(DragGridObjectEvent),
+        typeof(DragGridObjectUpdateComponent),
+        typeof(GridObject),
+        typeof(DebugMessageComponent)
     };
 }

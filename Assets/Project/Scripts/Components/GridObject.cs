@@ -1,8 +1,8 @@
 using Entitas;
-using MergeToSlay.Data;
+using MergeToStay.Data;
 using UnityEngine;
 
-namespace MergeToSlay.Components
+namespace MergeToStay.Components
 {
 	public sealed class GridObject : IComponent
 	{

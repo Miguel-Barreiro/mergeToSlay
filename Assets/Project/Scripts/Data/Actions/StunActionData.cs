@@ -1,10 +1,7 @@
-
-using MergeToSlay.Data.Actions;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace MergeToSlay.Data
+namespace MergeToStay.Data.Actions
 {
 	[CreateAssetMenu(fileName = "NEW_STUN", menuName = "MergeToSlay.CARD/new STUN action", order = 1)]
 	public class StunActionData : ActionBase

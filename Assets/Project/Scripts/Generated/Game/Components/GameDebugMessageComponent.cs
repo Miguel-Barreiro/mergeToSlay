@@ -6,21 +6,24 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using MergeToStay.Examples.Components;
+
 public partial class GameEntity {
 
-    public MergeToSlay.Examples.Components.DebugMessageComponent debugMessage { get { return (MergeToSlay.Examples.Components.DebugMessageComponent)GetComponent(GameComponentsLookup.DebugMessage); } }
+    public DebugMessageComponent debugMessage { get { return (DebugMessageComponent)GetComponent(GameComponentsLookup.DebugMessage); } }
     public bool hasDebugMessage { get { return HasComponent(GameComponentsLookup.DebugMessage); } }
 
     public void AddDebugMessage(string newMessage) {
         var index = GameComponentsLookup.DebugMessage;
-        var component = (MergeToSlay.Examples.Components.DebugMessageComponent)CreateComponent(index, typeof(MergeToSlay.Examples.Components.DebugMessageComponent));
+        var component = (DebugMessageComponent)CreateComponent(index, typeof(DebugMessageComponent));
         component.Message = newMessage;
         AddComponent(index, component);
     }
 
     public void ReplaceDebugMessage(string newMessage) {
         var index = GameComponentsLookup.DebugMessage;
-        var component = (MergeToSlay.Examples.Components.DebugMessageComponent)CreateComponent(index, typeof(MergeToSlay.Examples.Components.DebugMessageComponent));
+        var component = (DebugMessageComponent)CreateComponent(index, typeof(DebugMessageComponent));
         component.Message = newMessage;
         ReplaceComponent(index, component);
     }

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using MergeToSlay.Components;
+using MergeToStay.Components;
 using UnityEngine;
 using Zenject;
 
-namespace MergeToSlay.Services
+namespace MergeToStay.Services
 {
 	public sealed class BoardService
 	{
@@ -50,6 +50,7 @@ namespace MergeToSlay.Services
 
 			gridObject.gridObject.GridPosition = newPosition;
 			board.Cells[newPosition].GridObject = gridObject;
+
 			return true;
 		}
 

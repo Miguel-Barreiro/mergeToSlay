@@ -1,11 +1,9 @@
 using System;
-using MergeToSlay.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace MergeToSlay.MonoBehaviours.Combat
+namespace MergeToStay.MonoBehaviours.Combat
 {
 	[RequireComponent(typeof(DragOnHandler))]
 	[RequireComponent(typeof(Image))]

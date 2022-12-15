@@ -6,9 +6,12 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using MergeToStay.Components;
+
 public partial class GameEntity {
 
-    static readonly MergeToSlay.Components.CombatComponent combatComponent = new MergeToSlay.Components.CombatComponent();
+    static readonly CombatComponent combatComponent = new CombatComponent();
 
     public bool isCombat {
         get { return HasComponent(GameComponentsLookup.Combat); }

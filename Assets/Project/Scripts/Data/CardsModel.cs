@@ -1,4 +1,4 @@
-namespace MergeToSlay.Data
+namespace MergeToStay.Data
 {
 	public static class CardsModel
 	{

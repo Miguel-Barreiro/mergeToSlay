@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using MergeToSlay.Data.Actions;
+using MergeToStay.Data.Actions;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace MergeToSlay.Data
+namespace MergeToStay.Data
 {
 	[CreateAssetMenu(fileName = "NEW_ENEMY", menuName = "MergeToSlay.COMBAT/new ENEMY", order = 0)]
 	public sealed class EnemyData : ScriptableObject

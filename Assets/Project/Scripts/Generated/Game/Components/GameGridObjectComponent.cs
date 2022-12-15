@@ -6,14 +6,18 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using MergeToStay.Components;
+using MergeToStay.Data;
+
 public partial class GameEntity {
 
-    public MergeToSlay.Components.GridObject gridObject { get { return (MergeToSlay.Components.GridObject)GetComponent(GameComponentsLookup.GridObject); } }
+    public GridObject gridObject { get { return (GridObject)GetComponent(GameComponentsLookup.GridObject); } }
     public bool hasGridObject { get { return HasComponent(GameComponentsLookup.GridObject); } }
 
-    public void AddGridObject(MergeToSlay.Data.CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
+    public void AddGridObject(CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
         var index = GameComponentsLookup.GridObject;
-        var component = (MergeToSlay.Components.GridObject)CreateComponent(index, typeof(MergeToSlay.Components.GridObject));
+        var component = (GridObject)CreateComponent(index, typeof(GridObject));
         component.CardData = newCardData;
         component.Level = newLevel;
         component.View = newView;
@@ -21,9 +25,9 @@ public partial class GameEntity {
         AddComponent(index, component);
     }
 
-    public void ReplaceGridObject(MergeToSlay.Data.CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
+    public void ReplaceGridObject(CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
         var index = GameComponentsLookup.GridObject;
-        var component = (MergeToSlay.Components.GridObject)CreateComponent(index, typeof(MergeToSlay.Components.GridObject));
+        var component = (GridObject)CreateComponent(index, typeof(GridObject));
         component.CardData = newCardData;
         component.Level = newLevel;
         component.View = newView;

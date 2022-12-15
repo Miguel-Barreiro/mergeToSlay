@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeToSlay.Data.Rewards
+namespace MergeToStay.Data.Rewards
 {
 	[CreateAssetMenu(fileName = "NEW_OpenSpaceReward", menuName = "MergeToSlay.REWARDS/new OPEN_SPACE reward", order = 1)]
 	public class OpenSpaceRewardData : RewardBase

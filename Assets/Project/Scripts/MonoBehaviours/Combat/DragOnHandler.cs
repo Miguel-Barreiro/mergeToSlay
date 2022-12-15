@@ -1,9 +1,8 @@
 using System;
-using MergeToSlay.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace MergeToSlay.MonoBehaviours.Combat
+namespace MergeToStay.MonoBehaviours.Combat
 {
 	public class DragOnHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{

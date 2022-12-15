@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeToSlay.Data
+namespace MergeToStay.Data
 {
 	[CreateAssetMenu(fileName = "NEW_GAME_CONFIG", menuName = "MergeToSlay/new GameConfig", order = 0)]
 	public class GameConfigData : ScriptableObject

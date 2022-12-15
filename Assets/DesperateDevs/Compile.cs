@@ -1,5 +1,4 @@
-﻿namespace DesperateDevs.CodeGeneration.CodeGenerator.Unity.Editor {
-
-    class Compile {
-    }
+﻿namespace MergeToStay.DesperateDevs
+{
+	internal class Compile { }
 }

@@ -1,7 +1,6 @@
-using MergeToSlay.Data.Actions;
 using UnityEngine;
 
-namespace MergeToSlay.Data
+namespace MergeToStay.Data.Actions
 {
 	[CreateAssetMenu(fileName = "NEW_DISCARD", menuName = "MergeToSlay.CARD/new DISCARD action", order = 1)]
 	public class DiscardActionData: ActionBase

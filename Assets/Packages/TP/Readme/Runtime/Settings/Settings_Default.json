@@ -1,10 +1,10 @@
 {
-    "name": "Default",
-    "id": "cfb6ab87-2281-4bb7-886c-b8245341d1da",
-    "skin": "Default",
-    "fileName": "Default",
-    "redistributable": false,
-    "lite": true,
-    "priority": 7.0,
-    "type": "json"
+  "name": "Default",
+  "id": "cfb6ab87-2281-4bb7-886c-b8245341d1da",
+  "skin": "Default",
+  "fileName": "Default",
+  "redistributable": false,
+  "lite": true,
+  "priority": 7.0,
+  "type": "json"
 }

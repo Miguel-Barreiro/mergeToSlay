@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeToSlay.Data.Actions
+namespace MergeToStay.Data.Actions
 {
 	public class ActionBase : ScriptableObject { }
 }

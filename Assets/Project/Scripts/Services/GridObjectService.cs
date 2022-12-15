@@ -1,9 +1,9 @@
-using MergeToSlay.Core;
-using MergeToSlay.Data;
+using MergeToStay.Core;
+using MergeToStay.Data;
 using UnityEngine;
 using Zenject;
 
-namespace MergeToSlay.Services
+namespace MergeToStay.Services
 {
 	public sealed class GridObjectService
 	{

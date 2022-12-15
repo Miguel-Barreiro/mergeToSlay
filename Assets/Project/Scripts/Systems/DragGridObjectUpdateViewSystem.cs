@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using Entitas;
-using MergeToSlay.Components;
-using MergeToSlay.Services;
-using MergeToStay.Systems;
+using MergeToStay.Components;
+using MergeToStay.Services;
 using UnityEngine;
 using Zenject;
 
-namespace MergeToSlay.Systems
+namespace MergeToStay.Systems
 {
 	public class DragGridObjectUpdateViewSystem : ReactiveGameSystem, IInitializeSystem
 	{

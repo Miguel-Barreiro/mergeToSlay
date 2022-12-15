@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace MergeToSlay.Core
+namespace MergeToStay.Core
 {
 	public static class Log
 	{

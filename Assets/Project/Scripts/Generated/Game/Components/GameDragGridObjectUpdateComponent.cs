@@ -6,14 +6,17 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using MergeToStay.Components;
+
 public partial class GameEntity {
 
-    public MergeToSlay.Components.DragGridObjectUpdateComponent dragGridObjectUpdate { get { return (MergeToSlay.Components.DragGridObjectUpdateComponent)GetComponent(GameComponentsLookup.DragGridObjectUpdate); } }
+    public DragGridObjectUpdateComponent dragGridObjectUpdate { get { return (DragGridObjectUpdateComponent)GetComponent(GameComponentsLookup.DragGridObjectUpdate); } }
     public bool hasDragGridObjectUpdate { get { return HasComponent(GameComponentsLookup.DragGridObjectUpdate); } }
 
     public void AddDragGridObjectUpdate(UnityEngine.Vector2 newOriginCell, UnityEngine.GameObject newDraggedGameObject) {
         var index = GameComponentsLookup.DragGridObjectUpdate;
-        var component = (MergeToSlay.Components.DragGridObjectUpdateComponent)CreateComponent(index, typeof(MergeToSlay.Components.DragGridObjectUpdateComponent));
+        var component = (DragGridObjectUpdateComponent)CreateComponent(index, typeof(DragGridObjectUpdateComponent));
         component.OriginCell = newOriginCell;
         component.DraggedGameObject = newDraggedGameObject;
         AddComponent(index, component);
@@ -21,7 +24,7 @@ public partial class GameEntity {
 
     public void ReplaceDragGridObjectUpdate(UnityEngine.Vector2 newOriginCell, UnityEngine.GameObject newDraggedGameObject) {
         var index = GameComponentsLookup.DragGridObjectUpdate;
-        var component = (MergeToSlay.Components.DragGridObjectUpdateComponent)CreateComponent(index, typeof(MergeToSlay.Components.DragGridObjectUpdateComponent));
+        var component = (DragGridObjectUpdateComponent)CreateComponent(index, typeof(DragGridObjectUpdateComponent));
         component.OriginCell = newOriginCell;
         component.DraggedGameObject = newDraggedGameObject;
         ReplaceComponent(index, component);

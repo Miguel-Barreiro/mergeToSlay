@@ -1,10 +1,9 @@
-
 using System.Collections.ObjectModel;
-using MergeToSlay.Services;
+using MergeToStay.Services;
 using UnityEngine;
 using Zenject;
 
-namespace MergeToSlay.MonoBehaviours.Combat
+namespace MergeToStay.MonoBehaviours.Combat
 {
     public class BoardView : MonoBehaviour
     {

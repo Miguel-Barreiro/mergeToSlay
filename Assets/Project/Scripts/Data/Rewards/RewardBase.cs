@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MergeToSlay.Data.Rewards
+namespace MergeToStay.Data.Rewards
 {
 	public class RewardBase : ScriptableObject
 	{

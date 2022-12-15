@@ -1,4 +1,4 @@
-namespace MergeToSlay.Core
+namespace MergeToStay.Core
 {
 	public interface ISystemInstaller<T>
 	{

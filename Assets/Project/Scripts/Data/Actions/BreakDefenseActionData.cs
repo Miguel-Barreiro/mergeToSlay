@@ -1,8 +1,7 @@
-using MergeToSlay.Data.Actions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MergeToSlay.Data
+namespace MergeToStay.Data.Actions
 {
 	[CreateAssetMenu(fileName = "NEW_BreakDefense", menuName = "MergeToSlay.CARD/new BREAK DEFENSE action", order = 1)]
 	public class BreakDefenseActionData : ActionBase

@@ -6,14 +6,17 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using MergeToStay.Components;
+
 public partial class GameEntity {
 
-    public MergeToSlay.Components.DragGridObjectEvent dragGridObjectEvent { get { return (MergeToSlay.Components.DragGridObjectEvent)GetComponent(GameComponentsLookup.DragGridObjectEvent); } }
+    public DragGridObjectEvent dragGridObjectEvent { get { return (DragGridObjectEvent)GetComponent(GameComponentsLookup.DragGridObjectEvent); } }
     public bool hasDragGridObjectEvent { get { return HasComponent(GameComponentsLookup.DragGridObjectEvent); } }
 
     public void AddDragGridObjectEvent(UnityEngine.Vector2 newDraggedCell, System.Nullable<UnityEngine.Vector2> newTargetCell, bool newTargetBattle) {
         var index = GameComponentsLookup.DragGridObjectEvent;
-        var component = (MergeToSlay.Components.DragGridObjectEvent)CreateComponent(index, typeof(MergeToSlay.Components.DragGridObjectEvent));
+        var component = (DragGridObjectEvent)CreateComponent(index, typeof(DragGridObjectEvent));
         component.DraggedCell = newDraggedCell;
         component.TargetCell = newTargetCell;
         component.targetBattle = newTargetBattle;
@@ -22,7 +25,7 @@ public partial class GameEntity {
 
     public void ReplaceDragGridObjectEvent(UnityEngine.Vector2 newDraggedCell, System.Nullable<UnityEngine.Vector2> newTargetCell, bool newTargetBattle) {
         var index = GameComponentsLookup.DragGridObjectEvent;
-        var component = (MergeToSlay.Components.DragGridObjectEvent)CreateComponent(index, typeof(MergeToSlay.Components.DragGridObjectEvent));
+        var component = (DragGridObjectEvent)CreateComponent(index, typeof(DragGridObjectEvent));
         component.DraggedCell = newDraggedCell;
         component.TargetCell = newTargetCell;
         component.targetBattle = newTargetBattle;

@@ -1,4 +1,5 @@
 using System.IO;
+using MergeToStay.Packages.TP.Readme.Runtime;
 using UnityEngine;
 using UnityEditor;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
@@ -13,88 +14,79 @@ using PdfSharp.Pdf;
 
 namespace TP
 {
-    public static class ReadmeMenuItems
-    {
-        [MenuItem("Assets/Create/Readme", false, 100)]
-        public static void CreateReadmePrefab()
-        {
-            var path = Selection.activeObject == null ? "Assets" : AssetDatabase.GetAssetPath(Selection.activeObject.GetInstanceID());
-            
-            string absolutePath = EditorUtility.SaveFilePanel(
-                "Save Readme",
-                path,
-                 "README",
-                "prefab");
+	public static class ReadmeMenuItems
+	{
+		[MenuItem("Assets/Create/Readme", false, 100)]
+		public static void CreateReadmePrefab()
+		{
+			var path = Selection.activeObject == null ? "Assets" : AssetDatabase.GetAssetPath(Selection.activeObject.GetInstanceID());
 
-            if (absolutePath != "")
-            {
-                EditorApplication.ExecuteMenuItem("GameObject/Create Empty");
-                
-                GameObject tempReadmeGameObject = Selection.activeGameObject;
-                if (tempReadmeGameObject)
-                {
-                    tempReadmeGameObject.AddComponent<Readme>();
-                    tempReadmeGameObject.name = "Readme";
-                }
-                
-                PrefabUtility.SaveAsPrefabAsset(tempReadmeGameObject, AbsolutePathToRelative(absolutePath));
-                
-                #if UNITY_EDITOR
-                    GameObject.DestroyImmediate(tempReadmeGameObject);
-                #else
+			string absolutePath = EditorUtility.SaveFilePanel(
+															"Save Readme",
+															path,
+															"README",
+															"prefab");
+
+			if (absolutePath != "")
+			{
+				EditorApplication.ExecuteMenuItem("GameObject/Create Empty");
+
+				GameObject tempReadmeGameObject = Selection.activeGameObject;
+				if (tempReadmeGameObject)
+				{
+					tempReadmeGameObject.AddComponent<Readme>();
+					tempReadmeGameObject.name = "Readme";
+				}
+
+				PrefabUtility.SaveAsPrefabAsset(tempReadmeGameObject, AbsolutePathToRelative(absolutePath));
+
+#if UNITY_EDITOR
+				GameObject.DestroyImmediate(tempReadmeGameObject);
+#else
                     GameObject.Destroy(tempReadmeGameObject);
-                #endif
-            }
-        }
-        
-        [MenuItem("CONTEXT/Readme/Readme: Copy Plain Text", false, 200)]
-        static void CopyPlainText()
-        {
-            ReadmeEditor.ActiveReadmeEditor.SelectAll();
-            ReadmeEditor.ActiveReadmeEditor.CopyPlainText();
-        }
-        
-        [MenuItem("CONTEXT/Readme/Readme: Copy Rich Text", false, 201)]
-        static void CopyRichText()
-        {
-            ReadmeEditor.ActiveReadmeEditor.SelectAll();
-            ReadmeEditor.ActiveReadmeEditor.CopyRichText();
-        }
-        
-        [MenuItem("CONTEXT/Readme/Readme: Toggle Edit", false, 202)]
-        static void ToggleEdit()
-        {
-            ReadmeEditor.ActiveReadmeEditor.ToggleEdit();
-        }
-        
-        [MenuItem("CONTEXT/Readme/Readme: Toggle Read Only", false, 203)]
-        static void ToggleReadOnly()
-        {
-            ReadmeEditor.ActiveReadmeEditor.ToggleReadOnly();
-        }
-        
-        [MenuItem("CONTEXT/Readme/Readme: Toggle Scroll", false, 203)]
-        static void ToggleScroll()
-        {
-            ReadmeEditor.ActiveReadmeEditor.ToggleScroll();
-        }
+#endif
+			}
+		}
 
-        [MenuItem("GameObject/Readme", false, 20)]
-        public static void CreateReadmeGameObject()
-        {
-            EditorApplication.ExecuteMenuItem("GameObject/Create Empty");
-            if (Selection.activeGameObject)
-            {
-                Selection.activeGameObject.AddComponent<Readme>();
-                Selection.activeGameObject.name = "Readme";
-            }
-        }
+		[MenuItem("CONTEXT/Readme/Readme: Copy Plain Text", false, 200)]
+		static void CopyPlainText()
+		{
+			ReadmeEditor.ActiveReadmeEditor.SelectAll();
+			ReadmeEditor.ActiveReadmeEditor.CopyPlainText();
+		}
 
-        private static string AbsolutePathToRelative(string absolutePath)
-        {
-            string relativePath = "Assets" + absolutePath.Substring(Application.dataPath.Length);
+		[MenuItem("CONTEXT/Readme/Readme: Copy Rich Text", false, 201)]
+		static void CopyRichText()
+		{
+			ReadmeEditor.ActiveReadmeEditor.SelectAll();
+			ReadmeEditor.ActiveReadmeEditor.CopyRichText();
+		}
 
-            return relativePath;
-        }
-    }
+		[MenuItem("CONTEXT/Readme/Readme: Toggle Edit", false, 202)]
+		static void ToggleEdit() { ReadmeEditor.ActiveReadmeEditor.ToggleEdit(); }
+
+		[MenuItem("CONTEXT/Readme/Readme: Toggle Read Only", false, 203)]
+		static void ToggleReadOnly() { ReadmeEditor.ActiveReadmeEditor.ToggleReadOnly(); }
+
+		[MenuItem("CONTEXT/Readme/Readme: Toggle Scroll", false, 203)]
+		static void ToggleScroll() { ReadmeEditor.ActiveReadmeEditor.ToggleScroll(); }
+
+		[MenuItem("GameObject/Readme", false, 20)]
+		public static void CreateReadmeGameObject()
+		{
+			EditorApplication.ExecuteMenuItem("GameObject/Create Empty");
+			if (Selection.activeGameObject)
+			{
+				Selection.activeGameObject.AddComponent<Readme>();
+				Selection.activeGameObject.name = "Readme";
+			}
+		}
+
+		private static string AbsolutePathToRelative(string absolutePath)
+		{
+			string relativePath = "Assets" + absolutePath.Substring(Application.dataPath.Length);
+
+			return relativePath;
+		}
+	}
 }

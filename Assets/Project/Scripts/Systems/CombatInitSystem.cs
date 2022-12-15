@@ -1,6 +1,6 @@
 using Entitas;
-using MergeToSlay.Data;
-using MergeToSlay.Services;
+using MergeToStay.Data;
+using MergeToStay.Services;
 using UnityEngine;
 using Zenject;
 
@@ -20,7 +20,7 @@ namespace MergeToStay.Systems
 			// lets fill with an object for debug
 			GameEntity gridObjectView = _gridObjectService.CreateNewGridObjectFromCard(_debugCardData);
 			
-			_boardService.MoveGridObject(newBoard.board, gridObjectView, Vector2.one);
+			_boardService.MoveGridObject(newBoard.board, gridObjectView, Vector2.zero);
 		}
 	}
 }

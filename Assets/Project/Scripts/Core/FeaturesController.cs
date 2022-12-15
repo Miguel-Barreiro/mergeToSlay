@@ -1,9 +1,7 @@
-using MergeToSlay.Examples.Features;
-using MergeToSlay.Features;
-using MergeToStay.Systems;
+using MergeToStay.Features;
 using Zenject;
 
-namespace MergeToSlay.Core
+namespace MergeToStay.Core
 {
     public sealed class FeaturesController : IInitializable, ITickable
     {

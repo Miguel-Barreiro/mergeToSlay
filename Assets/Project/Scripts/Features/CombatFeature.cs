@@ -1,9 +1,8 @@
-using MergeToSlay.Core;
-using MergeToSlay.Systems;
+using MergeToStay.Core;
 using MergeToStay.Systems;
 using Zenject;
 
-namespace MergeToSlay.Features
+namespace MergeToStay.Features
 {
 	public sealed class CombatFeature : Feature, ISystemInstaller<CombatFeature>
 	{
