@@ -14,6 +14,9 @@ namespace MergeToStay.Installers
         private RootView RootView;
 
         [SerializeField]
+        private GameObject PathViewPrefab;
+
+        [SerializeField]
         private GameObject BoardViewPrefab;
 
         [SerializeField]
@@ -29,6 +32,7 @@ namespace MergeToStay.Installers
         private CardData DebugCardData;
         
         
+        private GameObject _pathView;
         
         private GameObject _boardView;
         private GameObject _battleView;
@@ -67,16 +71,23 @@ namespace MergeToStay.Installers
 
         private void InstallViews()
         {
-            _boardView = Container.InstantiatePrefab(BoardViewPrefab, RootView.BoardRoot);
-            Container.BindInstance<BoardView>(_boardView.GetComponent<BoardView>());
-            
-            _battleView = Container.InstantiatePrefab(BattleViewPrefab, RootView.BattleRoot);
-            Container.BindInstance<BattleView>(_battleView.GetComponent<BattleView>());
+            _pathView = BindView<PathView>(PathViewPrefab, RootView.PathRoot);
+            _boardView = BindView<BoardView>(BoardViewPrefab, RootView.BoardRoot);
+            _battleView = BindView<BattleView>(BattleViewPrefab, RootView.BattleRoot);
+        }
+
+        private GameObject BindView<T>(GameObject prefab, RectTransform root)
+        {
+            GameObject view = Container.InstantiatePrefab(prefab, root);
+            Container.BindInstance(view.GetComponent<T>());
+
+            return view;
         }
 
 
         private void InstallGameServices()
         {
+            Container.BindInstance<PathService>(Container.Instantiate<PathService>());
             Container.BindInstance<GridObjectService>(Container.Instantiate<GridObjectService>());
             Container.BindInstance<BoardService>(Container.Instantiate<BoardService>());
             Container.BindInstance<CombatService>(Container.Instantiate<CombatService>());
