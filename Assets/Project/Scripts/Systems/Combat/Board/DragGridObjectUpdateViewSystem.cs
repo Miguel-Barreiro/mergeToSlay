@@ -1,11 +1,11 @@
-using System.Collections.Generic;
 using Entitas;
 using MergeToStay.Components;
+using MergeToStay.Components.Combat;
 using MergeToStay.Services;
 using UnityEngine;
 using Zenject;
 
-namespace MergeToStay.Systems
+namespace MergeToStay.Systems.Combat.Board
 {
 	public class DragGridObjectUpdateViewSystem : IExecuteSystem, IInitializeSystem
 	{

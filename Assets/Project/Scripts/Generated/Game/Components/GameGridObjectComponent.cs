@@ -6,18 +6,14 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using MergeToStay.Components;
-using MergeToStay.Data;
-
 public partial class GameEntity {
 
-    public GridObject gridObject { get { return (GridObject)GetComponent(GameComponentsLookup.GridObject); } }
+    public MergeToStay.Components.Combat.GridObject gridObject { get { return (MergeToStay.Components.Combat.GridObject)GetComponent(GameComponentsLookup.GridObject); } }
     public bool hasGridObject { get { return HasComponent(GameComponentsLookup.GridObject); } }
 
-    public void AddGridObject(CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
+    public void AddGridObject(MergeToStay.Data.CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
         var index = GameComponentsLookup.GridObject;
-        var component = (GridObject)CreateComponent(index, typeof(GridObject));
+        var component = (MergeToStay.Components.Combat.GridObject)CreateComponent(index, typeof(MergeToStay.Components.Combat.GridObject));
         component.CardData = newCardData;
         component.Level = newLevel;
         component.View = newView;
@@ -25,9 +21,9 @@ public partial class GameEntity {
         AddComponent(index, component);
     }
 
-    public void ReplaceGridObject(CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
+    public void ReplaceGridObject(MergeToStay.Data.CardData newCardData, int newLevel, UnityEngine.GameObject newView, System.Nullable<UnityEngine.Vector2> newGridPosition) {
         var index = GameComponentsLookup.GridObject;
-        var component = (GridObject)CreateComponent(index, typeof(GridObject));
+        var component = (MergeToStay.Components.Combat.GridObject)CreateComponent(index, typeof(MergeToStay.Components.Combat.GridObject));
         component.CardData = newCardData;
         component.Level = newLevel;
         component.View = newView;

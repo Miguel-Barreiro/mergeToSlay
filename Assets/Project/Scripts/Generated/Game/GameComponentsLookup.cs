@@ -6,10 +6,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using MergeToStay.Components;
-using MergeToStay.Examples.Components;
-
 public static class GameComponentsLookup {
 
     public const int Board = 0;
@@ -17,9 +13,11 @@ public static class GameComponentsLookup {
     public const int DragGridObjectEvent = 2;
     public const int DragGridObjectUpdate = 3;
     public const int GridObject = 4;
-    public const int DebugMessage = 5;
+    public const int GridObjectUseEvent = 5;
+    public const int MergeEvent = 6;
+    public const int DebugMessage = 7;
 
-    public const int TotalComponents = 6;
+    public const int TotalComponents = 8;
 
     public static readonly string[] componentNames = {
         "Board",
@@ -27,15 +25,19 @@ public static class GameComponentsLookup {
         "DragGridObjectEvent",
         "DragGridObjectUpdate",
         "GridObject",
+        "GridObjectUseEvent",
+        "MergeEvent",
         "DebugMessage"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(BoardComponent),
-        typeof(CombatComponent),
-        typeof(DragGridObjectEvent),
-        typeof(DragGridObjectUpdateComponent),
-        typeof(GridObject),
-        typeof(DebugMessageComponent)
+        typeof(MergeToStay.Components.Combat.BoardComponent),
+        typeof(MergeToStay.Components.Combat.CombatComponent),
+        typeof(MergeToStay.Components.Combat.DragGridObjectEvent),
+        typeof(MergeToStay.Components.Combat.DragGridObjectUpdateComponent),
+        typeof(MergeToStay.Components.Combat.GridObject),
+        typeof(MergeToStay.Components.Combat.GridObjectUseEvent),
+        typeof(MergeToStay.Components.Combat.MergeEvent),
+        typeof(MergeToStay.Examples.Components.DebugMessageComponent)
     };
 }

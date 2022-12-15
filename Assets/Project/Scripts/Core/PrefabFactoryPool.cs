@@ -16,6 +16,9 @@ namespace MergeToStay.Core
 			return GameObject.Instantiate(prefab, _rootView.GridObjectsRoot);
 		}
 
-
+		public void Destroy(GameObject view)
+		{
+			GameObject.Destroy(view);
+		}
 	}
 }

@@ -11,7 +11,7 @@ namespace MergeToStay.Services
 		[Inject] private GameConfigData _gameConfigData;
 		[Inject] private PrefabFactoryPool _prefabFactoryPool;
 
-		public GameEntity CreateNewGridObjectFromCard(CardData cardData)
+		public GameEntity CreateNewGridObjectFromCard(CardData cardData, int level = 0)
 		{
 			GameEntity result = _context.CreateEntity();
 			GameObject prefab = cardData.LevelData[0].Prefab;
@@ -20,7 +20,7 @@ namespace MergeToStay.Services
 				prefab = _gameConfigData.DefaultGridObjetView;
 			
 			GameObject newView = _prefabFactoryPool.NewGridObject(prefab);
-			result.AddGridObject( cardData, 0, newView, null);
+			result.AddGridObject( cardData, level, newView, null);
 			return result;
 		}
 	}

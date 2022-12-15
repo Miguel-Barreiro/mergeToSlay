@@ -1,6 +1,6 @@
 using Entitas;
 
-namespace MergeToStay.Components
+namespace MergeToStay.Components.Combat
 {
 	public class CombatComponent : IComponent
 	{

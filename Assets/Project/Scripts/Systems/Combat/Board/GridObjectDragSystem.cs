@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using Entitas;
 using MergeToStay.Components;
-using MergeToStay.Core;
+using MergeToStay.Components.Combat;
 using MergeToStay.Services;
 using Zenject;
 
-namespace MergeToStay.Systems
+namespace MergeToStay.Systems.Combat.Board
 {
 	 public class GridObjectDragSystem : ReactiveGameSystem, IInitializeSystem
 	{
 		
-		[Inject] private Contexts _contexts;
 		[Inject] private BoardService _boardService;
+		[Inject] private CombatService _combatService;
 		
 		private IGroup<GameEntity> _boardGroup;
 
@@ -29,19 +29,28 @@ namespace MergeToStay.Systems
 
 			foreach (GameEntity draggedEventEntity in entities)
 			{
-				DragGridObjectEvent draggedEvent = draggedEventEntity.dragGridObjectEvent;
-				if (!draggedEvent.targetBattle && draggedEvent.TargetCell!=null)
-				{
-					GameEntity gridObject = _boardService.GetGridObjectAt(boardEntity, draggedEvent.DraggedCell);
-					if (gridObject == null)
-						return;
-					
-					_boardService.MoveGridObject(boardEntity, gridObject, draggedEvent.TargetCell.Value);
-				}
+				HandleDragEvent(draggedEventEntity, boardEntity);
+				draggedEventEntity.Destroy();
 			}
-			
 		}
-		
+
+		private void HandleDragEvent(GameEntity draggedEventEntity, GameEntity boardEntity)
+		{
+			DragGridObjectEvent draggedEvent = draggedEventEntity.dragGridObjectEvent;
+			GameEntity gridObject = _boardService.GetGridObjectAt(boardEntity, draggedEvent.DraggedCell);
+			if (gridObject == null)
+				return;
+			
+			GameEntity targetGridObject = _boardService.GetGridObjectAt(boardEntity, draggedEvent.TargetCell);
+			if (targetGridObject != null)
+			{ 
+				_combatService.CreateMergeEvent(draggedEvent.DraggedCell, draggedEvent.TargetCell); 
+				return;
+			}
+
+			_boardService.MoveGridObject(boardEntity, gridObject, draggedEvent.TargetCell);
+		}
+
 		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
 		{
 			return context.CreateCollector( GameMatcher.DragGridObjectEvent);

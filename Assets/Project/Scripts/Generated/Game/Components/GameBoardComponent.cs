@@ -6,24 +6,21 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using MergeToStay.Components;
-
 public partial class GameEntity {
 
-    public BoardComponent board { get { return (BoardComponent)GetComponent(GameComponentsLookup.Board); } }
+    public MergeToStay.Components.Combat.BoardComponent board { get { return (MergeToStay.Components.Combat.BoardComponent)GetComponent(GameComponentsLookup.Board); } }
     public bool hasBoard { get { return HasComponent(GameComponentsLookup.Board); } }
 
-    public void AddBoard(System.Collections.Generic.Dictionary<UnityEngine.Vector2, GridCell> newCells) {
+    public void AddBoard(System.Collections.Generic.Dictionary<UnityEngine.Vector2, MergeToStay.Components.Combat.GridCell> newCells) {
         var index = GameComponentsLookup.Board;
-        var component = (BoardComponent)CreateComponent(index, typeof(BoardComponent));
+        var component = (MergeToStay.Components.Combat.BoardComponent)CreateComponent(index, typeof(MergeToStay.Components.Combat.BoardComponent));
         component.Cells = newCells;
         AddComponent(index, component);
     }
 
-    public void ReplaceBoard(System.Collections.Generic.Dictionary<UnityEngine.Vector2, GridCell> newCells) {
+    public void ReplaceBoard(System.Collections.Generic.Dictionary<UnityEngine.Vector2, MergeToStay.Components.Combat.GridCell> newCells) {
         var index = GameComponentsLookup.Board;
-        var component = (BoardComponent)CreateComponent(index, typeof(BoardComponent));
+        var component = (MergeToStay.Components.Combat.BoardComponent)CreateComponent(index, typeof(MergeToStay.Components.Combat.BoardComponent));
         component.Cells = newCells;
         ReplaceComponent(index, component);
     }

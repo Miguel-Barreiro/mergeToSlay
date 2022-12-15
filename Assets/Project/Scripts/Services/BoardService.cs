@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using MergeToStay.Components;
+using MergeToStay.Components.Combat;
+using MergeToStay.Core;
 using UnityEngine;
 using Zenject;
 
@@ -7,8 +8,9 @@ namespace MergeToStay.Services
 {
 	public sealed class BoardService
 	{
-		[Inject]
-		private GameContext _context;
+		[Inject] private GameContext _context;
+		[Inject] private GridObjectService _gridObjectService;
+		[Inject] private PrefabFactoryPool _prefabFactoryPool;
 		
 		public GameEntity CreateNewBoard(int width, int height)
 		{
@@ -27,14 +29,7 @@ namespace MergeToStay.Services
 		public GameEntity CreateNewGridObjectDragToCellEvent(Vector2 draggedCell, Vector2 targetCell)
 		{
 			GameEntity result = _context.CreateEntity();
-			result.AddDragGridObjectEvent(draggedCell, targetCell, false);
-			return result;
-		}
-
-		public GameEntity CreateNewGridObjectDragToBattleEvent(Vector2 draggedCell)
-		{
-			GameEntity result = _context.CreateEntity();
-			result.AddDragGridObjectEvent(draggedCell,null, true);
+			result.AddDragGridObjectEvent(draggedCell, targetCell);
 			return result;
 		}
 
@@ -70,5 +65,42 @@ namespace MergeToStay.Services
 			return board.Cells[targetPosition].GridObject;
 		}
 
+		public bool MergeGridObjects(GameEntity boardEntity, Vector2 originCell, Vector2 targetCell)
+		{
+			BoardComponent board = boardEntity.board;
+
+			GameEntity originGridObject = GetGridObjectAt(boardEntity, originCell);
+			GameEntity targetGridObject = GetGridObjectAt(boardEntity, targetCell);
+			if (targetGridObject != null && originGridObject != null)
+			{
+				bool sameType = originGridObject.gridObject.CardData == targetGridObject.gridObject.CardData;
+				bool sameLevel = originGridObject.gridObject.Level == targetGridObject.gridObject.Level;
+				if (sameLevel && sameType && originGridObject.gridObject.Level < 2)
+				{
+					GameEntity newGridObject = _gridObjectService.CreateNewGridObjectFromCard(targetGridObject.gridObject.CardData,
+																							targetGridObject.gridObject.Level+1);
+					
+					board.Cells[originCell].GridObject = null;
+					board.Cells[targetCell].GridObject = newGridObject;
+					
+					_prefabFactoryPool.Destroy(originGridObject.gridObject.View);
+					_prefabFactoryPool.Destroy(targetGridObject.gridObject.View);
+
+					originGridObject.Destroy();
+					targetGridObject.Destroy();
+					
+					boardEntity.ReplaceBoard(board.Cells);
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public void ResetBoardView(GameEntity boardEntity)
+		{
+			BoardComponent board = boardEntity.board;
+			boardEntity.ReplaceBoard(board.Cells);
+		}
 	}
 }

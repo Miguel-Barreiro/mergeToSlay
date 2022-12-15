@@ -8,6 +8,7 @@ namespace MergeToStay.MonoBehaviours.Combat
     public class BoardView : MonoBehaviour
     {
         [Inject] private BoardService _boardService;
+        [Inject] private CombatService _combatService;
         
         public GridView GridView;
 
@@ -114,7 +115,7 @@ namespace MergeToStay.MonoBehaviours.Combat
         private void OnEndDragToBattle(Vector2 originCell)
         {
             // Debug.Log("dragged from " + originCell + " to battle");
-            _boardService.CreateNewGridObjectDragToBattleEvent(originCell);
+            _combatService.CreateBattleUseEvent(originCell);
         }
         
 

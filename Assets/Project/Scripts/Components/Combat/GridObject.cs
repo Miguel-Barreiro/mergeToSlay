@@ -2,7 +2,7 @@ using Entitas;
 using MergeToStay.Data;
 using UnityEngine;
 
-namespace MergeToStay.Components
+namespace MergeToStay.Components.Combat
 {
 	public sealed class GridObject : IComponent
 	{

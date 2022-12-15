@@ -6,29 +6,24 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using MergeToStay.Components;
-
 public partial class GameEntity {
 
-    public DragGridObjectEvent dragGridObjectEvent { get { return (DragGridObjectEvent)GetComponent(GameComponentsLookup.DragGridObjectEvent); } }
+    public MergeToStay.Components.Combat.DragGridObjectEvent dragGridObjectEvent { get { return (MergeToStay.Components.Combat.DragGridObjectEvent)GetComponent(GameComponentsLookup.DragGridObjectEvent); } }
     public bool hasDragGridObjectEvent { get { return HasComponent(GameComponentsLookup.DragGridObjectEvent); } }
 
-    public void AddDragGridObjectEvent(UnityEngine.Vector2 newDraggedCell, System.Nullable<UnityEngine.Vector2> newTargetCell, bool newTargetBattle) {
+    public void AddDragGridObjectEvent(UnityEngine.Vector2 newDraggedCell, UnityEngine.Vector2 newTargetCell) {
         var index = GameComponentsLookup.DragGridObjectEvent;
-        var component = (DragGridObjectEvent)CreateComponent(index, typeof(DragGridObjectEvent));
+        var component = (MergeToStay.Components.Combat.DragGridObjectEvent)CreateComponent(index, typeof(MergeToStay.Components.Combat.DragGridObjectEvent));
         component.DraggedCell = newDraggedCell;
         component.TargetCell = newTargetCell;
-        component.targetBattle = newTargetBattle;
         AddComponent(index, component);
     }
 
-    public void ReplaceDragGridObjectEvent(UnityEngine.Vector2 newDraggedCell, System.Nullable<UnityEngine.Vector2> newTargetCell, bool newTargetBattle) {
+    public void ReplaceDragGridObjectEvent(UnityEngine.Vector2 newDraggedCell, UnityEngine.Vector2 newTargetCell) {
         var index = GameComponentsLookup.DragGridObjectEvent;
-        var component = (DragGridObjectEvent)CreateComponent(index, typeof(DragGridObjectEvent));
+        var component = (MergeToStay.Components.Combat.DragGridObjectEvent)CreateComponent(index, typeof(MergeToStay.Components.Combat.DragGridObjectEvent));
         component.DraggedCell = newDraggedCell;
         component.TargetCell = newTargetCell;
-        component.targetBattle = newTargetBattle;
         ReplaceComponent(index, component);
     }
 

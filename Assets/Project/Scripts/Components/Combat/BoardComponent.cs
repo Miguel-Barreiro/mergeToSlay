@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
 
-namespace MergeToStay.Components
+namespace MergeToStay.Components.Combat
 {
 	public sealed class BoardComponent: IComponent
 	{

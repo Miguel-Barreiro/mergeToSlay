@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using MergeToStay.Components;
+using MergeToStay.Components.Combat;
 using MergeToStay.MonoBehaviours.Combat;
 using Zenject;
 using Vector2 = UnityEngine.Vector2;
@@ -8,8 +8,7 @@ namespace MergeToStay.Systems.Combat.Board
 {
 	public class BoardViewSystem : BoardReactiveSystem
 	{
-		[Inject]
-		private BoardView _boardView;
+		[Inject] private BoardView _boardView;
 		
 		protected override void React(GameEntity boardEntity)
 		{

@@ -70,12 +70,10 @@ namespace MergeToStay.Installers
 
         private void InstallGameServices()
         {
-            BoardService boardService = Container.Instantiate<BoardService>();
-            Container.BindInstance<BoardService>(boardService);
-
-            GridObjectService gridObjectService = Container.Instantiate<GridObjectService>();
-            Container.BindInstance<GridObjectService>(gridObjectService);
-
+            Container.BindInstance<GridObjectService>(Container.Instantiate<GridObjectService>());
+            Container.BindInstance<BoardService>(Container.Instantiate<BoardService>());
+            Container.BindInstance<CombatService>(Container.Instantiate<CombatService>());
+            
         }
     }
 }

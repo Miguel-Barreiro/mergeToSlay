@@ -1,7 +1,7 @@
 using Entitas;
 using UnityEngine;
 
-namespace MergeToStay.Components
+namespace MergeToStay.Components.Combat
 {
 	public class DragGridObjectUpdateComponent : IComponent
 	{

@@ -6,17 +6,14 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using MergeToStay.Components;
-
 public partial class GameEntity {
 
-    public DragGridObjectUpdateComponent dragGridObjectUpdate { get { return (DragGridObjectUpdateComponent)GetComponent(GameComponentsLookup.DragGridObjectUpdate); } }
+    public MergeToStay.Components.Combat.DragGridObjectUpdateComponent dragGridObjectUpdate { get { return (MergeToStay.Components.Combat.DragGridObjectUpdateComponent)GetComponent(GameComponentsLookup.DragGridObjectUpdate); } }
     public bool hasDragGridObjectUpdate { get { return HasComponent(GameComponentsLookup.DragGridObjectUpdate); } }
 
     public void AddDragGridObjectUpdate(UnityEngine.Vector2 newOriginCell, UnityEngine.GameObject newDraggedGameObject) {
         var index = GameComponentsLookup.DragGridObjectUpdate;
-        var component = (DragGridObjectUpdateComponent)CreateComponent(index, typeof(DragGridObjectUpdateComponent));
+        var component = (MergeToStay.Components.Combat.DragGridObjectUpdateComponent)CreateComponent(index, typeof(MergeToStay.Components.Combat.DragGridObjectUpdateComponent));
         component.OriginCell = newOriginCell;
         component.DraggedGameObject = newDraggedGameObject;
         AddComponent(index, component);
@@ -24,7 +21,7 @@ public partial class GameEntity {
 
     public void ReplaceDragGridObjectUpdate(UnityEngine.Vector2 newOriginCell, UnityEngine.GameObject newDraggedGameObject) {
         var index = GameComponentsLookup.DragGridObjectUpdate;
-        var component = (DragGridObjectUpdateComponent)CreateComponent(index, typeof(DragGridObjectUpdateComponent));
+        var component = (MergeToStay.Components.Combat.DragGridObjectUpdateComponent)CreateComponent(index, typeof(MergeToStay.Components.Combat.DragGridObjectUpdateComponent));
         component.OriginCell = newOriginCell;
         component.DraggedGameObject = newDraggedGameObject;
         ReplaceComponent(index, component);
