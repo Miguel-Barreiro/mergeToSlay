@@ -9,5 +9,8 @@ namespace MergeToStay.Data
 		
 		public GameObject DefaultGridObjetView;
 		public GameObject DefaultEnemyView;
+
+		[Range(1, 10)]
+		public int StartingDrawLevel = 5;
 	}
 }
