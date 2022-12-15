@@ -29,11 +29,23 @@ namespace MergeToStay.Systems.Combat.Board
 
 			foreach (GameEntity draggedEventEntity in entities)
 			{
-				HandleDragEvent(draggedEventEntity, boardEntity);
+				if (draggedEventEntity.dragGridObjectEvent.InvalidDrag)
+					HandleInvalidDragEvent(draggedEventEntity, boardEntity);
+				else
+					HandleDragEvent(draggedEventEntity, boardEntity);
 				draggedEventEntity.Destroy();
 			}
 		}
-
+		private void HandleInvalidDragEvent(GameEntity draggedEventEntity, GameEntity boardEntity)
+		{
+			DragGridObjectEvent draggedEvent = draggedEventEntity.dragGridObjectEvent;
+			GameEntity gridObject = _boardService.GetGridObjectAt(boardEntity, draggedEvent.DraggedCell);
+			if (gridObject == null)
+				return;
+			
+			_boardService.ResetBoardView(boardEntity);
+		}
+		
 		private void HandleDragEvent(GameEntity draggedEventEntity, GameEntity boardEntity)
 		{
 			DragGridObjectEvent draggedEvent = draggedEventEntity.dragGridObjectEvent;
