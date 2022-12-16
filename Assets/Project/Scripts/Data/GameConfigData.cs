@@ -8,6 +8,7 @@ namespace MergeToStay.Data
 	public class GameConfigData : ScriptableObject
 	{
 		public CardList CardListData;
+		public CardList RewardCardList;
 		
 		public GameObject DefaultGridObjetView;
 		public GameObject DefaultEnemyView;
