@@ -29,7 +29,19 @@ namespace MergeToStay.Services
 
 		public void ClearBoard(GameEntity boardEntity)
 		{
+
+			foreach (GridCell gridCell in boardEntity.board.Cells.Values)
+			{
+				if (_gridObjectService.IsValid(gridCell.GridObject))
+					_prefabFactoryPool.Destroy(gridCell.GridObject.gridObject.View);
+			}
+			Dictionary<Vector2,GridCell> cells = new Dictionary<Vector2, GridCell>();
 			
+			for (int x = 0; x < 5; x++)
+				for (int y = 0; y < 5; y++)
+					cells.Add(new Vector2(x, y), new GridCell(new Vector2(x, y)));
+
+			boardEntity.ReplaceBoard(cells);
 		}
 
 

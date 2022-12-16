@@ -54,8 +54,6 @@ namespace MergeToStay.Systems.Combat
 			}
 
 			_boardService.ClearBoard(boardEntity);
-
-
 			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Draw);
 			
 			foreach (GameEntity eventEntity in entities)
