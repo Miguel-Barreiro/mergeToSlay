@@ -27,6 +27,12 @@ namespace MergeToStay.Services
 			return result;
 		}
 
+		public void ClearBoard(GameEntity boardEntity)
+		{
+			
+		}
+
+
 		public GameEntity CreateInvalidDragEvent(Vector2 draggedCell)
 		{
 			GameEntity result = _context.CreateEntity();
@@ -128,5 +134,6 @@ namespace MergeToStay.Services
 			GameEntity result = _context.CreateEntity();
 			result.AddChangeCombatStateEvent(Battle.BattleState.EnemyTurn);
 		}
+
 	}
 }
