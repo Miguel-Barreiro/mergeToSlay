@@ -25,7 +25,7 @@ namespace MergeToStay.Systems.SmallSystems
 					eventEntity.showViewEvent.View == View.BossBattle ||
 					eventEntity.showViewEvent.View == View.EliteBattle )
 				{
-					_combatService.CreateCombatStartEvent(_gameConfigData.DebugCombatData);
+					_combatService.CreateCombatStartEvent(eventEntity.showViewEvent.View);
 				}
 				
 				eventEntity.Destroy();

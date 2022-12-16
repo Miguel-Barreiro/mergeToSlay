@@ -1,6 +1,7 @@
 using MergeToStay.Components.Combat.Battle;
 using MergeToStay.Core;
 using MergeToStay.Data;
+using MergeToStay.MonoBehaviours;
 using UnityEngine;
 using Zenject;
 
@@ -39,10 +40,10 @@ namespace MergeToStay.Services
 			return result;
 		}
 
-		public GameEntity CreateCombatStartEvent(CombatData combatData)
+		public GameEntity CreateCombatStartEvent(View type)
 		{
 			GameEntity result = _context.CreateEntity();
-			result.AddStartCombatEvent(combatData);
+			result.AddStartCombatEvent(type);
 			return result;
 		}
 
