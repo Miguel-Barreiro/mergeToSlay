@@ -31,10 +31,11 @@ namespace MergeToStay.Systems.Combat
 
 			foreach (GameEntity entity in entities)
 			{
-				bool wasBought = _shopService.BuyShopCard(playerEntity, shopEntity.shop, entity.buyShopCardEvent.ShopCardIndex);
+				int shopCardIndex = entity.buyShopCardEvent.ShopCardIndex;
+				bool wasBought = _shopService.BuyShopCard(playerEntity, shopEntity.shop, shopCardIndex);
 				if (wasBought)
 				{
-					
+					_shopView.CardViews[shopCardIndex].gameObject.SetActive(false);
 				}
 			}
 		}
