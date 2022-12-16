@@ -16,15 +16,18 @@ namespace MergeToStay.Systems.Combat.Battle
 		[Inject] private BoardService _boardService;
 		
 		private IGroup<GameEntity> _batleGroup;
+		private IGroup<GameEntity> _playerGroup;
 
 		public void Initialize()
 		{
 			_batleGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Battle));
+			_playerGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
 		}
 
 		protected override void Execute(List<GameEntity> entities)
 		{
 			GameEntity battleEntity = _batleGroup.GetSingleEntity();
+			GameEntity playerEntity = _playerGroup.GetSingleEntity();
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
 			
 			foreach (GameEntity eventEntity in entities)
@@ -60,6 +63,7 @@ namespace MergeToStay.Systems.Combat.Battle
 					case Components.Combat.Battle.Battle.BattleState.Init:
 						if (changeCombatStateEvent.NewState == Components.Combat.Battle.Battle.BattleState.Draw)
 						{
+							_combatService.ResetFullBattleStats(battleEntity, playerEntity);
 							_boardView.EndTurnButton.gameObject.SetActive(false);
 							_boardView.ToggleDrag(false);
 							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
@@ -77,7 +81,7 @@ namespace MergeToStay.Systems.Combat.Battle
 		{
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
 			battle.State = newState;
-			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State);
+			_combatService.ResetBattle(battleEntity);
 
 			switch (newState)
 			{
@@ -101,6 +105,9 @@ namespace MergeToStay.Systems.Combat.Battle
 
 		private void ExecuteEnemyTurn(GameEntity battleEntity)
 		{
+			//TODO: PLAY ENEMY ACTIONS
+			
+			_combatService.ResetBattleTurnStats(battleEntity);
 			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Draw);
 		}
 

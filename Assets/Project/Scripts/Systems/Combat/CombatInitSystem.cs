@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Entitas;
+using MergeToStay.Components.Combat.Battle;
 using MergeToStay.Core;
 using MergeToStay.Data;
 using MergeToStay.Services;
@@ -29,7 +30,9 @@ namespace MergeToStay.Systems.Combat
 			GameEntity newBoard = _boardService.CreateNewBoard(5, 5);
 
 			GameEntity battleEntity = _context.CreateEntity();
-			battleEntity.AddBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, Components.Combat.Battle.Battle.BattleState.Init);
+			battleEntity.AddBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, 
+									Components.Combat.Battle.Battle.BattleState.Init, 
+									0, new TurnStats());
 		}
 
 		protected override void Execute(List<GameEntity> entities)
@@ -46,11 +49,11 @@ namespace MergeToStay.Systems.Combat
 			{
 				battleEntity = _context.CreateEntity();
 				battleEntity.AddBattle(enemies, _gameConfigData.StartingDrawLevel, 
-										Components.Combat.Battle.Battle.BattleState.Init);
+										Components.Combat.Battle.Battle.BattleState.Init, 0, new TurnStats());
 			} else
 			{
 				battleEntity.ReplaceBattle(enemies, _gameConfigData.StartingDrawLevel, 
-											Components.Combat.Battle.Battle.BattleState.Init);
+											Components.Combat.Battle.Battle.BattleState.Init, 0, new TurnStats());
 			}
 
 			_boardService.ClearBoard(boardEntity);
