@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Entitas;
 using MergeToStay.Components.Combat.Battle;
+using MergeToStay.MonoBehaviours.Combat;
 using MergeToStay.Services;
+using UnityEngine;
 using Zenject;
 
 namespace MergeToStay.Systems.Combat.Battle
@@ -12,6 +14,7 @@ namespace MergeToStay.Systems.Combat.Battle
 
 		[Inject] private Contexts _contexts;
 		[Inject] private CombatService _combatService;
+		[Inject] private BattleView _battleView;
 		
 		private IGroup<GameEntity> _batleGroup;
 		private IGroup<GameEntity> _enemyGroup;
@@ -40,10 +43,10 @@ namespace MergeToStay.Systems.Combat.Battle
 					battle.Enemies.Remove(enemyEntity);
 					battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel);
 					enemyEntity.Destroy();
+					continue;
 				}
-				
 			}
-			
+
 		}
 
 		// protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
