@@ -16,6 +16,7 @@ namespace MergeToStay.Data.Actions
 		[EnumToggleButtons]
 		public ActionsModel.CombatTargetsEnum CombatTargets = ActionsModel.CombatTargetsEnum.FORWARD;
 		
+		
 		override public void Execute(GameEntity battleEntity, GameEntity boardEntity, GameEntity playerEntity,
 									CombatService combatService, BoardService boardService)
 		{
@@ -23,10 +24,25 @@ namespace MergeToStay.Data.Actions
 			foreach (GameEntity enemyEntity in enemies)
 				combatService.DamageEnemy(enemyEntity, Value);
 
-			if (combatService.IsTargetPlayer(CombatTargets))
+			if (combatService.IsTargetSelf(CombatTargets))
 				combatService.DamagePlayer(playerEntity, Value);
 
 		}
-	
+
+		public override void ExecuteEnemyBehaviour(GameEntity battleEntity, GameEntity boardEntity, 
+													GameEntity enemyEntity, GameEntity playerEntity, 
+													CombatService combatService, BoardService boardService)
+		{
+			List<GameEntity> enemies = combatService.GetEnemyTargets(battleEntity, CombatTargets);
+			foreach (GameEntity targetEnemyEntity in enemies)
+				combatService.DamageEnemy(targetEnemyEntity, Value);
+
+			if (combatService.IsTargetSelf(CombatTargets))
+				combatService.DamagePlayer(playerEntity, Value);
+
+		}
+		
+		
+		
 	}
 }

@@ -17,12 +17,11 @@ namespace MergeToStay.Data.Actions
 		}
 
 
-		virtual public void ExecuteEnemyBehaviour(GameEntity battleEntity, GameEntity boardEntity,
+		override public void ExecuteEnemyBehaviour(GameEntity battleEntity, GameEntity boardEntity,
 												GameEntity enemyEntity, GameEntity playerEntity,
 												CombatService combatService, BoardService boardService)
 		{
-			combatService.AddEnemyDefense(battleEntity, Value);
-			
+			combatService.AddEnemyDefense(enemyEntity, Value);
 		}
 
 	}

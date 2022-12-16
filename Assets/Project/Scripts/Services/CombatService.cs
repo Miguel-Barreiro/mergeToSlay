@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MergeToStay.Components.Combat.Battle;
 using MergeToStay.Components.Player;
@@ -12,6 +13,7 @@ namespace MergeToStay.Services
 {
 	public class CombatService
 	{
+		[Inject] private GameConfigData _gameConfigData;
 		[Inject] private GameContext _context;
 		[Inject] private PrefabFactoryPool _prefabFactoryPool;
 
@@ -136,7 +138,7 @@ namespace MergeToStay.Services
 			return enemyTargets;
 		}
 		
-		public bool IsTargetPlayer(ActionsModel.CombatTargetsEnum combatTargets)
+		public bool IsTargetSelf(ActionsModel.CombatTargetsEnum combatTargets)
 		{
 			// NONE = 0, 
 			// FORWARD = 1 << 1,
@@ -161,5 +163,32 @@ namespace MergeToStay.Services
 			player.player.Health -= damage;
 		}
 
+		public void HealPlayer(GameEntity playerEntity, int value)
+		{
+			int newHealth = playerEntity.player.Health + value;
+			playerEntity.player.Health = Math.Clamp(newHealth, 0, _gameConfigData.MaxHealth);
+		}
+
+		public void HealEnemy(GameEntity enemyEntity, int value)
+		{
+			int newHealth = enemyEntity.enemy.Hp + value;
+			enemyEntity.enemy.Hp = Math.Clamp(newHealth, 0, enemyEntity.enemy.EnemyData.Hp);
+		}
+
+		public void StunEnemy(GameEntity targetEnemyEntity, int turns)
+		{
+			targetEnemyEntity.enemy.Effects.StunTurns += turns;
+		}
+
+
+		public void BreakEnemyDefense(GameEntity targetEnemyEntity, int value)
+		{
+			targetEnemyEntity.enemy.TurnStats.Defense = Math.Max(0, targetEnemyEntity.enemy.TurnStats.Defense - value);
+		}
+		public void BreakPlayerDefense(GameEntity battleEntity, int value)
+		{
+			TurnStats battlePlayerCurrentTurnStats = battleEntity.battle.PlayerCurrentTurnStats;
+			battlePlayerCurrentTurnStats.Defense = Math.Max(0, battlePlayerCurrentTurnStats.Defense - value);
+		}
 	}
 }
