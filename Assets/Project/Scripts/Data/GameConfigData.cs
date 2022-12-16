@@ -16,6 +16,8 @@ namespace MergeToStay.Data
 		[Range(1, 10)]
 		public int StartingDrawLevel = 5;
 		public int StartingHealth;
+		public int MaxHealth;
 		public int StartingGold;
+		public int CampHealingAmount;
 	}
 }

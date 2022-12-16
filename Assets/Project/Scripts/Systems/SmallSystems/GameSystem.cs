@@ -13,7 +13,7 @@ namespace MergeToStay.Systems.SmallSystems
 		public void Initialize()
 		{
 			GameEntity entity = gameContext.CreateEntity();
-			entity.AddPlayer(gameConfigData.StartingHealth, gameConfigData.StartingGold, gameConfigData.StartingDrawLevel);
+			entity.ReplacePlayer(gameConfigData.StartingHealth, gameConfigData.StartingGold, gameConfigData.StartingDrawLevel);
 		}
 
 		protected override void Execute(List<GameEntity> entities) => Initialize();
