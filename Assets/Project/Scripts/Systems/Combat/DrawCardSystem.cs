@@ -27,20 +27,16 @@ namespace MergeToStay.Systems.Combat
 
 			foreach (GameEntity eventEntity in entities)
 			{
-				
 				for (int i = 0; i < eventEntity.drawCardEvent.HowMany; i++)
 				{
 					Vector2? emptyCell = _boardService.GetFirsEmptySpace(boardEntity);
 					if (emptyCell == null)
-					{
-						eventEntity.Destroy();
 						continue;
-					}
 					
 					GameEntity gridObjectView = _gridObjectService.CreateNewGridObjectFromCard(_debugCardData);
 					_boardService.MoveGridObject(boardEntity, gridObjectView, emptyCell.Value);
 				}
-				
+				eventEntity.Destroy();
 			}
 		}
 

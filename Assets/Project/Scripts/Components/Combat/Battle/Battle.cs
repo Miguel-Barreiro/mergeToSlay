@@ -7,6 +7,7 @@ namespace MergeToStay.Components.Combat.Battle
 	{
 		public enum BattleState
 		{
+			Init, 
 			Draw, 
 			Play, 
 			EnemyTurn,

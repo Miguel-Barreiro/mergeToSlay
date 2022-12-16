@@ -57,6 +57,14 @@ namespace MergeToStay.Systems.Combat.Battle
 							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
 						}
 						break;
+					case Components.Combat.Battle.Battle.BattleState.Init:
+						if (changeCombatStateEvent.NewState == Components.Combat.Battle.Battle.BattleState.Draw)
+						{
+							_boardView.EndTurnButton.gameObject.SetActive(false);
+							_boardView.ToggleDrag(false);
+							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
+						}
+						break;
 				}
 
 				eventEntity.Destroy();
@@ -93,16 +101,14 @@ namespace MergeToStay.Systems.Combat.Battle
 
 		private void ExecuteEnemyTurn(GameEntity battleEntity)
 		{
-			GameEntity result = _context.CreateEntity();
-			result.AddChangeCombatStateEvent(Components.Combat.Battle.Battle.BattleState.Draw);
+			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Draw);
 		}
 
 		private void ExecuteDraw(GameEntity battleEntity)
 		{
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
 			_combatService.CreateDrawCardEvent(battle.CardDrawLevel);
-			GameEntity result = _context.CreateEntity();
-			result.AddChangeCombatStateEvent(Components.Combat.Battle.Battle.BattleState.Play);
+			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Play);
 		}
 
 		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)

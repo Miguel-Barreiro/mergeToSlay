@@ -14,6 +14,7 @@ namespace MergeToStay.Systems.SmallSystems
 		[Inject] GameConfigData gameConfigData;
 		[Inject] PlayerUiView playerUiView;
 		[Inject] ViewService viewService;
+		
 
 		public void Initialize()
 		{

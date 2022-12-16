@@ -23,7 +23,7 @@ namespace MergeToStay.Systems.Combat
 			GameEntity newBoard = _boardService.CreateNewBoard(5, 5);
 
 			GameEntity battleEntity = _context.CreateEntity();
-			battleEntity.AddBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, Components.Combat.Battle.Battle.BattleState.Draw);
+			battleEntity.AddBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, Components.Combat.Battle.Battle.BattleState.Init);
 		}
 
 		protected override void Execute(List<GameEntity> entities)
@@ -34,11 +34,15 @@ namespace MergeToStay.Systems.Combat
 			if (battleEntity == null)
 			{
 				battleEntity = _context.CreateEntity();
-				battleEntity.AddBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, Components.Combat.Battle.Battle.BattleState.Draw);
+				battleEntity.AddBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, 
+										Components.Combat.Battle.Battle.BattleState.Init);
 			} else
 			{
-				battleEntity.ReplaceBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, Components.Combat.Battle.Battle.BattleState.Draw);
+				battleEntity.ReplaceBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, 
+											Components.Combat.Battle.Battle.BattleState.Init);
 			}
+
+			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Draw);
 			
 			foreach (GameEntity eventEntity in entities)
 				eventEntity.Destroy();

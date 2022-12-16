@@ -1,3 +1,4 @@
+using MergeToStay.Services;
 using UnityEngine;
 
 namespace MergeToStay.Data
@@ -10,6 +11,8 @@ namespace MergeToStay.Data
 		public GameObject DefaultGridObjetView;
 		public GameObject DefaultEnemyView;
 
+		public CombatData DebugCombatData;
+		
 		[Range(1, 10)]
 		public int StartingDrawLevel = 5;
 		public int StartingHealth;

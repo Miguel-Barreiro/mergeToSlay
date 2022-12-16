@@ -31,7 +31,22 @@ namespace MergeToStay.Services
 			result.AddDrawCardEvent(howMany);
 			return result;
 		}
+		
+		public GameEntity CreateGameStateChange(Battle.BattleState newState)
+		{
+			GameEntity result = _context.CreateEntity();
+			result.AddChangeCombatStateEvent(newState);
+			return result;
+		}
 
+		public GameEntity CreateCombatStartEvent(CombatData combatData)
+		{
+			GameEntity result = _context.CreateEntity();
+			result.AddStartCombatEvent(combatData);
+			return result;
+		}
+
+		
 		public bool SummonEnemy(GameEntity battleEntity, EnemyData enemyData, int position)
 		{
 			Battle battle = battleEntity.battle;

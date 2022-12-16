@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Entitas;
+using MergeToStay.Data;
 using MergeToStay.MonoBehaviours;
+using MergeToStay.Services;
 using Zenject;
 
 namespace MergeToStay.Systems.SmallSystems
@@ -8,6 +10,9 @@ namespace MergeToStay.Systems.SmallSystems
 	public class ShowViewSystem : ReactiveGameSystem, IInitializeSystem
 	{
 		[Inject] private RootView _rootView;
+		
+		[Inject] private CombatService _combatService;
+		[Inject] private GameConfigData _gameConfigData;
 
 		public void Initialize() => _rootView.ShowView(View.Path);
 
@@ -16,7 +21,13 @@ namespace MergeToStay.Systems.SmallSystems
 			foreach (GameEntity eventEntity in entities)
 			{
 				_rootView.ShowView(eventEntity.showViewEvent.View, eventEntity.showViewEvent.HideOpenedViews);
-
+				if (eventEntity.showViewEvent.View == View.Battle || 
+					eventEntity.showViewEvent.View == View.BossBattle ||
+					eventEntity.showViewEvent.View == View.EliteBattle )
+				{
+					_combatService.CreateCombatStartEvent(_gameConfigData.DebugCombatData);
+				}
+				
 				eventEntity.Destroy();
 			}
 		}
