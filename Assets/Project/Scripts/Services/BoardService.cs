@@ -80,7 +80,7 @@ namespace MergeToStay.Services
 			GameEntity targetGridObject = GetGridObjectAt(boardEntity, targetCell);
 			if ( _gridObjectService.IsValid(targetGridObject)  && _gridObjectService.IsValid(originGridObject))
 			{
-				bool sameType = originGridObject.gridObject.CardData == targetGridObject.gridObject.CardData;
+				bool sameType = originGridObject.gridObject.CardData.Type == targetGridObject.gridObject.CardData.Type;
 				bool sameLevel = originGridObject.gridObject.Level == targetGridObject.gridObject.Level;
 				if (sameLevel && sameType && originGridObject.gridObject.Level < 2)
 				{
