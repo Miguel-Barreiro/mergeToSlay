@@ -23,7 +23,7 @@ namespace MergeToStay.Systems.Combat.Board
 				MergeEvent mergeEvent = eventEntity.mergeEvent;
 				bool mergeComplete = _boardService.MergeGridObjects(boardEntity, mergeEvent.originCell, mergeEvent.targetCell);
 				if (!mergeComplete)
-					_boardService.ResetBoardView(boardEntity);
+					_boardService.ResetBoard(boardEntity);
 
 				eventEntity.Destroy();
 			}

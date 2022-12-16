@@ -173,7 +173,7 @@ namespace MergeToStay.Services
 		{
 			int defense = battleEntity.battle.PlayerCurrentTurnStats.Defense;
 			int damageFinal = Math.Max(0, damage - defense);
-			player.player.Health = Math.Max(0, player.player.Health - damageFinal);;
+			player.player.Health = Math.Max(0, player.player.Health - damageFinal);
 			battleEntity.battle.PlayerCurrentTurnStats.Defense = Math.Max(0, defense - damage);
 		}
 

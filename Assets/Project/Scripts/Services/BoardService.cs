@@ -148,7 +148,7 @@ namespace MergeToStay.Services
 			return false;
 		}
 
-		public void ResetBoardView(GameEntity boardEntity)
+		public void ResetBoard(GameEntity boardEntity)
 		{
 			BoardComponent board = boardEntity.board;
 			boardEntity.ReplaceBoard(board.Cells);
