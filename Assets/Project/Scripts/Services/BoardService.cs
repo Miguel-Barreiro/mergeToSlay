@@ -172,5 +172,45 @@ namespace MergeToStay.Services
 			result.AddChangeCombatStateEvent(Battle.BattleState.EnemyTurn);
 		}
 
+		public void DiscardGridObjects(GameEntity boardEntity, int howMany)
+		{
+			List<Vector2> discard = new List<Vector2>(); 
+			void PickDiscard(List<Vector2> from)
+			{
+				int randomIndex = Random.Range(0, from.Count);
+				discard.Add(from[randomIndex]);
+				from.RemoveAt(randomIndex);
+			}
+
+			List<Vector2> level1 = new List<Vector2>();
+			List<Vector2> level2 = new List<Vector2>();
+			List<Vector2> level3 = new List<Vector2>();
+
+			BoardComponent board = boardEntity.board;
+			foreach (KeyValuePair<Vector2,GridCell> keyValuePair in board.Cells)
+				if (_gridObjectService.IsValid(keyValuePair.Value.GridObject))
+					switch (keyValuePair.Value.GridObject.gridObject.Level)
+					{
+						case 1: level1.Add(keyValuePair.Key); break;
+						case 2: level2.Add(keyValuePair.Key); break;
+						case 3: level3.Add(keyValuePair.Key); break;
+					}
+
+			for (int i = 0; i < howMany; i++)
+			{
+				if (level1.Count > 0)
+					PickDiscard(level1);
+				
+				if (level2.Count > 0)
+					PickDiscard(level2);
+				
+				if (level3.Count > 0)
+					PickDiscard(level3);
+			}
+
+			foreach (Vector2 cellToDiscard in discard)
+				RemoveGridObject(boardEntity, cellToDiscard);
+			
+		}
 	}
 }
