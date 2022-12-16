@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MergeToStay.Components.Combat;
+using MergeToStay.Components.Combat.Battle;
 using MergeToStay.Core;
 using UnityEngine;
 using Zenject;
@@ -122,5 +123,10 @@ namespace MergeToStay.Services
 			return null;
 		}
 
+		public void CreateEndTurnEvent()
+		{
+			GameEntity result = _context.CreateEntity();
+			result.AddChangeCombatStateEvent(Battle.BattleState.EnemyTurn);
+		}
 	}
 }

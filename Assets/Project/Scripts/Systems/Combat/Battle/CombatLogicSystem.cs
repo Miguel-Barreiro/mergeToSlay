@@ -1,10 +1,15 @@
 using System.Collections.Generic;
 using Entitas;
+using MergeToStay.Components.Combat;
+using MergeToStay.MonoBehaviours.Combat;
+using Zenject;
 
 namespace MergeToStay.Systems.Combat.Battle
 {
-	public class CombatLogicSystem : ReactiveGameSystem
+	public class CombatLogicSystem : ReactiveGameSystem, IInitializeSystem
 	{
+
+		[Inject] private BoardView _boardView;
 		
 		private IGroup<GameEntity> _batleGroup;
 
@@ -16,16 +21,51 @@ namespace MergeToStay.Systems.Combat.Battle
 		protected override void Execute(List<GameEntity> entities)
 		{
 			GameEntity battleEntity = _batleGroup.GetSingleEntity();
-
-
+			Components.Combat.Battle.Battle battle = battleEntity.battle;
+			
 			foreach (GameEntity eventEntity in entities)
 			{
-				
-				
+				ChangeCombatStateEvent changeCombatStateEvent = eventEntity.changeCombatStateEvent;
+
+				switch (battle.State)
+				{
+					case Components.Combat.Battle.Battle.BattleState.Draw:
+						if (changeCombatStateEvent.NewState == Components.Combat.Battle.Battle.BattleState.Play)
+						{
+							_boardView.EndTurnButton.gameObject.SetActive(true);
+							_boardView.ToggleDrag(true);
+							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
+						}
+						break;
+					case Components.Combat.Battle.Battle.BattleState.Play:
+						if (changeCombatStateEvent.NewState == Components.Combat.Battle.Battle.BattleState.EnemyTurn)
+						{
+							_boardView.EndTurnButton.gameObject.SetActive(false);
+							_boardView.ToggleDrag(false);
+							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
+						}
+						break;
+					case Components.Combat.Battle.Battle.BattleState.EnemyTurn:
+						if (changeCombatStateEvent.NewState == Components.Combat.Battle.Battle.BattleState.Draw)
+						{
+							_boardView.EndTurnButton.gameObject.SetActive(false);
+							_boardView.ToggleDrag(false);
+							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
+						}
+						break;
+				}
+
 				eventEntity.Destroy();
 			}
 			
 			
+		}
+
+		private static void ChangeCombatState(GameEntity battleEntity, Components.Combat.Battle.Battle.BattleState newState)
+		{
+			Components.Combat.Battle.Battle battle = battleEntity.battle;
+			battle.State = newState;
+			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State);
 		}
 
 		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)

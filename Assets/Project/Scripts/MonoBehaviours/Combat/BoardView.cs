@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using MergeToStay.Services;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace MergeToStay.MonoBehaviours.Combat
@@ -9,15 +10,16 @@ namespace MergeToStay.MonoBehaviours.Combat
     {
         [Inject] private BoardService _boardService;
         [Inject] private CombatService _combatService;
-        
-        public GridView GridView;
 
+        public Button EndTurnButton;
+        public GridView GridView;
         public DragOnHandler BattleDragCatcher;
 
         private bool _dragTargetBattle = false;
         private Vector2? _dragTargetCell = null;
         private Vector2? _dragOriginCell = null;
         private GameEntity _draggedEvent;
+        private bool _isDragEnable = false;
 
 
         private void Start()
@@ -78,15 +80,35 @@ namespace MergeToStay.MonoBehaviours.Combat
 
         private void OnStartDragUtil(CellView view)
         {
+            
             if (_draggedEvent != null && _draggedEvent.isEnabled)
                 _draggedEvent.Destroy();
             
-            _draggedEvent = _boardService.CreateDragUpdateEvent(view.Position);
             _dragOriginCell = view.Position;
+
+            if (!_isDragEnable)
+                return;
+            _draggedEvent = _boardService.CreateDragUpdateEvent(view.Position);
         }
         
         private void OnEndDragUtil(CellView view)
         {
+            if (!_isDragEnable)
+            {
+                _dragTargetBattle = false;
+                _dragOriginCell = null;
+                _dragTargetCell = null;
+
+                if (_draggedEvent != null && _draggedEvent.isEnabled)
+                {
+                    _draggedEvent.Destroy();
+                    _draggedEvent = null;
+                }
+            
+                return;
+            }
+
+
             if (_dragTargetBattle && _dragOriginCell != null)
                 OnEndToBattleDrag(_dragOriginCell.Value);
     
@@ -113,22 +135,38 @@ namespace MergeToStay.MonoBehaviours.Combat
         
         private void OnEndDrag(Vector2 originCell, Vector2 targetCell)
         {
+            if (!_isDragEnable)
+                return;
+
             // Debug.Log("dragged from " + originCell + " to " + targetCell);
             _boardService.CreateObjectGridDragToCellEvent(originCell, targetCell);
         }
         
         private void OnEndToBattleDrag(Vector2 originCell)
         {
+            if (!_isDragEnable)
+                return;
             // Debug.Log("dragged from " + originCell + " to battle");
             _combatService.CreateBattleUseEvent(originCell);
         }
         
         private void OnEndInvalidDrag(Vector2 originCell)
         {
+            if (!_isDragEnable)
+                return;
             // Debug.Log("dragged from " + originCell + " to battle");
             _boardService.CreateInvalidDragEvent(originCell);
         }
-        
 
+
+        public void EndTurnPressed()
+        {
+            _boardService.CreateEndTurnEvent();
+        }
+
+        public void ToggleDrag(bool toggle)
+        {
+            _isDragEnable = toggle;
+        }
     }
 }
