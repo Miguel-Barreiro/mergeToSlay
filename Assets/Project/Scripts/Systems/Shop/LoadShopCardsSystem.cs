@@ -28,8 +28,8 @@ namespace MergeToStay.Systems.Combat
 
 			foreach (ShopCardView cardView in _shopView.CardViews)
 			{
-				(CardData randomCard, CardLevelData randomCardLevel) = _shopService.CreateAShopCard(shopEntity.shop);
-
+				(CardData randomCard, int level) = _shopService.CreateAShopCard(shopEntity.shop);
+				CardLevelData randomCardLevel = randomCard.LevelData[level];
 				cardView.UpdateValues(randomCardLevel.Icon, randomCard.Name, randomCardLevel.Price);
 			}
 		}

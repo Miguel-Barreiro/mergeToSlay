@@ -15,14 +15,8 @@ namespace MergeToStay.Systems.SmallSystems
 			GameEntity entity = gameContext.CreateEntity();
 			
 			CardsModel.Deck deck = new CardsModel.Deck();
-			foreach (CardData cardData in gameConfigData.CardListData.AllCards)
-			{
-				CardsModel.Card card = new CardsModel.Card
-				{
-					CardData = cardData
-				};
+			foreach (CardsModel.Card card in gameConfigData.CardListData.Cards)
 				deck.Cards.Add(card);
-			}
 
 			entity.ReplacePlayer(gameConfigData.StartingHealth, gameConfigData.StartingGold, gameConfigData.StartingDrawLevel, deck);
 		}

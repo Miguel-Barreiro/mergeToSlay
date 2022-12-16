@@ -32,6 +32,10 @@ namespace MergeToStay.Data
 	[Serializable]
 	public sealed class TurnActions
 	{
+		public int Attack = 0;
+		public bool IsSpecial = false;
+		public bool IsDefend = false;
+		
 		[SerializeField]
 		public List<TurnAction> Actions;
 	}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace MergeToStay.Data
@@ -16,10 +17,11 @@ namespace MergeToStay.Data
 			public readonly List<Card> Cards = new List<Card>();
 		}
 		
+		[Serializable]
 		public class Card
 		{
 			public CardData CardData;
-			public int Level;
+			public int Level = 0;
 		}
 	}
 }
