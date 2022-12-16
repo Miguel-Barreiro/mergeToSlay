@@ -31,6 +31,7 @@ namespace MergeToStay.MonoBehaviours
 				case View.BossBattle:
 					BattleRoot.gameObject.SetActive(true);
 					BoardRoot.gameObject.SetActive(true);
+					GridObjectsRoot.gameObject.SetActive(true);
 					break;
 				case View.BattleRewards:
 					BattleRewardsRoot.gameObject.SetActive(true);

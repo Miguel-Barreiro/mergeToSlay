@@ -25,8 +25,14 @@ namespace MergeToStay.Systems.Combat.Battle
 				if ( enemy.View == null )
 					enemy.View = _prefabFactoryPool.NewEnemy(enemy.EnemyData.Prefab);
 
+				RectTransform rectTransform = enemy.View.GetComponent<RectTransform>();
+				
+				RectTransform enemySpot = _battleView.EnemySpots[spot];
+				
 				enemy.View.transform.localPosition = Vector3.zero;
-				enemy.View.transform.SetParent(_battleView.EnemySpots[spot]);
+				enemy.View.transform.SetParent(enemySpot, false);
+				rectTransform.sizeDelta = Vector2.zero;
+				rectTransform.localScale = Vector3.one;
 				spot++;
 			}
 			
