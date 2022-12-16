@@ -54,7 +54,13 @@ namespace MergeToStay.Systems.Combat.Board
 				return;
 			
 			GameEntity targetGridObject = _boardService.GetGridObjectAt(boardEntity, draggedEvent.TargetCell);
-			if (targetGridObject != null)
+			if (targetGridObject != null && targetGridObject == gridObject)
+			{
+				HandleInvalidDragEvent(draggedEventEntity, boardEntity);
+				return;	
+			}
+			
+			if (targetGridObject != null && targetGridObject != gridObject)
 			{ 
 				_combatService.CreateMergeEvent(draggedEvent.DraggedCell, draggedEvent.TargetCell); 
 				return;
