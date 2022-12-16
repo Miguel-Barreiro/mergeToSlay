@@ -22,18 +22,19 @@ public static class GameComponentsLookup {
     public const int GridObject = 11;
     public const int GridObjectUseEvent = 12;
     public const int MergeEvent = 13;
-    public const int StartCombatEvent = 14;
-    public const int RestartGameEvent = 15;
-    public const int NodeEnterEvent = 16;
-    public const int NodeExitEvent = 17;
-    public const int Path = 18;
-    public const int ShowViewEvent = 19;
-    public const int Player = 20;
-    public const int BuyShopCardEvent = 21;
-    public const int Shop = 22;
-    public const int DebugMessage = 23;
+    public const int LoadBattleRewardsEvent = 14;
+    public const int StartCombatEvent = 15;
+    public const int RestartGameEvent = 16;
+    public const int NodeEnterEvent = 17;
+    public const int NodeExitEvent = 18;
+    public const int Path = 19;
+    public const int ShowViewEvent = 20;
+    public const int Player = 21;
+    public const int BuyShopCardEvent = 22;
+    public const int Shop = 23;
+    public const int DebugMessage = 24;
 
-    public const int TotalComponents = 24;
+    public const int TotalComponents = 25;
 
     public static readonly string[] componentNames = {
         "LoadShopCardsEvent",
@@ -50,6 +51,7 @@ public static class GameComponentsLookup {
         "GridObject",
         "GridObjectUseEvent",
         "MergeEvent",
+        "LoadBattleRewardsEvent",
         "StartCombatEvent",
         "RestartGameEvent",
         "NodeEnterEvent",
@@ -77,6 +79,7 @@ public static class GameComponentsLookup {
         typeof(MergeToStay.Components.Combat.GridObject),
         typeof(MergeToStay.Components.Combat.GridObjectUseEvent),
         typeof(MergeToStay.Components.Combat.MergeEvent),
+        typeof(MergeToStay.Components.Combat.Rewards.LoadBattleRewardsEvent),
         typeof(MergeToStay.Components.Combat.StartCombatEvent),
         typeof(MergeToStay.Components.Game.RestartGameEvent),
         typeof(MergeToStay.Components.Path.NodeEnterEvent),

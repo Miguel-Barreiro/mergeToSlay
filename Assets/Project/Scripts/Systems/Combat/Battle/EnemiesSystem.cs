@@ -19,6 +19,7 @@ namespace MergeToStay.Systems.Combat.Battle
 		[Inject] private BattleView _battleView;
 		[Inject] private PrefabFactoryPool _prefabFactoryPool;
 		[Inject] private ViewService _viewService;
+		[Inject] private BattleRewardsService _battleRewardsService;
 		
 		private IGroup<GameEntity> _batleGroup;
 		private IGroup<GameEntity> _enemyGroup;
@@ -58,9 +59,9 @@ namespace MergeToStay.Systems.Combat.Battle
 			{
 				battle.State = Components.Combat.Battle.Battle.BattleState.Init;
 				_viewService.CreateShowViewEvent(View.BattleRewards);
-			}
 
-			
+				_battleRewardsService.CreateLoadBattleRewardsEvent();
+			}
 		}
 	}
 }

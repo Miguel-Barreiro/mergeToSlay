@@ -1,3 +1,4 @@
+using MergeToStay.Services;
 using UnityEngine;
 
 namespace MergeToStay.Data.Rewards
@@ -7,5 +8,14 @@ namespace MergeToStay.Data.Rewards
 	{
 		public CardsModel.CardRarity CardRarity;
 
+		public override void Execute()
+		{
+			
+		}
+
+		public override GameObject GetView(BattleRewardsService service)
+		{
+			service.GetRewardViewForCard();
+		}
 	}
 }

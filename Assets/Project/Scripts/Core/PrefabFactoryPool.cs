@@ -29,6 +29,14 @@ namespace MergeToStay.Core
 			return GameObject.Instantiate(enemyDataPrefab, _rootView.BattleRoot);
 		}
 
+		public GameObject NewRewardCard(GameObject prefab)
+		{
+			if (prefab == null)
+				prefab = _gameConfig.RewardCardPrefab;
+			
+			return GameObject.Instantiate(prefab, _rootView.BattleRoot);
+		}
+
 		public void Destroy(GameObject view)
 		{
 			GameObject.Destroy(view);

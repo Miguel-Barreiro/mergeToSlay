@@ -14,6 +14,7 @@ namespace MergeToStay.Data
 		public GameObject DefaultEnemyView;
 
 		public CombatData DebugCombatData;
+		public GameObject RewardCardPrefab;
 
 		[SerializeField] public List<CombatData> BossBattles;
 		[SerializeField] public List<CombatData> ElitesBattles;

@@ -34,6 +34,9 @@ namespace MergeToStay.Features
 			Add(_container.Instantiate<BattleViewSystem>());
 			Add(_container.Instantiate<EnemiesSystem>());
 			Add(_container.Instantiate<ExecuteBattleDragSystem>());
+			
+			// rewards
+			Add(_container.Instantiate<LoadBattleRewardsSystem>());
 
 			return this;
 		}
