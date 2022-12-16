@@ -77,6 +77,12 @@ namespace MergeToStay.Installers
         private GameObject BindView<T>(GameObject prefab, RectTransform root)
         {
             GameObject view = Container.InstantiatePrefab(prefab, root);
+            RectTransform rectTransform = view.GetComponent<RectTransform>();
+            var rect = root.rect;
+            rectTransform.sizeDelta = new Vector2(0,  0);
+            // rectTransform.SetSizeWithCurrentAnchors(root.rect.width,  root.rect.width);
+            // rectTransform.rect.height = rect.height;
+            
             Container.BindInstance(view.GetComponent<T>());
 
             return view;
