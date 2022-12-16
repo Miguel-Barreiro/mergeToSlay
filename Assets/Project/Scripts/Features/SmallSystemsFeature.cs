@@ -1,4 +1,5 @@
 using MergeToStay.Core;
+using MergeToStay.Systems.Combat;
 using MergeToStay.Systems.SmallSystems;
 using Zenject;
 
@@ -16,6 +17,7 @@ namespace MergeToStay.Features
 			Add(_container.Instantiate<GameSystem>());
 			Add(_container.Instantiate<ShowViewSystem>());
 			Add(_container.Instantiate<PlayerUiSystem>());
+			Add(_container.Instantiate<RestSystem>());
 
 			return this;
 		}

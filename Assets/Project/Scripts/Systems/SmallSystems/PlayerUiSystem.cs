@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Entitas;
-using MergeToStay.Data;
 using MergeToStay.MonoBehaviours;
 using MergeToStay.MonoBehaviours.UI;
 using MergeToStay.Services;
@@ -10,17 +9,12 @@ namespace MergeToStay.Systems.SmallSystems
 {
 	public class PlayerUiSystem : ReactiveGameSystem, IInitializeSystem
 	{
-		[Inject] GameContext gameContext;
-		[Inject] GameConfigData gameConfigData;
 		[Inject] PlayerUiView playerUiView;
 		[Inject] ViewService viewService;
 		
 
 		public void Initialize()
 		{
-			GameEntity entity = gameContext.CreateEntity();
-			entity.AddPlayer(gameConfigData.StartingHealth, gameConfigData.StartingGold, gameConfigData.StartingDrawLevel);
-
 			viewService.CreateShowViewEvent(View.PlayerUi, false);
 		}
 
