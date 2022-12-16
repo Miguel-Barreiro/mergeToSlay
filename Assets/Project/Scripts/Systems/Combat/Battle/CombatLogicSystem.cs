@@ -30,7 +30,7 @@ namespace MergeToStay.Systems.Combat.Battle
 
 		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
 		{
-			return _contexts.game.CreateCollector(GameMatcher.ChangeCombatStateEvent);
+			return context.CreateCollector(GameMatcher.ChangeCombatStateEvent);
 		}
 		protected override bool Filter(GameEntity entity) { return entity.hasChangeCombatStateEvent; }
 	}
