@@ -9,9 +9,7 @@ namespace MergeToStay.Systems.Combat.Board
 {
 	public class DragGridObjectUpdateViewSystem : IExecuteSystem, IInitializeSystem
 	{
-		[Inject]
-		private BoardService _boardService;
-		
+		[Inject] private BoardService _boardService;
 		[Inject] private Contexts _contexts;
 
 		private IGroup<GameEntity> _boardGroup;

@@ -5,7 +5,7 @@ namespace MergeToStay.Components.Combat.Battle
 {
 	public class Battle : IComponent
 	{
-		public List<Enemy> Enemies;
+		public List<GameEntity> Enemies;
 		public int CardDrawLevel;
 
 	}

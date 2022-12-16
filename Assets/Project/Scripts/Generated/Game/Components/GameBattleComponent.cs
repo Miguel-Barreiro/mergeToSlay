@@ -11,7 +11,7 @@ public partial class GameEntity {
     public MergeToStay.Components.Combat.Battle.Battle battle { get { return (MergeToStay.Components.Combat.Battle.Battle)GetComponent(GameComponentsLookup.Battle); } }
     public bool hasBattle { get { return HasComponent(GameComponentsLookup.Battle); } }
 
-    public void AddBattle(System.Collections.Generic.List<MergeToStay.Components.Combat.Battle.Enemy> newEnemies, int newCardDrawLevel) {
+    public void AddBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel) {
         var index = GameComponentsLookup.Battle;
         var component = (MergeToStay.Components.Combat.Battle.Battle)CreateComponent(index, typeof(MergeToStay.Components.Combat.Battle.Battle));
         component.Enemies = newEnemies;
@@ -19,7 +19,7 @@ public partial class GameEntity {
         AddComponent(index, component);
     }
 
-    public void ReplaceBattle(System.Collections.Generic.List<MergeToStay.Components.Combat.Battle.Enemy> newEnemies, int newCardDrawLevel) {
+    public void ReplaceBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel) {
         var index = GameComponentsLookup.Battle;
         var component = (MergeToStay.Components.Combat.Battle.Battle)CreateComponent(index, typeof(MergeToStay.Components.Combat.Battle.Battle));
         component.Enemies = newEnemies;

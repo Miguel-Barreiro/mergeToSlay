@@ -16,9 +16,6 @@ namespace MergeToStay.Services
 			GameEntity result = _context.CreateEntity();
 			GameObject prefab = cardData.LevelData[0].Prefab;
 			
-			if (prefab == null)
-				prefab = _gameConfigData.DefaultGridObjetView;
-			
 			GameObject newView = _prefabFactoryPool.NewGridObject(prefab);
 			result.AddGridObject( cardData, level, newView, null);
 			return result;

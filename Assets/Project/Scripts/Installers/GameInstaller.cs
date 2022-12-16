@@ -37,6 +37,8 @@ namespace MergeToStay.Installers
         {
             Container.BindInstance<Contexts>(Contexts.sharedInstance);
             
+            InstallData();
+            
             Container.BindInstance<RootView>(RootView);
             PrefabFactoryPool prefabFactoryPool = Container.Instantiate<PrefabFactoryPool>();
             Container.BindInstance<PrefabFactoryPool>(prefabFactoryPool);
@@ -46,7 +48,6 @@ namespace MergeToStay.Installers
             
             Container.BindInterfacesAndSelfTo<FeaturesController>().AsSingle();
 
-            InstallData();
             InstallGameServices();
             InstallViews();
             

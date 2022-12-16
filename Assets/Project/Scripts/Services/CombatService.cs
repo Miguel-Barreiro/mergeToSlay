@@ -1,3 +1,5 @@
+using MergeToStay.Components.Combat.Battle;
+using MergeToStay.Core;
 using MergeToStay.Data;
 using UnityEngine;
 using Zenject;
@@ -7,6 +9,7 @@ namespace MergeToStay.Services
 	public class CombatService
 	{
 		[Inject] private GameContext _context;
+		[Inject] private PrefabFactoryPool _prefabFactoryPool;
 
 		public GameEntity CreateMergeEvent(Vector2 originCell, Vector2 targetCell)
 		{
@@ -29,11 +32,22 @@ namespace MergeToStay.Services
 			return result;
 		}
 
-		public GameEntity SummonEnemy(EnemyData enemyData, int position)
+		public bool SummonEnemy(GameEntity battleEntity, EnemyData enemyData, int position)
 		{
-			GameEntity result = _context.CreateEntity();
-			result.AddSummonEnemyEvent(enemyData, position);
-			return result;
+			Battle battle = battleEntity.battle;
+			
+			if (battle.Enemies.Count > 2)
+				return false;
+
+			GameEntity newEnemy = _context.CreateEntity();
+			GameObject enemyView = _prefabFactoryPool.NewEnemy(enemyData.Prefab);
+			newEnemy.AddEnemy(enemyView, enemyData, enemyData.Hp, 0, 0, 0 );
+
+			battle.Enemies.Insert(position, newEnemy);
+
+			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel);
+			return true;
 		}
+
 	}
 }

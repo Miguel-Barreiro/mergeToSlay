@@ -16,16 +16,18 @@ namespace MergeToStay.Systems.Combat.Battle
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
 
 			int spot = 0;
-			foreach (Enemy enemy in battle.Enemies)
+			foreach (GameEntity enemyEntity in battle.Enemies)
 			{
+				if(spot > 2)
+					return;
+				
+				Enemy enemy = enemyEntity.enemy;
 				if ( enemy.View == null )
 					enemy.View = _prefabFactoryPool.NewEnemy(enemy.EnemyData.Prefab);
 
 				enemy.View.transform.localPosition = Vector3.zero;
 				enemy.View.transform.SetParent(_battleView.EnemySpots[spot]);
-				
-				
-
+				spot++;
 			}
 			
 		}
