@@ -10,14 +10,16 @@ namespace MergeToStay.Services
 	public class ShopService
 	{
 		[Inject] private GameContext _context;
-		[Inject] private CardList _cardListData;
+		[Inject] private GameConfigData _gameConfigData;
 
 		public (CardData randomCard, CardLevelData randomCardLevel) CreateAShopCard(ShopComponent shop)
 		{
 			Random random = new Random();
 
-			int randomCardIndex = random.Next(_cardListData.AllCards.Count);
-			CardData randomCard = _cardListData.AllCards[randomCardIndex];
+			List<CardData> rewardCards = _gameConfigData.RewardCardList.AllCards;
+
+			int randomCardIndex = random.Next(rewardCards.Count);
+			CardData randomCard = rewardCards[randomCardIndex];
 
 			int randomLevelIndex = random.Next(randomCard.LevelData.Length);
 			CardLevelData randomCardLevel = randomCard.LevelData[randomLevelIndex];
