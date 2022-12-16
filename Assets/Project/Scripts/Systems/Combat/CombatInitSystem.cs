@@ -51,12 +51,12 @@ namespace MergeToStay.Systems.Combat
 			if (battleEntity == null)
 			{
 				battleEntity = _context.CreateEntity();
-				battleEntity.AddBattle(new List<GameEntity>(), playerEntity.player.DrawLevel, 
+				battleEntity.AddBattle(enemies, playerEntity.player.DrawLevel, 
 										Components.Combat.Battle.Battle.BattleState.Init, 
 										new TurnStats(), new Effects() );
 			} else
 			{
-				battleEntity.ReplaceBattle(new List<GameEntity>(), playerEntity.player.DrawLevel, 
+				battleEntity.ReplaceBattle(enemies, playerEntity.player.DrawLevel, 
 											Components.Combat.Battle.Battle.BattleState.Init, 
 											new TurnStats(), new Effects() );
 			}
@@ -82,8 +82,7 @@ namespace MergeToStay.Systems.Combat
 		public GameEntity CreateEnemy(EnemyData enemyData)
 		{
 			GameEntity newEnemy = _context.CreateEntity();
-			GameObject enemyView = _prefabFactoryPool.NewEnemy(enemyData.Prefab);
-			newEnemy.AddEnemy(enemyView, enemyData, enemyData.Hp, new TurnStats(), new Effects(), 0, 0 );
+			newEnemy.AddEnemy(null, enemyData, enemyData.Hp, new TurnStats(), new Effects(), 0, 0 );
 
 			return newEnemy;
 		}
