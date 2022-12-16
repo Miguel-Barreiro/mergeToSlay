@@ -26,12 +26,7 @@ namespace MergeToStay.MonoBehaviours.UI
 
 			float cellWidth = (parentWidth / (float)Columns) - (Spacing.x / Columns) * (Columns-1);
 			float cellHeight = (parentHeight / (float)Rows) - (Spacing.y / Rows) * (Rows-1);
-
-
-			UnityEngine.Debug.Log( parentHeight + " " + cellHeight);
-			UnityEngine.Debug.Log(parentWidth + " " + cellWidth);
-			// Debug.(cellWidth);
- 
+			
 			
 			CellSize.x = cellWidth;
 			CellSize.y = cellHeight;
@@ -46,9 +41,7 @@ namespace MergeToStay.MonoBehaviours.UI
 				RectTransform child = rectChildren[i];
 				float xPos = CellSize.x * colCount + Spacing.x * colCount;
 				float yPos = CellSize.y * rowCount + Spacing.y * rowCount;
-				// float xPos = CellSize.x * colCount;
-				// float yPos = CellSize.y * rowCount;
-				
+
 				SetChildAlongAxis(child, 0, xPos, CellSize.x);
 				SetChildAlongAxis(child, 1, yPos, CellSize.y);
 			}
