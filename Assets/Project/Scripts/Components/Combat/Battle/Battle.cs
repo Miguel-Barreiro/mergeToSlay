@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Entitas;
+using MergeToStay.Data;
 
 namespace MergeToStay.Components.Combat.Battle
 {
@@ -8,7 +9,7 @@ namespace MergeToStay.Components.Combat.Battle
 		public enum BattleState
 		{
 			Init, 
-			Draw, 
+			Draw,
 			Play, 
 			EnemyTurn,
 		}
@@ -19,6 +20,8 @@ namespace MergeToStay.Components.Combat.Battle
 		
 		public TurnStats PlayerCurrentTurnStats;
 		public Effects PlayerEffects;
+		
+		public CombatData CombatData;
 	}
 
 	public sealed class TurnStats
