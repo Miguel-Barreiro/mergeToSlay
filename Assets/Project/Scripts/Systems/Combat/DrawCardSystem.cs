@@ -17,10 +17,11 @@ namespace MergeToStay.Systems.Combat
 		[Inject] private CardData _debugCardData;
 
 		private IGroup<GameEntity> _boardGroup;
+		private IGroup<GameEntity> _playerGroup;
 
 		protected override void Execute(List<GameEntity> entities)
 		{
-
+			GameEntity playerEntity = _playerGroup.GetSingleEntity();
 			GameEntity boardEntity = _boardGroup.GetSingleEntity();
 			if (!boardEntity.hasBoard)
 				return;
@@ -32,17 +33,25 @@ namespace MergeToStay.Systems.Combat
 					Vector2? emptyCell = _boardService.GetFirsEmptySpace(boardEntity);
 					if (emptyCell == null)
 						continue;
-					
-					GameEntity gridObjectView = _gridObjectService.CreateNewGridObjectFromCard(_debugCardData);
+
+					CardsModel.Card card = GetCardFromDeck(playerEntity);
+					GameEntity gridObjectView = _gridObjectService.CreateNewGridObjectFromCard(card.CardData, card.Level);
 					_boardService.MoveGridObject(boardEntity, gridObjectView, emptyCell.Value);
 				}
 				eventEntity.Destroy();
 			}
 		}
 
+		private static CardsModel.Card GetCardFromDeck(GameEntity playerEntity)
+		{
+			List<CardsModel.Card> cards = playerEntity.player.Deck.Cards;
+			return cards[Random.Range(0, cards.Count)];
+		}
+
 
 		public void Initialize()
 		{
+			_playerGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
 			_boardGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Board));
 		}
 		
