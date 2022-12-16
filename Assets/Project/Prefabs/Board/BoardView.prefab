@@ -1090,11 +1090,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2531574519402277563, guid: 4c60267a6e2ad89438c72e0f2279137d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -17.9406
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 2531574519402277563, guid: 4c60267a6e2ad89438c72e0f2279137d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -22.4259
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 2531574519402277563, guid: 4c60267a6e2ad89438c72e0f2279137d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1130,7 +1130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2531574519402277563, guid: 4c60267a6e2ad89438c72e0f2279137d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.2426147
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2531574519402277563, guid: 4c60267a6e2ad89438c72e0f2279137d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1906,7 +1906,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   Rows: 5
   Columns: 5
-  CellSize: {x: 140.01187, y: 255.91483}
+  CellSize: {x: 111.6, y: 230.4}
   Spacing: {x: 8, y: 8}
 --- !u!224 &7458150575387530516 stripped
 RectTransform:
