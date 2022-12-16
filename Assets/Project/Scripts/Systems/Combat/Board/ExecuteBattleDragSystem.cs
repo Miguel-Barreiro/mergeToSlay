@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using Entitas;
-using MergeToStay.Components;
 using MergeToStay.Components.Combat;
 using MergeToStay.Services;
 using Zenject;
 
 namespace MergeToStay.Systems.Combat.Board
 {
-	 public class ExecuteGridObjectDragSystem : ReactiveGameSystem, IInitializeSystem
+	 public class ExecuteBattleDragSystem : ReactiveGameSystem, IInitializeSystem
 	{
 		
 		[Inject] private BoardService _boardService;

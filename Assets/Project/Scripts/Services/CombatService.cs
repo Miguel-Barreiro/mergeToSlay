@@ -45,7 +45,7 @@ namespace MergeToStay.Services
 
 			battle.Enemies.Insert(position, newEnemy);
 
-			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel);
+			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State);
 			return true;
 		}
 

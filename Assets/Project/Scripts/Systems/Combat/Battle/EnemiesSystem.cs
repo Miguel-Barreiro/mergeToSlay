@@ -29,7 +29,6 @@ namespace MergeToStay.Systems.Combat.Battle
 		}
 
 		public void Execute() 
-		// protected override void Execute(List<GameEntity> entities)
 		{
 			GameEntity battleEntity = _batleGroup.GetSingleEntity();
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
@@ -43,7 +42,7 @@ namespace MergeToStay.Systems.Combat.Battle
 				if (enemy.Hp <= 0)
 				{
 					battle.Enemies.Remove(enemyEntity);
-					battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel);
+					battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State);
 					_prefabFactoryPool.Destroy(enemy.View);
 					
 					enemyEntity.Destroy();
@@ -52,12 +51,5 @@ namespace MergeToStay.Systems.Combat.Battle
 			}
 
 		}
-
-		// protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
-		// {
-		// 	return context.CreateCollector(GameMatcher.Enemy);
-		// }
-		//
-		// protected override bool Filter(GameEntity entity) { return entity.hasEnemy; }
 	}
 }

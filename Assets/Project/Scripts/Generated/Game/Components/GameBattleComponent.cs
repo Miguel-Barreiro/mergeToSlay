@@ -11,19 +11,21 @@ public partial class GameEntity {
     public MergeToStay.Components.Combat.Battle.Battle battle { get { return (MergeToStay.Components.Combat.Battle.Battle)GetComponent(GameComponentsLookup.Battle); } }
     public bool hasBattle { get { return HasComponent(GameComponentsLookup.Battle); } }
 
-    public void AddBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel) {
+    public void AddBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel, MergeToStay.Components.Combat.Battle.Battle.BattleState newState) {
         var index = GameComponentsLookup.Battle;
         var component = (MergeToStay.Components.Combat.Battle.Battle)CreateComponent(index, typeof(MergeToStay.Components.Combat.Battle.Battle));
         component.Enemies = newEnemies;
         component.CardDrawLevel = newCardDrawLevel;
+        component.State = newState;
         AddComponent(index, component);
     }
 
-    public void ReplaceBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel) {
+    public void ReplaceBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel, MergeToStay.Components.Combat.Battle.Battle.BattleState newState) {
         var index = GameComponentsLookup.Battle;
         var component = (MergeToStay.Components.Combat.Battle.Battle)CreateComponent(index, typeof(MergeToStay.Components.Combat.Battle.Battle));
         component.Enemies = newEnemies;
         component.CardDrawLevel = newCardDrawLevel;
+        component.State = newState;
         ReplaceComponent(index, component);
     }
 
