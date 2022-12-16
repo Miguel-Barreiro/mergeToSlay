@@ -155,12 +155,19 @@ namespace MergeToStay.Services
 		}
 		public void DamageEnemy(GameEntity enemyEntity, int damage)
 		{
-			enemyEntity.enemy.Hp -= damage;
+			int defense = enemyEntity.enemy.TurnStats.Defense;
+			int damageFinal = Math.Max(0, damage - defense);
+
+			enemyEntity.enemy.Hp -= damageFinal;
+			enemyEntity.enemy.TurnStats.Defense = Math.Max(0, defense - damage);
 		}
 
-		public void DamagePlayer(GameEntity player, int damage)
+		public void DamagePlayer(GameEntity player, GameEntity battleEntity, int damage)
 		{
-			player.player.Health -= damage;
+			int defense = battleEntity.battle.PlayerCurrentTurnStats.Defense;
+			int damageFinal = Math.Max(0, damage - defense);
+			player.player.Health -= damageFinal;
+			battleEntity.battle.PlayerCurrentTurnStats.Defense = Math.Max(0, defense - damage);
 		}
 
 		public void HealPlayer(GameEntity playerEntity, int value)

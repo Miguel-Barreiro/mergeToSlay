@@ -13,6 +13,7 @@ namespace MergeToStay.Systems.Combat
 	{
 		[Inject] private ViewService _viewService;
 		[Inject] private GameConfigData _gameConfigData;
+		[Inject] private CombatService _combatService;
 
 		private IGroup<GameEntity> _pathGroup;
 
@@ -28,10 +29,9 @@ namespace MergeToStay.Systems.Combat
 			foreach (GameEntity eventEntity in entities)
 			{
 				PlayerComponent player = playerEntity.player;
-				int newHealth = player.Health + _gameConfigData.CampHealingAmount;
-				newHealth = Math.Clamp(newHealth, 0, _gameConfigData.MaxHealth);
-				playerEntity.ReplacePlayer(newHealth, player.Gold, player.DrawLevel);
-
+				_combatService.HealPlayer(playerEntity, _gameConfigData.CampHealingAmount);
+				playerEntity.ReplacePlayer(player.Health, player.Gold, player.DrawLevel);
+				
 				_viewService.CreateShowViewEvent(View.Path);
 
 				eventEntity.Destroy();

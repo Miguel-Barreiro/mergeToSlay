@@ -25,7 +25,7 @@ namespace MergeToStay.Data.Actions
 				combatService.DamageEnemy(enemyEntity, Value);
 
 			if (combatService.IsTargetSelf(CombatTargets))
-				combatService.DamagePlayer(playerEntity, Value);
+				combatService.DamagePlayer(playerEntity, battleEntity, Value);
 
 		}
 
@@ -38,7 +38,7 @@ namespace MergeToStay.Data.Actions
 				combatService.DamageEnemy(targetEnemyEntity, Value);
 
 			if (combatService.IsTargetSelf(CombatTargets))
-				combatService.DamagePlayer(playerEntity, Value);
+				combatService.DamagePlayer(playerEntity,battleEntity, Value);
 
 		}
 		
