@@ -113,7 +113,6 @@ namespace MergeToStay.Systems.Combat.Battle
 			// needs to happen first to allow enemies to defend
 			_combatService.ResetBattleTurnStats(battleEntity);
 			
-			//TODO: PLAY ENEMY ACTIONS
 			foreach (GameEntity enemyEntity in battleEntity.battle.Enemies)
 			{
 				Enemy enemy = enemyEntity.enemy;
@@ -135,6 +134,9 @@ namespace MergeToStay.Systems.Combat.Battle
 				enemy.CurrentBehaviourSequenceTurn++;
 			}
 
+			_combatService.ResetBattle(battleEntity);
+			_boardService.ResetBoard(boardEntity);
+			playerEntity.ReplacePlayer(playerEntity.player.Health, playerEntity.player.Gold, playerEntity.player.DrawLevel, playerEntity.player.Deck);
 			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Draw);
 		}
 

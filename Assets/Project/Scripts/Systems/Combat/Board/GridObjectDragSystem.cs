@@ -43,7 +43,7 @@ namespace MergeToStay.Systems.Combat.Board
 			if (gridObject == null)
 				return;
 			
-			_boardService.ResetBoardView(boardEntity);
+			_boardService.ResetBoard(boardEntity);
 		}
 		
 		private void HandleDragEvent(GameEntity draggedEventEntity, GameEntity boardEntity)
