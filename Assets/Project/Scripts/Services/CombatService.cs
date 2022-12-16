@@ -73,7 +73,7 @@ namespace MergeToStay.Services
 		public void ResetBattle(GameEntity battleEntity)
 		{
 			Battle battle = battleEntity.battle;
-			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State, battle.PlayerCurrentTurnStats, battle.PlayerEffects);
+			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State, battle.PlayerCurrentTurnStats, battle.PlayerEffects, battle.CombatData);
 		}
 
 		public void ResetBattleTurnStats(GameEntity battleEntity)

@@ -3,6 +3,7 @@ using Entitas;
 using MergeToStay.Components.Combat.Battle;
 using MergeToStay.Core;
 using MergeToStay.Data;
+using MergeToStay.MonoBehaviours;
 using MergeToStay.Services;
 using MergeToStay.Systems.Combat.Battle;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace MergeToStay.Systems.Combat
 			GameEntity battleEntity = _context.CreateEntity();
 			battleEntity.AddBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, 
 									Components.Combat.Battle.Battle.BattleState.Init, 
-									 new TurnStats(), new Effects() );
+									 new TurnStats(), new Effects(), null );
 		}
 
 		protected override void Execute(List<GameEntity> entities)
@@ -44,7 +45,9 @@ namespace MergeToStay.Systems.Combat
 			GameEntity playerEntity = _playerGroup.GetSingleEntity();
 			// TODO: here is where we set the current battle details
 
-			CombatData combatData = _gameConfigData.DebugCombatData;
+			View combatType = entities[0].startCombatEvent.type;
+			
+			CombatData combatData = GetCombatDataFromBattleType(combatType);
 
 			List<GameEntity> enemies = AddEnemiesFromData(combatData);
 
@@ -53,12 +56,12 @@ namespace MergeToStay.Systems.Combat
 				battleEntity = _context.CreateEntity();
 				battleEntity.AddBattle(enemies, playerEntity.player.DrawLevel, 
 										Components.Combat.Battle.Battle.BattleState.Init, 
-										new TurnStats(), new Effects() );
+										new TurnStats(), new Effects(), combatData );
 			} else
 			{
 				battleEntity.ReplaceBattle(enemies, playerEntity.player.DrawLevel, 
 											Components.Combat.Battle.Battle.BattleState.Init, 
-											new TurnStats(), new Effects() );
+											new TurnStats(), new Effects(), combatData );
 			}
 
 			_boardService.ClearBoard(boardEntity);
@@ -66,6 +69,18 @@ namespace MergeToStay.Systems.Combat
 			
 			foreach (GameEntity eventEntity in entities)
 				eventEntity.Destroy();
+		}
+
+		private CombatData GetCombatDataFromBattleType(View combatType)
+		{
+			switch (combatType)
+			{
+				case View.Battle: return _gameConfigData.NormalBattles[Random.Range(0, _gameConfigData.NormalBattles.Count)]; 
+				case View.EliteBattle: return _gameConfigData.ElitesBattles[Random.Range(0, _gameConfigData.ElitesBattles.Count)]; 
+				case View.BossBattle: return _gameConfigData.BossBattles[Random.Range(0, _gameConfigData.BossBattles.Count)]; 
+			}
+			
+			return _gameConfigData.DebugCombatData;
 		}
 
 		private List<GameEntity> AddEnemiesFromData(CombatData combatData)
