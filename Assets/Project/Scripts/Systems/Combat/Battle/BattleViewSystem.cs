@@ -2,6 +2,7 @@ using Entitas;
 using MergeToStay.Components.Combat.Battle;
 using MergeToStay.Core;
 using MergeToStay.MonoBehaviours.Combat;
+using MergeToStay.Services;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +14,7 @@ namespace MergeToStay.Systems.Combat.Battle
 		[Inject] private Contexts _contexts;
 		[Inject] private BattleView _battleView;
 		[Inject] private PrefabFactoryPool _prefabFactoryPool;
-		
+
 		private IGroup<GameEntity> _batleGroup;
 
 		public void Execute()
@@ -28,6 +29,7 @@ namespace MergeToStay.Systems.Combat.Battle
 					return;
 				
 				Enemy enemy = enemyEntity.enemy;
+
 				if ( enemy.View == null )
 					enemy.View = _prefabFactoryPool.NewEnemy(enemy.EnemyData.Prefab);
 

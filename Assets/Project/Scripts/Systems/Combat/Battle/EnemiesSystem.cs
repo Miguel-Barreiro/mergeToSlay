@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Entitas;
 using MergeToStay.Components.Combat.Battle;
 using MergeToStay.Core;
+using MergeToStay.MonoBehaviours;
 using MergeToStay.MonoBehaviours.Combat;
 using MergeToStay.Services;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace MergeToStay.Systems.Combat.Battle
 		[Inject] private CombatService _combatService;
 		[Inject] private BattleView _battleView;
 		[Inject] private PrefabFactoryPool _prefabFactoryPool;
+		[Inject] private ViewService _viewService;
 		
 		private IGroup<GameEntity> _batleGroup;
 		private IGroup<GameEntity> _enemyGroup;
@@ -32,6 +34,8 @@ namespace MergeToStay.Systems.Combat.Battle
 		{
 			GameEntity battleEntity = _batleGroup.GetSingleEntity();
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
+			if (battle.State == Components.Combat.Battle.Battle.BattleState.Init)
+				return;
 
 			GameEntity[] enemies = _enemyGroup.GetEntities();
 
@@ -50,6 +54,13 @@ namespace MergeToStay.Systems.Combat.Battle
 				}
 			}
 
+			if (battle.Enemies.Count == 0)
+			{
+				battle.State = Components.Combat.Battle.Battle.BattleState.Init;
+				_viewService.CreateShowViewEvent(View.BattleRewards);
+			}
+
+			
 		}
 	}
 }
