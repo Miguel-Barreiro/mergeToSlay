@@ -33,7 +33,11 @@ namespace MergeToStay.Services
 			foreach (GridCell gridCell in boardEntity.board.Cells.Values)
 			{
 				if (_gridObjectService.IsValid(gridCell.GridObject))
+				{
 					_prefabFactoryPool.Destroy(gridCell.GridObject.gridObject.View);
+					gridCell.GridObject.Destroy(); 
+				}
+
 			}
 			Dictionary<Vector2,GridCell> cells = new Dictionary<Vector2, GridCell>();
 			
@@ -85,11 +89,32 @@ namespace MergeToStay.Services
 			return true;
 		}
 
-		public GameEntity GetGridObjectAt(GameEntity boardEntity, Vector2 targetPosition)
+		public GameEntity GetGridObjectAt(GameEntity boardEntity,Vector2 targetPosition)
 		{
 			BoardComponent board = boardEntity.board;
-			return board.Cells[targetPosition].GridObject;
+			GameEntity gridObjectAt = board.Cells[targetPosition].GridObject;
+			if (_gridObjectService.IsValid(gridObjectAt))
+				return gridObjectAt;
+
+			return null;
 		}
+
+		public void RemoveGridObject(GameEntity boardEntity, Vector2 originCell)
+		{
+			BoardComponent board = boardEntity.board;
+			GameEntity originGridObject = GetGridObjectAt(boardEntity, originCell);
+			if ( _gridObjectService.IsValid(originGridObject))
+			{
+				board.Cells[originCell].GridObject = null;
+					
+				_prefabFactoryPool.Destroy(originGridObject.gridObject.View);
+
+				originGridObject.Destroy();
+					
+				boardEntity.ReplaceBoard(board.Cells);
+			}
+		}
+		
 
 		public bool MergeGridObjects(GameEntity boardEntity, Vector2 originCell, Vector2 targetCell)
 		{

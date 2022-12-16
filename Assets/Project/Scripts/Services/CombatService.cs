@@ -1,4 +1,5 @@
 using MergeToStay.Components.Combat.Battle;
+using MergeToStay.Components.Player;
 using MergeToStay.Core;
 using MergeToStay.Data;
 using MergeToStay.MonoBehaviours;
@@ -61,9 +62,31 @@ namespace MergeToStay.Services
 
 			battle.Enemies.Insert(position, newEnemy);
 
-			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State);
+			ResetBattle(battleEntity);
 			return true;
 		}
 
+		public void ResetBattle(GameEntity battleEntity)
+		{
+			Battle battle = battleEntity.battle;
+			battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State, battle.Strenght, battle.CurrentTurnStats);
+		}
+
+		public void ResetBattleTurnStats(GameEntity battleEntity)
+		{
+			Battle battle = battleEntity.battle;
+			battle.CurrentTurnStats.Defense = 0;
+			ResetBattle(battleEntity);
+		}
+
+		public void ResetFullBattleStats(GameEntity battleEntity, GameEntity playerEntity)
+		{
+			PlayerComponent player = playerEntity.player;
+			Battle battle = battleEntity.battle;
+			battle.CurrentTurnStats.Defense = 0;
+			battle.Strenght = 0;
+			battle.CardDrawLevel = player.DrawLevel;
+			ResetBattle(battleEntity);
+		}
 	}
 }

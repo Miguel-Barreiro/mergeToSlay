@@ -16,6 +16,13 @@ namespace MergeToStay.Components.Combat.Battle
 		public List<GameEntity> Enemies;
 		public int CardDrawLevel;
 		public BattleState State;
+		
+		public int Strenght;
+		public TurnStats CurrentTurnStats;
+	}
 
+	public class TurnStats
+	{
+		public int Defense = 0;
 	}
 }

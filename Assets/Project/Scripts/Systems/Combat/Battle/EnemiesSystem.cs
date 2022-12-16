@@ -42,7 +42,7 @@ namespace MergeToStay.Systems.Combat.Battle
 				if (enemy.Hp <= 0)
 				{
 					battle.Enemies.Remove(enemyEntity);
-					battleEntity.ReplaceBattle(battle.Enemies, battle.CardDrawLevel, battle.State);
+					_combatService.ResetBattle(battleEntity);
 					_prefabFactoryPool.Destroy(enemy.View);
 					
 					enemyEntity.Destroy();

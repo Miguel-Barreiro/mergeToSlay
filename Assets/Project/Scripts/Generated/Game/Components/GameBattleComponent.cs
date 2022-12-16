@@ -11,21 +11,25 @@ public partial class GameEntity {
     public MergeToStay.Components.Combat.Battle.Battle battle { get { return (MergeToStay.Components.Combat.Battle.Battle)GetComponent(GameComponentsLookup.Battle); } }
     public bool hasBattle { get { return HasComponent(GameComponentsLookup.Battle); } }
 
-    public void AddBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel, MergeToStay.Components.Combat.Battle.Battle.BattleState newState) {
+    public void AddBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel, MergeToStay.Components.Combat.Battle.Battle.BattleState newState, int newStrenght, MergeToStay.Components.Combat.Battle.TurnStats newCurrentTurnStats) {
         var index = GameComponentsLookup.Battle;
         var component = (MergeToStay.Components.Combat.Battle.Battle)CreateComponent(index, typeof(MergeToStay.Components.Combat.Battle.Battle));
         component.Enemies = newEnemies;
         component.CardDrawLevel = newCardDrawLevel;
         component.State = newState;
+        component.Strenght = newStrenght;
+        component.CurrentTurnStats = newCurrentTurnStats;
         AddComponent(index, component);
     }
 
-    public void ReplaceBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel, MergeToStay.Components.Combat.Battle.Battle.BattleState newState) {
+    public void ReplaceBattle(System.Collections.Generic.List<GameEntity> newEnemies, int newCardDrawLevel, MergeToStay.Components.Combat.Battle.Battle.BattleState newState, int newStrenght, MergeToStay.Components.Combat.Battle.TurnStats newCurrentTurnStats) {
         var index = GameComponentsLookup.Battle;
         var component = (MergeToStay.Components.Combat.Battle.Battle)CreateComponent(index, typeof(MergeToStay.Components.Combat.Battle.Battle));
         component.Enemies = newEnemies;
         component.CardDrawLevel = newCardDrawLevel;
         component.State = newState;
+        component.Strenght = newStrenght;
+        component.CurrentTurnStats = newCurrentTurnStats;
         ReplaceComponent(index, component);
     }
 
