@@ -9,6 +9,12 @@ namespace MergeToStay.Data
     [CreateAssetMenu(fileName = "NEW_CARD", menuName = "MergeToSlay.CARD/new CARD", order = 0)]
     public sealed class CardData : ScriptableObject
     {
+        public enum CardType {
+            GREEN, RED, BLUE, YELLOW
+        }
+
+        public CardType Type;
+        
         public CardsModel.CardRarity CardRarity = CardsModel.CardRarity.Common;
         public string Name;
 
