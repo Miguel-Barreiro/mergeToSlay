@@ -19,7 +19,7 @@ namespace MergeToStay.Data.Actions
 		override public void Execute(GameEntity battleEntity, GameEntity boardEntity, GameEntity playerEntity,
 									CombatService combatService, BoardService boardService)
 		{
-			List<GameEntity> enemies = combatService.GetEnemyTargets(battleEntity, CombatTargets);
+			List<GameEntity> enemies = combatService.GetPlayerTargets(battleEntity, CombatTargets);
 			foreach (GameEntity enemyEntity in enemies)
 				combatService.BreakEnemyDefense(enemyEntity, Value);
 			
@@ -31,13 +31,12 @@ namespace MergeToStay.Data.Actions
 													GameEntity enemyEntity, GameEntity playerEntity, 
 													CombatService combatService, BoardService boardService)
 		{
-			List<GameEntity> enemies = combatService.GetEnemyTargets(battleEntity, CombatTargets);
-			foreach (GameEntity targetEnemyEntity in enemies)
-				combatService.BreakEnemyDefense(targetEnemyEntity, Value);
-			
 			if (combatService.IsTargetSelf(CombatTargets))
+				combatService.BreakEnemyDefense(enemyEntity, Value);
+			
+			if (combatService.IsTargetFoward(CombatTargets))
 				combatService.BreakPlayerDefense(battleEntity, Value);
-
+			
 		}
 	}
 }

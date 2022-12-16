@@ -98,7 +98,7 @@ namespace MergeToStay.Services
 			battleEntity.battle.PlayerCurrentTurnStats.Defense += value;
 		}
 
-		public List<GameEntity> GetEnemyTargets(GameEntity battleEntity, ActionsModel.CombatTargetsEnum combatTargets)
+		public List<GameEntity> GetPlayerTargets(GameEntity battleEntity, ActionsModel.CombatTargetsEnum combatTargets)
 		{
 			// NONE = 0, 
 			// FORWARD = 1 << 1,
@@ -137,6 +137,13 @@ namespace MergeToStay.Services
 			
 			return enemyTargets;
 		}
+
+		public bool IsTargetFoward(ActionsModel.CombatTargetsEnum combatTargets)
+		{
+			bool isFoward = (combatTargets & ActionsModel.CombatTargetsEnum.FORWARD) != 0;
+			return isFoward;
+		}
+
 		
 		public bool IsTargetSelf(ActionsModel.CombatTargetsEnum combatTargets)
 		{
