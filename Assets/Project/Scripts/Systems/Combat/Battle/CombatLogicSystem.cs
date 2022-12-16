@@ -3,11 +3,14 @@ using Entitas;
 
 namespace MergeToStay.Systems.Combat.Battle
 {
-	// public class CombatLogicSystem : ReactiveGameSystem
-	// {
-	// 	protected override void Execute(List<GameEntity> entities) { TODO_IMPLEMENT_ME(); }
-	// 	
-	// 	protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) { return TODO_IMPLEMENT_ME; }
-	// 	protected override bool Filter(GameEntity entity) { return ; }
-	// }
+	public class CombatLogicSystem : ReactiveGameSystem
+	{
+		protected override void Execute(List<GameEntity> entities) {  }
+
+		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
+		{
+			return _contexts.game.CreateCollector(GameMatcher.ChangeCombatStateEvent);
+		}
+		protected override bool Filter(GameEntity entity) { return entity.hasChangeCombatStateEvent; }
+	}
 }

@@ -20,6 +20,7 @@ namespace MergeToStay.Features
 		public CombatFeature AddSystems() 
 		{
 			Add(_container.Instantiate<CombatInitSystem>());
+			Add(_container.Instantiate<CombatLogicSystem>());
 
 			// board
 			Add(_container.Instantiate<GridObjectDragSystem>());
