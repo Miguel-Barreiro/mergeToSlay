@@ -10,7 +10,9 @@ namespace MergeToStay.Components.Combat.Battle
 		
 		public EnemyData EnemyData;
 		public int Hp;
-		public int TurnsStun = 0;
+
+		public TurnStats TurnStats;
+		public Effects Effects;
 
 		public int CurrentBehaviourSequenceTurn = 0;
 		public int CurrentBehaviourSequenceIndex = 0;

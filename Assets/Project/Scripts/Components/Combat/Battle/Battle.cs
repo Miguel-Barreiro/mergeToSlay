@@ -3,7 +3,7 @@ using Entitas;
 
 namespace MergeToStay.Components.Combat.Battle
 {
-	public class Battle : IComponent
+	public sealed class Battle : IComponent
 	{
 		public enum BattleState
 		{
@@ -17,12 +17,21 @@ namespace MergeToStay.Components.Combat.Battle
 		public int CardDrawLevel;
 		public BattleState State;
 		
-		public int Strenght;
-		public TurnStats CurrentTurnStats;
+		public TurnStats PlayerCurrentTurnStats;
+		public Effects PlayerEffects;
 	}
 
-	public class TurnStats
+	public sealed class TurnStats
 	{
 		public int Defense = 0;
+	}
+
+	public sealed class Effects
+	{
+		public int StunTurns = 0;
+		
+		public int Poison = 0;
+		public int WeakTurns = 0;
+		public int VulnerableTurns = 0;
 	}
 }

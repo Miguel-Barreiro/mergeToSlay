@@ -11,25 +11,27 @@ public partial class GameEntity {
     public MergeToStay.Components.Combat.Battle.Enemy enemy { get { return (MergeToStay.Components.Combat.Battle.Enemy)GetComponent(GameComponentsLookup.Enemy); } }
     public bool hasEnemy { get { return HasComponent(GameComponentsLookup.Enemy); } }
 
-    public void AddEnemy(UnityEngine.GameObject newView, MergeToStay.Data.EnemyData newEnemyData, int newHp, int newTurnsStun, int newCurrentBehaviourSequenceTurn, int newCurrentBehaviourSequenceIndex) {
+    public void AddEnemy(UnityEngine.GameObject newView, MergeToStay.Data.EnemyData newEnemyData, int newHp, MergeToStay.Components.Combat.Battle.TurnStats newTurnStats, MergeToStay.Components.Combat.Battle.Effects newEffects, int newCurrentBehaviourSequenceTurn, int newCurrentBehaviourSequenceIndex) {
         var index = GameComponentsLookup.Enemy;
         var component = (MergeToStay.Components.Combat.Battle.Enemy)CreateComponent(index, typeof(MergeToStay.Components.Combat.Battle.Enemy));
         component.View = newView;
         component.EnemyData = newEnemyData;
         component.Hp = newHp;
-        component.TurnsStun = newTurnsStun;
+        component.TurnStats = newTurnStats;
+        component.Effects = newEffects;
         component.CurrentBehaviourSequenceTurn = newCurrentBehaviourSequenceTurn;
         component.CurrentBehaviourSequenceIndex = newCurrentBehaviourSequenceIndex;
         AddComponent(index, component);
     }
 
-    public void ReplaceEnemy(UnityEngine.GameObject newView, MergeToStay.Data.EnemyData newEnemyData, int newHp, int newTurnsStun, int newCurrentBehaviourSequenceTurn, int newCurrentBehaviourSequenceIndex) {
+    public void ReplaceEnemy(UnityEngine.GameObject newView, MergeToStay.Data.EnemyData newEnemyData, int newHp, MergeToStay.Components.Combat.Battle.TurnStats newTurnStats, MergeToStay.Components.Combat.Battle.Effects newEffects, int newCurrentBehaviourSequenceTurn, int newCurrentBehaviourSequenceIndex) {
         var index = GameComponentsLookup.Enemy;
         var component = (MergeToStay.Components.Combat.Battle.Enemy)CreateComponent(index, typeof(MergeToStay.Components.Combat.Battle.Enemy));
         component.View = newView;
         component.EnemyData = newEnemyData;
         component.Hp = newHp;
-        component.TurnsStun = newTurnsStun;
+        component.TurnStats = newTurnStats;
+        component.Effects = newEffects;
         component.CurrentBehaviourSequenceTurn = newCurrentBehaviourSequenceTurn;
         component.CurrentBehaviourSequenceIndex = newCurrentBehaviourSequenceIndex;
         ReplaceComponent(index, component);

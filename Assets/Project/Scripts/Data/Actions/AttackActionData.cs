@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using MergeToStay.Components.Combat.Battle;
+using MergeToStay.Services;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,6 +16,17 @@ namespace MergeToStay.Data.Actions
 		[EnumToggleButtons]
 		public ActionsModel.CombatTargetsEnum CombatTargets = ActionsModel.CombatTargetsEnum.FORWARD;
 		
+		override public void Execute(GameEntity battleEntity, GameEntity boardEntity, GameEntity playerEntity,
+									CombatService combatService, BoardService boardService)
+		{
+			List<GameEntity> enemies = combatService.GetEnemyTargets(battleEntity, CombatTargets);
+			foreach (GameEntity enemyEntity in enemies)
+				combatService.DamageEnemy(enemyEntity, Value);
 
+			if (combatService.IsTargetPlayer(CombatTargets))
+				combatService.DamagePlayer(playerEntity, Value);
+
+		}
+	
 	}
 }

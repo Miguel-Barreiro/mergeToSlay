@@ -21,24 +21,27 @@ namespace MergeToStay.Systems.Combat
 		[Inject] private GridObjectService _gridObjectService;
 		private IGroup<GameEntity> _batleGroup;
 		private IGroup<GameEntity> _boardGroup;
+		private IGroup<GameEntity> _playerGroup;
 
 		public void Initialize()
 		{
 			_batleGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Battle));
 			_boardGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Board));
+			_playerGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
 			
 			GameEntity newBoard = _boardService.CreateNewBoard(5, 5);
 
 			GameEntity battleEntity = _context.CreateEntity();
 			battleEntity.AddBattle(new List<GameEntity>(), _gameConfigData.StartingDrawLevel, 
 									Components.Combat.Battle.Battle.BattleState.Init, 
-									0, new TurnStats());
+									 new TurnStats(), new Effects() );
 		}
 
 		protected override void Execute(List<GameEntity> entities)
 		{
 			GameEntity boardEntity = _boardGroup.GetSingleEntity();
 			GameEntity battleEntity = _batleGroup.GetSingleEntity();
+			GameEntity playerEntity = _playerGroup.GetSingleEntity();
 			// TODO: here is where we set the current battle details
 
 			CombatData combatData = _gameConfigData.DebugCombatData;
@@ -48,12 +51,14 @@ namespace MergeToStay.Systems.Combat
 			if (battleEntity == null)
 			{
 				battleEntity = _context.CreateEntity();
-				battleEntity.AddBattle(enemies, _gameConfigData.StartingDrawLevel, 
-										Components.Combat.Battle.Battle.BattleState.Init, 0, new TurnStats());
+				battleEntity.AddBattle(new List<GameEntity>(), playerEntity.player.DrawLevel, 
+										Components.Combat.Battle.Battle.BattleState.Init, 
+										new TurnStats(), new Effects() );
 			} else
 			{
-				battleEntity.ReplaceBattle(enemies, _gameConfigData.StartingDrawLevel, 
-											Components.Combat.Battle.Battle.BattleState.Init, 0, new TurnStats());
+				battleEntity.ReplaceBattle(new List<GameEntity>(), playerEntity.player.DrawLevel, 
+											Components.Combat.Battle.Battle.BattleState.Init, 
+											new TurnStats(), new Effects() );
 			}
 
 			_boardService.ClearBoard(boardEntity);
@@ -78,7 +83,7 @@ namespace MergeToStay.Systems.Combat
 		{
 			GameEntity newEnemy = _context.CreateEntity();
 			GameObject enemyView = _prefabFactoryPool.NewEnemy(enemyData.Prefab);
-			newEnemy.AddEnemy(enemyView, enemyData, enemyData.Hp, 0, 0, 0 );
+			newEnemy.AddEnemy(enemyView, enemyData, enemyData.Hp, new TurnStats(), new Effects(), 0, 0 );
 
 			return newEnemy;
 		}

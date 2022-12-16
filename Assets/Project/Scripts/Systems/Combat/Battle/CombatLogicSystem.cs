@@ -105,14 +105,18 @@ namespace MergeToStay.Systems.Combat.Battle
 
 		private void ExecuteEnemyTurn(GameEntity battleEntity)
 		{
+			// needs to happen first to allow enemies to defend
+			_combatService.ResetBattleTurnStats(battleEntity);
+			
 			//TODO: PLAY ENEMY ACTIONS
 			
-			_combatService.ResetBattleTurnStats(battleEntity);
 			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Draw);
 		}
 
 		private void ExecuteDraw(GameEntity battleEntity)
 		{
+			//TODO: PLAY TURN EFFECTS
+			
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
 			_combatService.CreateDrawCardEvent(battle.CardDrawLevel);
 			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Play);

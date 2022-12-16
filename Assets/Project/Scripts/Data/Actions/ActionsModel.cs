@@ -7,11 +7,10 @@ namespace MergeToStay.Data.Actions
 		{
 			NONE = 0, 
 			FORWARD = 1 << 1,
-			FORWARD2 = 1 << 2,
 			MIDDLE = 1 << 3,
 			BACK = 1 << 4,
 			SELF = 1 << 5,
-			ALL = FORWARD | FORWARD2 | MIDDLE | BACK | SELF 
+			ALL = FORWARD | MIDDLE | BACK | SELF 
 		}
 	}
 }
