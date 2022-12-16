@@ -11,21 +11,23 @@ public partial class GameEntity {
     public MergeToStay.Components.Player.PlayerComponent player { get { return (MergeToStay.Components.Player.PlayerComponent)GetComponent(GameComponentsLookup.Player); } }
     public bool hasPlayer { get { return HasComponent(GameComponentsLookup.Player); } }
 
-    public void AddPlayer(int newHealth, int newGold, int newDrawLevel) {
+    public void AddPlayer(int newHealth, int newGold, int newDrawLevel, MergeToStay.Data.CardsModel.Deck newDeck) {
         var index = GameComponentsLookup.Player;
         var component = (MergeToStay.Components.Player.PlayerComponent)CreateComponent(index, typeof(MergeToStay.Components.Player.PlayerComponent));
         component.Health = newHealth;
         component.Gold = newGold;
         component.DrawLevel = newDrawLevel;
+        component.Deck = newDeck;
         AddComponent(index, component);
     }
 
-    public void ReplacePlayer(int newHealth, int newGold, int newDrawLevel) {
+    public void ReplacePlayer(int newHealth, int newGold, int newDrawLevel, MergeToStay.Data.CardsModel.Deck newDeck) {
         var index = GameComponentsLookup.Player;
         var component = (MergeToStay.Components.Player.PlayerComponent)CreateComponent(index, typeof(MergeToStay.Components.Player.PlayerComponent));
         component.Health = newHealth;
         component.Gold = newGold;
         component.DrawLevel = newDrawLevel;
+        component.Deck = newDeck;
         ReplaceComponent(index, component);
     }
 

@@ -1,4 +1,5 @@
 using Entitas;
+using MergeToStay.Data;
 
 namespace MergeToStay.Components.Player
 {
@@ -7,5 +8,6 @@ namespace MergeToStay.Components.Player
 		public int Health;
 		public int Gold;
 		public int DrawLevel;
+		public CardsModel.Deck Deck;
 	}
 }

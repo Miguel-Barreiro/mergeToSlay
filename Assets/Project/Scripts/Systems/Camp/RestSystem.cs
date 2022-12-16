@@ -15,22 +15,21 @@ namespace MergeToStay.Systems.Combat
 		[Inject] private GameConfigData _gameConfigData;
 		[Inject] private CombatService _combatService;
 
-		private IGroup<GameEntity> _pathGroup;
+		private IGroup<GameEntity> _playerGroup;
 
-		public void Initialize() => _pathGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
+		public void Initialize() => _playerGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
 
 		protected override void Execute(List<GameEntity> entities)
 		{
-			GameEntity playerEntity = _pathGroup.GetSingleEntity();
+			GameEntity playerEntity = _playerGroup.GetSingleEntity();
 			if (!playerEntity.hasPlayer)
 				return;
 
-			
 			foreach (GameEntity eventEntity in entities)
 			{
 				PlayerComponent player = playerEntity.player;
 				_combatService.HealPlayer(playerEntity, _gameConfigData.CampHealingAmount);
-				playerEntity.ReplacePlayer(player.Health, player.Gold, player.DrawLevel);
+				playerEntity.ReplacePlayer(player.Health, player.Gold, player.DrawLevel, player.Deck);
 				
 				_viewService.CreateShowViewEvent(View.Path);
 

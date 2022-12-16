@@ -18,6 +18,7 @@ namespace MergeToStay.Features
 			Add(_container.Instantiate<ShowViewSystem>());
 			Add(_container.Instantiate<PlayerUiSystem>());
 			Add(_container.Instantiate<RestSystem>());
+			Add(_container.Instantiate<LoadShopCardsSystem>());
 
 			return this;
 		}

@@ -13,7 +13,18 @@ namespace MergeToStay.Systems.SmallSystems
 		public void Initialize()
 		{
 			GameEntity entity = gameContext.CreateEntity();
-			entity.ReplacePlayer(gameConfigData.StartingHealth, gameConfigData.StartingGold, gameConfigData.StartingDrawLevel);
+			
+			CardsModel.Deck deck = new CardsModel.Deck();
+			foreach (CardData cardData in gameConfigData.CardListData.AllCards)
+			{
+				CardsModel.Card card = new CardsModel.Card
+				{
+					CardData = cardData
+				};
+				deck.Cards.Add(card);
+			}
+
+			entity.ReplacePlayer(gameConfigData.StartingHealth, gameConfigData.StartingGold, gameConfigData.StartingDrawLevel, deck);
 		}
 
 		protected override void Execute(List<GameEntity> entities) => Initialize();

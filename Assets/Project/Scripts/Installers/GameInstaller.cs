@@ -99,6 +99,7 @@ namespace MergeToStay.Installers
             Container.BindInstance<CombatService>(Container.Instantiate<CombatService>());
             Container.BindInstance<EnemyService>(Container.Instantiate<EnemyService>());
             Container.BindInstance<ViewService>(Container.Instantiate<ViewService>());
+            Container.BindInstance<ShopService>(Container.Instantiate<ShopService>());
         }
     }
 }

@@ -8,31 +8,35 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int RestEvent = 0;
-    public const int Battle = 1;
-    public const int Enemy = 2;
-    public const int SummonEnemyEvent = 3;
-    public const int Board = 4;
-    public const int ChangeCombatStateEvent = 5;
-    public const int Combat = 6;
-    public const int DragGridObjectEvent = 7;
-    public const int DragGridObjectUpdate = 8;
-    public const int DrawCardEvent = 9;
-    public const int GridObject = 10;
-    public const int GridObjectUseEvent = 11;
-    public const int MergeEvent = 12;
-    public const int StartCombatEvent = 13;
-    public const int RestartGameEvent = 14;
-    public const int NodeEnterEvent = 15;
-    public const int NodeExitEvent = 16;
-    public const int Path = 17;
-    public const int ShowViewEvent = 18;
-    public const int Player = 19;
-    public const int DebugMessage = 20;
+    public const int LoadShopCardsEvent = 0;
+    public const int RestEvent = 1;
+    public const int Battle = 2;
+    public const int Enemy = 3;
+    public const int SummonEnemyEvent = 4;
+    public const int Board = 5;
+    public const int ChangeCombatStateEvent = 6;
+    public const int Combat = 7;
+    public const int DragGridObjectEvent = 8;
+    public const int DragGridObjectUpdate = 9;
+    public const int DrawCardEvent = 10;
+    public const int GridObject = 11;
+    public const int GridObjectUseEvent = 12;
+    public const int MergeEvent = 13;
+    public const int StartCombatEvent = 14;
+    public const int RestartGameEvent = 15;
+    public const int NodeEnterEvent = 16;
+    public const int NodeExitEvent = 17;
+    public const int Path = 18;
+    public const int ShowViewEvent = 19;
+    public const int Player = 20;
+    public const int BuyShopCardEvent = 21;
+    public const int Shop = 22;
+    public const int DebugMessage = 23;
 
-    public const int TotalComponents = 21;
+    public const int TotalComponents = 24;
 
     public static readonly string[] componentNames = {
+        "LoadShopCardsEvent",
         "RestEvent",
         "Battle",
         "Enemy",
@@ -53,10 +57,13 @@ public static class GameComponentsLookup {
         "Path",
         "ShowViewEvent",
         "Player",
+        "BuyShopCardEvent",
+        "Shop",
         "DebugMessage"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(MergeToStay.Components.Camp.LoadShopCardsEvent),
         typeof(MergeToStay.Components.Camp.RestEvent),
         typeof(MergeToStay.Components.Combat.Battle.Battle),
         typeof(MergeToStay.Components.Combat.Battle.Enemy),
@@ -77,6 +84,8 @@ public static class GameComponentsLookup {
         typeof(MergeToStay.Components.Path.PathComponent),
         typeof(MergeToStay.Components.Path.ShowViewEvent),
         typeof(MergeToStay.Components.Player.PlayerComponent),
+        typeof(MergeToStay.Components.Shop.BuyShopCardEvent),
+        typeof(MergeToStay.Components.Shop.ShopComponent),
         typeof(MergeToStay.Examples.Components.DebugMessageComponent)
     };
 }

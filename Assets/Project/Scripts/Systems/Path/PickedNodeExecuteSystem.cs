@@ -12,6 +12,7 @@ namespace MergeToStay.Systems.Combat
 	{
 		[Inject] private PathService _pathService;
 		[Inject] private ViewService _viewService;
+		[Inject] private ShopService _shopService;
 
 		private IGroup<GameEntity> _pathGroup;
 
@@ -26,6 +27,9 @@ namespace MergeToStay.Systems.Combat
 			foreach (GameEntity eventEntity in entities)
 			{
 				_pathService.SetCurrentNodeId(pathEntity, eventEntity.nodeEnterEvent.PickedNodeId);
+
+				if (eventEntity.nodeEnterEvent.NodeType == NodeType.Shop)
+					_shopService.CreateLoadShopCardsEvent();
 
 				string nodeTypeName = Enum.GetName(typeof(NodeType), eventEntity.nodeEnterEvent.NodeType);
 				View view = (View) Enum.Parse(typeof(View), nodeTypeName);
