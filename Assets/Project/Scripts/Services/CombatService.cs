@@ -158,7 +158,7 @@ namespace MergeToStay.Services
 			int defense = enemyEntity.enemy.TurnStats.Defense;
 			int damageFinal = Math.Max(0, damage - defense);
 
-			enemyEntity.enemy.Hp -= damageFinal;
+			enemyEntity.enemy.Hp = Math.Max(0, enemyEntity.enemy.Hp - damageFinal);
 			enemyEntity.enemy.TurnStats.Defense = Math.Max(0, defense - damage);
 		}
 
@@ -166,7 +166,7 @@ namespace MergeToStay.Services
 		{
 			int defense = battleEntity.battle.PlayerCurrentTurnStats.Defense;
 			int damageFinal = Math.Max(0, damage - defense);
-			player.player.Health -= damageFinal;
+			player.player.Health = Math.Max(0, player.player.Health - damageFinal);;
 			battleEntity.battle.PlayerCurrentTurnStats.Defense = Math.Max(0, defense - damage);
 		}
 
@@ -196,6 +196,13 @@ namespace MergeToStay.Services
 		{
 			TurnStats battlePlayerCurrentTurnStats = battleEntity.battle.PlayerCurrentTurnStats;
 			battlePlayerCurrentTurnStats.Defense = Math.Max(0, battlePlayerCurrentTurnStats.Defense - value);
+		}
+
+		public void PickNewRandonEnemyBehaviour(GameEntity enemyEntity)
+		{
+			enemyEntity.enemy.CurrentBehaviourSequenceIndex = UnityEngine.Random.Range(0, enemyEntity.enemy.EnemyData.CombatBehaviours.Count);
+			enemyEntity.enemy.CurrentBehaviourSequenceTurn = 0;
+
 		}
 	}
 }

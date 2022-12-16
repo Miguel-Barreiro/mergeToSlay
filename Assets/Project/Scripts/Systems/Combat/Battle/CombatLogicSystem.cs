@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Entitas;
 using MergeToStay.Components.Combat;
+using MergeToStay.Components.Combat.Battle;
+using MergeToStay.Data;
 using MergeToStay.MonoBehaviours.Combat;
 using MergeToStay.Services;
 using Zenject;
@@ -17,9 +19,10 @@ namespace MergeToStay.Systems.Combat.Battle
 		
 		private IGroup<GameEntity> _batleGroup;
 		private IGroup<GameEntity> _playerGroup;
-
+		private IGroup<GameEntity> _boardGroup;
 		public void Initialize()
 		{
+			_boardGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Board));
 			_batleGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Battle));
 			_playerGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
 		}
@@ -28,6 +31,7 @@ namespace MergeToStay.Systems.Combat.Battle
 		{
 			GameEntity battleEntity = _batleGroup.GetSingleEntity();
 			GameEntity playerEntity = _playerGroup.GetSingleEntity();
+			GameEntity boardEntity = _boardGroup.GetSingleEntity();
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
 			
 			foreach (GameEntity eventEntity in entities)
@@ -41,7 +45,7 @@ namespace MergeToStay.Systems.Combat.Battle
 						{
 							_boardView.EndTurnButton.gameObject.SetActive(true);
 							_boardView.ToggleDrag(true);
-							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
+							ChangeCombatState(battleEntity, boardEntity, playerEntity, changeCombatStateEvent.NewState);
 						}
 						break;
 					case Components.Combat.Battle.Battle.BattleState.Play:
@@ -49,7 +53,7 @@ namespace MergeToStay.Systems.Combat.Battle
 						{
 							_boardView.EndTurnButton.gameObject.SetActive(false);
 							_boardView.ToggleDrag(false);
-							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
+							ChangeCombatState(battleEntity, boardEntity, playerEntity, changeCombatStateEvent.NewState);
 						}
 						break;
 					case Components.Combat.Battle.Battle.BattleState.EnemyTurn:
@@ -57,7 +61,7 @@ namespace MergeToStay.Systems.Combat.Battle
 						{
 							_boardView.EndTurnButton.gameObject.SetActive(false);
 							_boardView.ToggleDrag(false);
-							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
+							ChangeCombatState(battleEntity, boardEntity, playerEntity, changeCombatStateEvent.NewState);
 						}
 						break;
 					case Components.Combat.Battle.Battle.BattleState.Init:
@@ -66,7 +70,7 @@ namespace MergeToStay.Systems.Combat.Battle
 							_combatService.ResetFullBattleStats(battleEntity, playerEntity);
 							_boardView.EndTurnButton.gameObject.SetActive(false);
 							_boardView.ToggleDrag(false);
-							ChangeCombatState(battleEntity, changeCombatStateEvent.NewState);
+							ChangeCombatState(battleEntity, boardEntity, playerEntity, changeCombatStateEvent.NewState);
 						}
 						break;
 				}
@@ -77,7 +81,8 @@ namespace MergeToStay.Systems.Combat.Battle
 			
 		}
 
-		private void ChangeCombatState(GameEntity battleEntity, Components.Combat.Battle.Battle.BattleState newState)
+		private void ChangeCombatState(GameEntity battleEntity, GameEntity boardEntity, GameEntity playerEntity, 
+											Components.Combat.Battle.Battle.BattleState newState)
 		{
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
 			battle.State = newState;
@@ -89,7 +94,7 @@ namespace MergeToStay.Systems.Combat.Battle
 					ExecuteDraw(battleEntity);
 					break;
 				case Components.Combat.Battle.Battle.BattleState.EnemyTurn:
-					ExecuteEnemyTurn(battleEntity);
+					ExecuteEnemyTurn(battleEntity, boardEntity, playerEntity);
 					break;
 				case Components.Combat.Battle.Battle.BattleState.Play:
 					ExecutePlay();
@@ -103,13 +108,33 @@ namespace MergeToStay.Systems.Combat.Battle
 			
 		}
 
-		private void ExecuteEnemyTurn(GameEntity battleEntity)
+		private void ExecuteEnemyTurn(GameEntity battleEntity, GameEntity boardEntity, GameEntity playerEntity)
 		{
 			// needs to happen first to allow enemies to defend
 			_combatService.ResetBattleTurnStats(battleEntity);
 			
 			//TODO: PLAY ENEMY ACTIONS
-			
+			foreach (GameEntity enemyEntity in battleEntity.battle.Enemies)
+			{
+				Enemy enemy = enemyEntity.enemy;
+				List<CombatSequence> behaviours = enemy.EnemyData.CombatBehaviours;
+				CombatSequence currentCombatSequence = behaviours[enemy.CurrentBehaviourSequenceIndex];
+				
+				if (enemy.CurrentBehaviourSequenceTurn< 0 || 
+						enemy.CurrentBehaviourSequenceTurn >= currentCombatSequence.TurnActionsSequence.Count)
+				{
+					_combatService.PickNewRandonEnemyBehaviour(enemyEntity);
+					currentCombatSequence = behaviours[enemy.CurrentBehaviourSequenceIndex];
+				}
+
+				TurnActions turnActions = currentCombatSequence.TurnActionsSequence[enemy.CurrentBehaviourSequenceTurn];
+				foreach (TurnAction turnAction in turnActions.Actions)
+					turnAction.Action.ExecuteEnemyBehaviour(battleEntity, boardEntity, enemyEntity, playerEntity,
+															_combatService, _boardService);
+
+				enemy.CurrentBehaviourSequenceTurn++;
+			}
+
 			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Draw);
 		}
 
@@ -117,9 +142,28 @@ namespace MergeToStay.Systems.Combat.Battle
 		{
 			//TODO: PLAY TURN EFFECTS
 			
+			PickEnemyBehaviours(battleEntity);
+			
+			
 			Components.Combat.Battle.Battle battle = battleEntity.battle;
 			_combatService.CreateDrawCardEvent(battle.CardDrawLevel);
 			_combatService.CreateGameStateChange(Components.Combat.Battle.Battle.BattleState.Play);
+		}
+
+		private void PickEnemyBehaviours(GameEntity battleEntity)
+		{
+			foreach (GameEntity enemyEntity in battleEntity.battle.Enemies)
+			{
+				Enemy enemy = enemyEntity.enemy;
+				List<CombatSequence> behaviours = enemy.EnemyData.CombatBehaviours;
+				CombatSequence currentCombatSequence = behaviours[enemy.CurrentBehaviourSequenceIndex];
+
+				if (enemy.CurrentBehaviourSequenceTurn < 0 ||
+					enemy.CurrentBehaviourSequenceTurn >= currentCombatSequence.TurnActionsSequence.Count)
+				{
+					_combatService.PickNewRandonEnemyBehaviour(enemyEntity);
+				}
+			}
 		}
 
 		protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
