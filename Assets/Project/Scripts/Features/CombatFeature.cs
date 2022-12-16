@@ -31,7 +31,8 @@ namespace MergeToStay.Features
 			// battle
 			Add(_container.Instantiate<SummonEnemySystem>());
 			Add(_container.Instantiate<BattleViewSystem>());
-			
+			Add(_container.Instantiate<EnemiesSystem>());
+
 			return this;
 		}
 	}

@@ -8,7 +8,7 @@ namespace MergeToStay.Systems.Combat
 {
 	public class CombatInitSystem : ReactiveGameSystem, IInitializeSystem
 	{
-		[Inject] private Contexts _contexts;
+
 		[Inject] private GameContext _context;
 		[Inject] private GameConfigData _gameConfigData;
 		[Inject] private BoardService _boardService;

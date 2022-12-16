@@ -9,4 +9,5 @@ namespace MergeToStay.MonoBehaviours.Combat
         public RectTransform PlayerSpot;
 
     }
+    
 }
