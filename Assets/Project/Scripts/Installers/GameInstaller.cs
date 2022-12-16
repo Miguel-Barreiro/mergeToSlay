@@ -23,6 +23,7 @@ namespace MergeToStay.Installers
         [SerializeField] private GameConfigData GameConfigData;
         [SerializeField] private EnemyData DebugEnemyData;
         [SerializeField] private CardData DebugCardData;
+        [SerializeField] private PathData PathData;
         
         private GameObject _playerUiView;
         private GameObject _pathView;
@@ -59,6 +60,7 @@ namespace MergeToStay.Installers
 
         private void InstallData()
         {
+            Container.BindInstance<PathData>(PathData);
             Container.BindInstance<CardList>(GameConfigData.CardListData);
             Container.BindInstance<GameConfigData>(GameConfigData);
         }

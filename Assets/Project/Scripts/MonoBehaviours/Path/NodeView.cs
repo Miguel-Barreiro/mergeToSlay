@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using MergeToStay.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace MergeToStay.MonoBehaviours.Path
 {
@@ -17,6 +19,8 @@ namespace MergeToStay.MonoBehaviours.Path
 
         [SerializeField] TextMeshProUGUI typeText;
 
+        [Inject] PathData pathData;
+        
         public bool IsSelectable
         {
             get => button.enabled;
@@ -35,6 +39,8 @@ namespace MergeToStay.MonoBehaviours.Path
         private void Update()
         {
             typeText.text = Type.ToString();
+            if (pathData.AllNodeTypes.ContainsKey(Type))
+                image.sprite = pathData.AllNodeTypes[Type].Icon;
         }
 
         public void SetSelected(bool value)

@@ -27,7 +27,9 @@ namespace MergeToStay.Data
     [Serializable]
     public sealed class CardLevelData
     {
+        public Sprite Icon;
         public GameObject Prefab;
+        public int Price;
 
         [TextArea]
         public string Description;
