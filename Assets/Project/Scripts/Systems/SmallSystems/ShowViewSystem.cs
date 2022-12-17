@@ -13,6 +13,7 @@ namespace MergeToStay.Systems.SmallSystems
 		
 		[Inject] private CombatService _combatService;
 		[Inject] private GameConfigData _gameConfigData;
+		[Inject] private BattleRewardsService _battleRewardsService;
 
 		public void Initialize() => _rootView.ShowView(View.Path);
 
@@ -21,13 +22,19 @@ namespace MergeToStay.Systems.SmallSystems
 			foreach (GameEntity eventEntity in entities)
 			{
 				_rootView.ShowView(eventEntity.showViewEvent.View, eventEntity.showViewEvent.HideOpenedViews);
+				
 				if (eventEntity.showViewEvent.View == View.Battle || 
 					eventEntity.showViewEvent.View == View.BossBattle ||
 					eventEntity.showViewEvent.View == View.EliteBattle )
 				{
 					_combatService.CreateCombatStartEvent(eventEntity.showViewEvent.View);
 				}
-				
+
+				if (eventEntity.showViewEvent.View == View.BattleRewards)
+				{
+					_battleRewardsService.CreateLoadBattleRewardsEvent();
+				}
+
 				eventEntity.Destroy();
 			}
 		}

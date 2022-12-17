@@ -3,7 +3,6 @@ using Entitas;
 using MergeToStay.Core;
 using MergeToStay.Data;
 using MergeToStay.Data.Rewards;
-using MergeToStay.MonoBehaviours.Camp;
 using MergeToStay.MonoBehaviours.Combat;
 using MergeToStay.Services;
 using UnityEngine;
@@ -20,6 +19,8 @@ namespace MergeToStay.Systems.Combat
 
 		private IGroup<GameEntity> _battleGroup;
 
+		private readonly List<GameObject> views = new List<GameObject>();
+		
 		public void Initialize()
 		{
 			_battleGroup = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Battle));
@@ -31,11 +32,17 @@ namespace MergeToStay.Systems.Combat
 			if (!battleEntity.hasBattle)
 				return;
 
+			foreach (GameObject previousView in views)
+				_prefabFactoryPool.Destroy(previousView);
+			
+			views.Clear();
+			
 			for (int i = 0; i < battleEntity.battle.CombatData.Rewards.Count; i++)
 			{
 				RewardBase reward = battleEntity.battle.CombatData.Rewards[i];
 				GameObject view = reward.GetView(_battleRewardsService);
 				_battleRewardsView.AddReward(view.transform);
+				views.Add(view);
 			}
 		}
 

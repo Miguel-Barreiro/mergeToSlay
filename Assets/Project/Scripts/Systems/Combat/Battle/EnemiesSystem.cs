@@ -59,8 +59,6 @@ namespace MergeToStay.Systems.Combat.Battle
 			{
 				battle.State = Components.Combat.Battle.Battle.BattleState.Init;
 				_viewService.CreateShowViewEvent(View.BattleRewards);
-
-				_battleRewardsService.CreateLoadBattleRewardsEvent();
 			}
 		}
 	}

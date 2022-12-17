@@ -14,7 +14,7 @@ namespace MergeToStay.MonoBehaviours.Camp
 
         [Inject] BattleRewardsService _battleRewardsService;
         
-        private int _rewardIndex;
+        private int _rewardValue;
         private RewardType _type;
 
         private void Awake() => AddToDeckButton.onClick.AddListener(ExecuteReward);
@@ -31,8 +31,8 @@ namespace MergeToStay.MonoBehaviours.Camp
         {
             _type = type;
             Image.sprite = image;
+            _rewardValue = rewardIndex;
             Name.text = name;
-            _rewardIndex = rewardIndex;
         }
 
         void ExecuteReward()
@@ -40,19 +40,19 @@ namespace MergeToStay.MonoBehaviours.Camp
             switch (_type)
             {
                 case RewardType.Card:
-                    _battleRewardsService.ExecuteCardReward(_rewardIndex);
+                    _battleRewardsService.ExecuteCardReward(_rewardValue);
                     gameObject.SetActive(false);
                     break;
                 case RewardType.Gold:
-                    _battleRewardsService.ExecuteGoldReward(_rewardIndex);
+                    _battleRewardsService.ExecuteGoldReward(_rewardValue);
                     gameObject.SetActive(false);
                     break;
                 case RewardType.Heal:
-                    _battleRewardsService.ExecuteHealReward(_rewardIndex);
+                    _battleRewardsService.ExecuteHealReward(_rewardValue);
                     gameObject.SetActive(false);
                     break;
                 case RewardType.DrawLevel:
-                    _battleRewardsService.ExecuteDrawLevelReward(_rewardIndex);
+                    _battleRewardsService.ExecuteDrawLevelReward(_rewardValue);
                     gameObject.SetActive(false);
                     break;
             }

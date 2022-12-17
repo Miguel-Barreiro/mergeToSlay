@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using Entitas;
 using MergeToStay.Components.Player;
-using MergeToStay.Components.Shop;
 using MergeToStay.Core;
 using MergeToStay.Data;
 using MergeToStay.Data.Rewards;
@@ -14,6 +14,7 @@ namespace MergeToStay.Services
 {
 	public class BattleRewardsService
 	{
+		[Inject] private DiContainer _container;
 		[Inject] private GameContext _context;
 		[Inject] private CombatService _combatService;
 		[Inject] private GameConfigData _gameConfigData;
@@ -93,7 +94,7 @@ namespace MergeToStay.Services
 				Level = randomCard.Level
 			};
 			
-			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
+			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab, _container);
 			RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
 			CardLevelData randomCardLevel = randomCard.CardData.LevelData[card.Level];
 			rewardCardView.UpdateValues(randomCardLevel.Icon, randomCard.CardData.Name, randomCardIndex, RewardCardView.RewardType.Card);
@@ -103,7 +104,7 @@ namespace MergeToStay.Services
 
 		public GameObject GetRewardViewForDrawLevel(int drawLevel)
 		{
-			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
+			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab, _container);
 			RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
 			rewardCardView.UpdateValues(_gameConfigData.DrawLevelRewardViewIcon, "+" + drawLevel + " draw level", drawLevel, RewardCardView.RewardType.DrawLevel);
 			return rewardCardView.gameObject;
@@ -111,7 +112,7 @@ namespace MergeToStay.Services
 
 		public GameObject GetRewardViewForGold(int gold)
 		{
-			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
+			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab, _container);
 			RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
 			rewardCardView.UpdateValues(_gameConfigData.DrawLevelRewardViewIcon, "+ " + gold + " gold", gold, RewardCardView.RewardType.Gold);
 			return rewardCardView.gameObject;
@@ -119,7 +120,7 @@ namespace MergeToStay.Services
 
 		public GameObject GetRewardViewForHeal(int healAmount)
 		{
-			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
+			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab, _container);
 			RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
 			rewardCardView.UpdateValues(_gameConfigData.DrawLevelRewardViewIcon, "heal for " + healAmount , healAmount, RewardCardView.RewardType.Heal);
 			return rewardCardView.gameObject;

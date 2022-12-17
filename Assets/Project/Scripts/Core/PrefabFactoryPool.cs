@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using MergeToStay.Data;
 using MergeToStay.MonoBehaviours;
 using UnityEngine;
@@ -29,12 +30,12 @@ namespace MergeToStay.Core
 			return GameObject.Instantiate(enemyDataPrefab, _rootView.BattleRoot);
 		}
 
-		public GameObject NewRewardCard(GameObject prefab)
+		public GameObject NewRewardCard(GameObject prefab, DiContainer container)
 		{
 			if (prefab == null)
 				prefab = _gameConfig.RewardCardPrefab;
 			
-			return GameObject.Instantiate(prefab, _rootView.BattleRoot);
+			return container.InstantiatePrefab(prefab, _rootView.BattleRoot);
 		}
 
 		public void Destroy(GameObject view)
