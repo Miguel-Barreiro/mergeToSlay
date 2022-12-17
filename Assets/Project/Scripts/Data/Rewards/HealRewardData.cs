@@ -1,3 +1,4 @@
+using MergeToStay.Services;
 using UnityEngine;
 
 namespace MergeToStay.Data.Rewards
@@ -10,6 +11,11 @@ namespace MergeToStay.Data.Rewards
 
 		[Range(0, 100)] 
 		public int ValuePercentage = 0;
+
+		public override GameObject GetView(BattleRewardsService service)
+		{
+			return service.GetRewardViewForHeal(Value);
+		}
 
 	}
 }

@@ -26,5 +26,9 @@ namespace MergeToStay.Data
 		public int MaxHealth;
 		public int StartingGold;
 		public int CampHealingAmount;
+		
+		public Sprite DrawLevelRewardViewIcon;
+		public Sprite HealRewardViewIcon;
+		public Sprite GoldRewardViewIcon;
 	}
 }

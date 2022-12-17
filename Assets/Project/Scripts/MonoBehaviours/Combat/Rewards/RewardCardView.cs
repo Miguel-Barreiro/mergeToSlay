@@ -14,21 +14,48 @@ namespace MergeToStay.MonoBehaviours.Camp
 
         [Inject] BattleRewardsService _battleRewardsService;
         
-        int _rewardIndex;
+        private int _rewardIndex;
+        private RewardType _type;
 
-        private void Awake() => AddToDeckButton.onClick.AddListener(AddToDeck);
+        private void Awake() => AddToDeckButton.onClick.AddListener(ExecuteReward);
 
-        public void UpdateValues(Sprite image, string name, int rewardIndex)
+        public enum RewardType
         {
+            Card, 
+            DrawLevel, 
+            Gold, 
+            Heal
+        }
+
+        public void UpdateValues(Sprite image, string name, int rewardIndex, RewardType type)
+        {
+            _type = type;
             Image.sprite = image;
             Name.text = name;
             _rewardIndex = rewardIndex;
         }
 
-        void AddToDeck()
+        void ExecuteReward()
         {
-            _battleRewardsService.ExecuteReward(_rewardIndex);
-            gameObject.SetActive(false);
+            switch (_type)
+            {
+                case RewardType.Card:
+                    _battleRewardsService.ExecuteCardReward(_rewardIndex);
+                    gameObject.SetActive(false);
+                    break;
+                case RewardType.Gold:
+                    _battleRewardsService.ExecuteGoldReward(_rewardIndex);
+                    gameObject.SetActive(false);
+                    break;
+                case RewardType.Heal:
+                    _battleRewardsService.ExecuteHealReward(_rewardIndex);
+                    gameObject.SetActive(false);
+                    break;
+                case RewardType.DrawLevel:
+                    _battleRewardsService.ExecuteDrawLevelReward(_rewardIndex);
+                    gameObject.SetActive(false);
+                    break;
+            }
         }
     }
 }

@@ -35,13 +35,7 @@ namespace MergeToStay.Systems.Combat
 			{
 				RewardBase reward = battleEntity.battle.CombatData.Rewards[i];
 				GameObject view = reward.GetView(_battleRewardsService);
-				
-
-				// GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
-				// RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
-				// rewardCardView.UpdateValues(reward.Icon, reward.Name, i);
-
-				_battleRewardsView.AddCard(rewardCard.transform);
+				_battleRewardsView.AddReward(view.transform);
 			}
 		}
 

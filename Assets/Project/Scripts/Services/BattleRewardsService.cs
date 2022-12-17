@@ -15,6 +15,7 @@ namespace MergeToStay.Services
 	public class BattleRewardsService
 	{
 		[Inject] private GameContext _context;
+		[Inject] private CombatService _combatService;
 		[Inject] private GameConfigData _gameConfigData;
 		[Inject] private PrefabFactoryPool _prefabFactoryPool;
 
@@ -26,15 +27,34 @@ namespace MergeToStay.Services
 			return result;
 		}
 
-		public void ExecuteReward(int rewardIndex)
+		public void ExecuteDrawLevelReward(int drawLevel)
 		{
-			IGroup<GameEntity> battleGroup = _context.GetGroup(GameMatcher.AllOf(GameMatcher.Battle));
-			GameEntity battleEntity = battleGroup.GetSingleEntity();
-			RewardBase reward = battleEntity.battle.CombatData.Rewards[rewardIndex];
-			reward.Execute();
+			IGroup<GameEntity> playerGroup = _context.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
+			GameEntity playerEntity = playerGroup.GetSingleEntity();
+			PlayerComponent player = playerEntity.player;
+
+			player.DrawLevel += drawLevel;
+			ResetPlayer(playerEntity);
 		}
 
-		public void EarnCard(CardsModel.Card card)
+		public void ExecuteHealReward(int healQuantity)
+		{
+			IGroup<GameEntity> playerGroup = _context.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
+			GameEntity playerEntity = playerGroup.GetSingleEntity();
+			_combatService.HealPlayer(playerEntity, healQuantity);
+		}
+
+		public void ExecuteGoldReward(int gold)
+		{
+			IGroup<GameEntity> playerGroup = _context.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
+			GameEntity playerEntity = playerGroup.GetSingleEntity();
+			PlayerComponent player = playerEntity.player;
+
+			player.Gold += gold;
+			ResetPlayer(playerEntity);
+		}
+		
+		public void ExecuteCardReward(int rewardIndex)
 		{
 			IGroup<GameEntity> playerGroup = _context.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
 			GameEntity playerEntity = playerGroup.GetSingleEntity();
@@ -43,22 +63,30 @@ namespace MergeToStay.Services
 
 			List<RewardBase> rewards = battleEntity.battle.CombatData.Rewards;
 			
-			CardsModel.Card card = _gameConfigData.RewardCardList.Cards[shopCardIndex];
+			CardsModel.Card card = _gameConfigData.RewardCardList.Cards[rewardIndex];
 
 			PlayerComponent player = playerEntity.player;
 			player.Deck.Cards.Add(card);
+			ResetPlayer(playerEntity);
+
+		}
+
+		private static void ResetPlayer(GameEntity playerEntity)
+		{
+			PlayerComponent player = playerEntity.player;
 			playerEntity.ReplacePlayer(player.Health, player.Gold, player.DrawLevel, player.Deck);
 		}
 
-		public (CardsModel.Card card, RewardCardView view) GetRewardViewForCard()
+
+		public GameObject GetRewardViewForCard()
 		{
 			Random random = new Random();
-
+		
 			List<CardsModel.Card> rewardCards = _gameConfigData.RewardCardList.Cards;
-
+		
 			int randomCardIndex = random.Next(rewardCards.Count);
 			CardsModel.Card randomCard = rewardCards[randomCardIndex];
-
+		
 			CardsModel.Card card = new CardsModel.Card
 			{
 				CardData = randomCard.CardData,
@@ -68,9 +96,33 @@ namespace MergeToStay.Services
 			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
 			RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
 			CardLevelData randomCardLevel = randomCard.CardData.LevelData[card.Level];
-			rewardCardView.UpdateValues(randomCardLevel.Icon, randomCard.CardData.Name, randomCardLevel.Price);
+			rewardCardView.UpdateValues(randomCardLevel.Icon, randomCard.CardData.Name, randomCardIndex, RewardCardView.RewardType.Card);
+		
+			return rewardCardView.gameObject;
+		}
 
-			return (card, rewardCardView);
+		public GameObject GetRewardViewForDrawLevel(int drawLevel)
+		{
+			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
+			RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
+			rewardCardView.UpdateValues(_gameConfigData.DrawLevelRewardViewIcon, "+" + drawLevel + " draw level", drawLevel, RewardCardView.RewardType.DrawLevel);
+			return rewardCardView.gameObject;
+		}
+
+		public GameObject GetRewardViewForGold(int gold)
+		{
+			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
+			RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
+			rewardCardView.UpdateValues(_gameConfigData.DrawLevelRewardViewIcon, "+ " + gold + " gold", gold, RewardCardView.RewardType.Gold);
+			return rewardCardView.gameObject;
+		}
+
+		public GameObject GetRewardViewForHeal(int healAmount)
+		{
+			GameObject rewardCard = _prefabFactoryPool.NewRewardCard(_gameConfigData.RewardCardPrefab);
+			RewardCardView rewardCardView = rewardCard.GetComponent<RewardCardView>();
+			rewardCardView.UpdateValues(_gameConfigData.DrawLevelRewardViewIcon, "heal for " + healAmount , healAmount, RewardCardView.RewardType.Heal);
+			return rewardCardView.gameObject;
 		}
 	}
 }

@@ -7,15 +7,10 @@ namespace MergeToStay.Data.Rewards
 	public class CardRewardData : RewardBase
 	{
 		public CardsModel.CardRarity CardRarity;
-
-		public override void Execute()
-		{
-			
-		}
-
+		
 		public override GameObject GetView(BattleRewardsService service)
 		{
-			service.GetRewardViewForCard();
+			return service.GetRewardViewForCard();
 		}
 	}
 }

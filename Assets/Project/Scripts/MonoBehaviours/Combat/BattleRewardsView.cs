@@ -6,6 +6,6 @@ namespace MergeToStay.MonoBehaviours.Combat
     {
         public Transform CardsParent;
 
-        public void AddCard(Transform card) => card.SetParent(CardsParent);
+        public void AddReward(Transform card) => card.SetParent(CardsParent);
     }
 }

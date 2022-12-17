@@ -5,7 +5,7 @@ namespace MergeToStay.Data.Rewards
 {
 	public class RewardBase : ScriptableObject
 	{
-		public virtual void Execute() {}
+		// public virtual int Execute(BattleRewardsService service) { return -1; }
 
 		public virtual GameObject GetView(BattleRewardsService service)
 		{
